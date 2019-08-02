@@ -1,0 +1,21 @@
+//
+//  UploadAttachView.h
+//  DiscuzMobile
+//
+//  Created by 张积涛 on 2018/3/26.
+//  Copyright © 2018年 com.comzenz-service. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "UploadAttachModel.h"
+#import "WSImagePickerView.h"
+
+@interface UploadAttachView : UIView
+
+@property (nonatomic, strong) UploadAttachModel *uploadModel;
+
+@property (nonatomic, strong) WSImagePickerView *pickerView;
+
+- (void)uploadImageArray:(NSMutableArray *)imageArr getDic:(NSDictionary *)getdic postDic:(NSDictionary *)postdic;
+
+@end
