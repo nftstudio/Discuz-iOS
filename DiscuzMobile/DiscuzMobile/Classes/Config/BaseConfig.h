@@ -3,7 +3,7 @@
 //  DiscuzMobile
 //
 //  Created by ZhangJitao on 2018/2/1.
-//  Copyright © 2018年 com.comzenz-service. All rights reserved.
+//  Copyright © 2018年 comsenz-service.com.  All rights reserved.
 //
 
 // 配置文件
@@ -15,7 +15,7 @@
 
 #define COMPANYNAME @"北京康创联盛科技有限公司" // 公司
 #define APPNAME APPDISPLAYNAME
-#define INCINFO [NSString stringWithFormat:@"©2001 - %@ Comsenz Inc.",NOWYEAR] // 版权时间
+#define INCINFO [NSString stringWithFormat:@"©2001 - %@ comsenz-service.com.",NOWYEAR] // 版权时间
 //#define BASEURL @"https://guanjia.comsenz-service.com/" // 域名  除了两个plugin.php的，别的都需要拼接 api/mobile/
 #define BASEURL @"https://bbs.comsenz-service.com/"
 #define MAINCOLOR mRGBColor(50, 120, 230) // 主题色

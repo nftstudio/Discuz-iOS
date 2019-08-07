@@ -3,7 +3,7 @@
 //  DiscuzMobile
 //
 //  Created by HB on 16/8/22.
-//  Copyright © 2016年 Zhangjitao. All rights reserved.
+//  Copyright © 2016年 comsenz-service.com. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

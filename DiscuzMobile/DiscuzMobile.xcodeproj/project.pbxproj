@@ -4204,7 +4204,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0910;
-				ORGANIZATIONNAME = "com.comzenz-service";
+				ORGANIZATIONNAME = "comsenz-service.com";
 				TargetAttributes = {
 					27D1C8E21DD2BE8E00B835B7 = {
 						CreatedOnToolsVersion = 8.0;

@@ -3,7 +3,7 @@
 //  Travel
 //
 //  Created by Zhangjitao on 15/10/29.
-//  Copyright © 2015年 Zhangjitao. All rights reserved.
+//  Copyright © 2015年 comsenz-service.com. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

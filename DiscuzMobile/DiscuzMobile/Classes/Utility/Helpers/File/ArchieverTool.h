@@ -3,7 +3,7 @@
 //  Travel
 //
 //  Created by Zhangjitao on 15/11/8.
-//  Copyright © 2015年 Zhangjitao. All rights reserved.
+//  Copyright © 2015年 comsenz-service.com. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

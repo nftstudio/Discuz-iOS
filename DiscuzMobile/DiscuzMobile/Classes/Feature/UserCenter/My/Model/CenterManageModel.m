@@ -3,7 +3,7 @@
 //  DiscuzMobile
 //
 //  Created by HB on 2017/9/8.
-//  Copyright © 2017年 com.comzenz-service. All rights reserved.
+//  Copyright © 2017年 comsenz-service.com.  All rights reserved.
 //
 
 #import "CenterManageModel.h"

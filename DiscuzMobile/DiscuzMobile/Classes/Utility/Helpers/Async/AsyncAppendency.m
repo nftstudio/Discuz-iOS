@@ -3,7 +3,7 @@
 //  DiscuzMobile
 //
 //  Created by ZhangJitao on 2017/11/19.
-//  Copyright © 2017年 com.comzenz-service. All rights reserved.
+//  Copyright © 2017年 comsenz-service.com.  All rights reserved.
 //
 
 #import "AsyncAppendency.h"

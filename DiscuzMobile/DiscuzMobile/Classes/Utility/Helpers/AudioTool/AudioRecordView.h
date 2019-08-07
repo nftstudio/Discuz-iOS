@@ -3,7 +3,7 @@
 //  testYUyin
 //
 //  Created by HB on 2017/5/11.
-//  Copyright © 2017年 com.comzenz-service. All rights reserved.
+//  Copyright © 2017年 comsenz-service.com.  All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

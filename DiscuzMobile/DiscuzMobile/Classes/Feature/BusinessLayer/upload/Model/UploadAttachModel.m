@@ -3,7 +3,7 @@
 //  DiscuzMobile
 //
 //  Created by ZhangJitao on 2018/3/26.
-//  Copyright © 2018年 com.comzenz-service. All rights reserved.
+//  Copyright © 2018年 comsenz-service.com.  All rights reserved.
 //
 
 #import "UploadAttachModel.h"

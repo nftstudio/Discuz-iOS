@@ -3,7 +3,7 @@
 //  DiscuzQTests
 //
 //  Created by HB on 16/11/9.
-//  Copyright © 2016年 com.comzenz-service. All rights reserved.
+//  Copyright © 2016年 comsenz-service.com.  All rights reserved.
 //
 
 #import <XCTest/XCTest.h>

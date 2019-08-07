@@ -3,7 +3,7 @@
 //  DiscuzMobile
 //
 //  Created by ZhangJitao on 2019/7/12.
-//  Copyright © 2019 com.comzenz-service. All rights reserved.
+//  Copyright © 2019 comsenz-service.com.  All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
