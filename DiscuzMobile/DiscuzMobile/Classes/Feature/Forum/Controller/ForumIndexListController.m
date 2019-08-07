@@ -142,15 +142,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *textStr = @"";
     TreeViewNode *node = self.dataSourceArr[indexPath.section];
-    
     if (tableView == self.leftTable) {
-        node = self.dataSourceArr[indexPath.row];
-        textStr = node.nodeName;
-        
         ForumLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:[ForumLeftCell getReuseId]];
-        cell.titleLab.text = textStr;
+        node = self.dataSourceArr[indexPath.row];
+        cell.titleLab.text = node.nodeName;
         return cell;
     } else {
         ForumRightCell *cell = [tableView dequeueReusableCellWithIdentifier:[ForumRightCell getReuseId]];
@@ -215,7 +211,6 @@
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     header.textLabel.font = [FontSize HomecellTimeFontSize14];
-//    header.textLabel.textAlignment = NSTextAlignmentCenter;
     header.contentView.backgroundColor = [UIColor whiteColor];
     for (UIView *subview in header.subviews) {
         if (subview.tag == 2018) {

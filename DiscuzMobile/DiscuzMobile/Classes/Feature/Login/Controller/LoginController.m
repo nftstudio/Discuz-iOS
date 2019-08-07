@@ -213,7 +213,8 @@ NSString * const debugPassword = @"debugPassword";
     DLog(@"openid等==========================%@",dic);
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
         [self.HUD showLoadingMessag:@"拉取信息" toView:self.view];
-        request.urlString = url_ThirdLogin;
+//        request.urlString = url_ThirdLogin;
+        request.urlString = url_CommonLogin;
         request.methodType = JTMethodTypePOST;
         request.parameters = dic;
     } success:^(id responseObject, JTLoadType type) {
@@ -236,15 +237,16 @@ NSString * const debugPassword = @"debugPassword";
 - (void)setUserInfo:(id)responseObject {
     
     NSString *messagestatus;
-    if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]]) {
-        messagestatus = [[responseObject objectForKey:@"Message"] objectForKey:@"messagestatus"];
-    }
 
     [super setUserInfo:responseObject];
     
     if ([messagestatus isEqualToString:@"0"]){
         // 去第三方绑定页面
         [self boundThirdview];
+    } else {
+        if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]]) {
+            messagestatus = [[responseObject objectForKey:@"Message"] objectForKey:@"messagestatus"];
+        }
     }
     
 }

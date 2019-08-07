@@ -68,7 +68,6 @@
     } else {
         self.notitySelected = viewController.tabBarItem.tag;
     }
-    
     return YES;
 }
 
@@ -103,7 +102,7 @@
     DiscoverManagerController *dicoverVC = [[DiscoverManagerController alloc] init];
     ForumManagerController *forumVC = [[ForumManagerController alloc] init];
     UserController *userVC = [[UserController alloc] init];
-    FastPlaceController *fastVC = [[FastPlaceController alloc] init];
+//    FastPlaceController *fastVC = [[FastPlaceController alloc] init];
 //    TTSearchController *searchVC = [[TTSearchController alloc] init];
 //    searchVC.type = searchPostionTypeTabbar;
     

@@ -574,7 +574,7 @@
         self.infoView.bankLab.text = [NSString stringWithFormat:@"排名：%@",self.forumInfo.rank];
     }
     self.infoView.titleLab.text = self.forumInfo.name;
-    self.infoView.threadsLab.text = [NSString stringWithFormat:@"主题：%@",[self.forumInfo.threads onePointCountWithNumstring]];
+    self.infoView.threadsLab.text = [NSString stringWithFormat:@"主题：%@",self.forumInfo.threads];
     if ([DataCheck isValidString:self.forumInfo.descrip]) {
         self.infoView.describLab.text = self.forumInfo.descrip;
         [self.infoView layoutIfNeeded];
@@ -599,7 +599,7 @@
     }
     
     if ([DataCheck isValidString:todaypost]) {
-        self.infoView.todayPostLab.text = [NSString stringWithFormat:@"今日：%@", [todaypost onePointCountWithNumstring]];
+        self.infoView.todayPostLab.text = [NSString stringWithFormat:@"今日：%@", todaypost];
     }
 }
 

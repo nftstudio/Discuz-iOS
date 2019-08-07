@@ -15,21 +15,28 @@
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key {
-    if ([key isEqualToString:@"description"]) {
-        self.descrip = [value transformationStr];
-    } else if ([key isEqualToString:@"id"]) {
-        self.fid = value;
-    } else if ([key isEqualToString:@"lastpost"]) {
-        
+    if ([key isEqualToString:@"id"]) {
+        _fid = value;
+    }
+    else if ([key isEqualToString:@"lastpost"]) {
         if ([DataCheck isValidDictionary:value]) {
-            self.lastpost = [value objectForKey:@"dateline"];
+            _lastpost = [[value objectForKey:@"dateline"] transformationStr];
         } else {
             [super setValue:value forKey:key];
         }
-    } else if ([key isEqualToString:@"favorite"]) {
-        self.favorited = value;
+    }
+    else if ([key isEqualToString:@"favorite"]) {
+        _favorited = value;
     }
     else {
+        if ([@[@"todayposts",@"threads",@"posts"] containsObject:key]) {
+            value = [value onePointCountWithNumstring];
+        } else if ([@[@"name",@"description"] containsObject:key]) {
+            value = [[value transformationStr] flattenHTMLTrimWhiteSpace:YES];
+            if ([key isEqualToString:@"description"]) {
+                _descrip = value;
+            }
+        }
         [super setValue:value forKey:key];
     }
 }

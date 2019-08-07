@@ -128,12 +128,10 @@
 - (NSString *)managerCountWithNumstring {
     if ([self floatValue] >= 100000000){
         float i = [self floatValue]/100000000;
-        i = floorf(i * 10 + 0.5) / 10;
         return [NSString stringWithFormat:@"%.1f亿",i];
     }
     else  if ([self floatValue] >= 10000) {
         float i = [self floatValue]/10000;
-        i = floorf(i * 10 + 0.5) / 10;
         return [NSString stringWithFormat:@"%.1f万",i];
     }
     else {
@@ -144,14 +142,14 @@
 // 保留一位小数，后面舍去
 - (NSString *)onePointCountWithNumstring {
     if ([self integerValue] >= 100000000){
-        float i = [self integerValue]/100000000;
+        float i = [self floatValue]/100000000;
         i = floorf(i * 10 ) / 10;
-        return [NSString stringWithFormat:@"%.0f亿",i];
+        return [NSString stringWithFormat:@"%.1f亿",i];
     }
     else  if ([self integerValue] >= 10000) {
-        float i = [self integerValue]/10000;
+        float i = [self floatValue]/10000;
         i = floorf(i * 10) / 10;
-        return [NSString stringWithFormat:@"%.0f万",i];
+        return [NSString stringWithFormat:@"%.1f万",i];
     }
     else {
         return self;

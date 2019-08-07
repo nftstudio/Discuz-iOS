@@ -29,10 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self commitInit];
-}
-
-- (void)commitInit {
     [self setNavc];
     [self setPageView];
 }
@@ -45,13 +41,12 @@
 - (void)setPageView {
     
 //    [self addItemClass:[RecommendController class] andTitle:@"推荐"];
-#if Jinbifun
-#else
+//#if Jinbifun
+//#else
 //    [self addItemClass:[LiveController class] andTitle:@"直播"];
-#endif
+//#endif
     [self addItemClass:[NewestListController class] andTitle:@"最新"];
     [self addItemClass:[DigestListController class] andTitle:@"精华"];
-    
     
     CGRect segmentRect = CGRectMake(0, 0, WIDTH, 44);
     self.rootVC = [[JTContainerController alloc] init];

@@ -70,8 +70,6 @@ NSString * const CookieValue = @"COOKIEVALU";
     
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:CookieValue];
     [[XinGeCenter shareInstance] setXG];
-    //  LoginFile
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:LoginFileName];
     
     for (NSHTTPCookie *cookie in [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies) {
 //        if ([[cookie name] isEqualToString:[NSString stringWithFormat:@"%@",[Environment sharedEnvironment].loggedAuthKey]]) {
@@ -83,6 +81,8 @@ NSString * const CookieValue = @"COOKIEVALU";
         [infoDic setObject:@"" forKey:key];
     }
     [[Environment sharedEnvironment] setValuesForKeysWithDictionary:infoDic];
+    //  LoginFile
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:LoginFileName];
     
     [Environment sharedEnvironment].authKey = nil;
     [ShareCenter shareInstance].bloginModel = nil;

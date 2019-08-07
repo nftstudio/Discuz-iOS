@@ -76,14 +76,27 @@ function audioAction() {
  *num就是帖子里面的views
  */
 function numberFormat(num) {
-    var i;
-    i = num;
+    var i = num;
     if (i >= 10000) {
-        i = toDecimal(parseFloat(num / 10000)) + 'w'
+        i = formatDecimal(num / 10000, 1) + '万';
+//        i = toDecimal(parseFloat(num / 10000)) + '万'
     }
     return i
 }
 
+// 不四舍五入
+function formatDecimal(num, decimal) {
+    num = num.toString()
+    let index = num.indexOf('.')
+    if (index !== -1) {
+        num = num.substring(0, decimal + index + 1)
+    } else {
+        num = num.substring(0)
+    }
+    return parseFloat(num).toFixed(decimal)
+}
+
+// 四舍五入
 function toDecimal(x) {
     var f = parseFloat(x);
     if (isNaN(f)) {

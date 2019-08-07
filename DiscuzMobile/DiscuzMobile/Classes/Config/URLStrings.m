@@ -2,7 +2,7 @@
 //  URLStrings.m
 //  DiscuzMobile
 //
-//  Created by 张积涛 on 2018/2/2.
+//  Created by ZhangJitao on 2018/2/2.
 //  Copyright © 2018年 com.comzenz-service. All rights reserved.
 //
 
@@ -83,7 +83,7 @@ NSString * const url_UploadHead =@"?module=uploadavatar&version=2";
 
 #pragma mark - 登录相关
 // 普通登录 post
-NSString * const url_CommonLogin = @"?module=login&version=1";
+NSString * const url_CommonLogin = @"?module=login&version=5";
 
 // 三方登录 post
 NSString * const url_ThirdLogin = @"?version=5&module=weiqqconnect";

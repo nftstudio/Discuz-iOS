@@ -64,10 +64,10 @@
             
             NSDictionary *contentDic = results[0];
             NSString *appStoreVersion = [contentDic objectForKey:@"version"];
-//            NSString *releaseNotes = [contentDic objectForKey:@"releaseNotes"];
-            NSString *fileName = BBSRULE;
-            NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"txt"];
-            NSString *releaseNotes = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+            NSString *releaseNotes = [contentDic objectForKey:@"releaseNotes"];
+//            NSString *fileName = BBSRULE;
+//            NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"txt"];
+//            NSString *releaseNotes = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
             
             if ([appStoreVersion compare:localVersion options:NSNumericSearch] == NSOrderedDescending) {
                 NSLog(@"更新");

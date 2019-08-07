@@ -21,15 +21,8 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setupViews];
-        //        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return self;
-}
-
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
 }
 
 - (UIView *)sepLine {
@@ -39,7 +32,6 @@
     }
     return _sepLine;
 }
-
 
 - (UILabel *)textLab {
     if (_textLab == nil) {
@@ -101,12 +93,6 @@
     self.textLab.frame = CGRectMake(15, (CGRectGetHeight(self.frame) - 30) / 2,WIDTH - 85, 30);
     self.button.frame = CGRectMake(WIDTH - 30 - 10, (CGRectGetHeight(self.frame) - 30) / 2, 30, 30);
     self.sepLine.frame = CGRectMake(0, CGRectGetHeight(self.frame) - 0.5, WIDTH , 0.5);
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

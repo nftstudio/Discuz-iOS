@@ -2,7 +2,7 @@
 //  LoginCustomView.h
 //  DiscuzMobile
 //
-//  Created by 张积涛 on 16/9/17.
+//  Created by ZhangJitao on 16/9/17.
 //  Copyright © 2016年 Cjk. All rights reserved.
 //
 

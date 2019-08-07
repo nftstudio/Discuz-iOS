@@ -96,12 +96,12 @@
     }
     
     if ([DataCheck isValidString:infoModel.threads]) {
-        self.numLab.text = [NSString stringWithFormat:@"主题：%@",[infoModel.threads managerCountWithNumstring]];
+        self.numLab.text = [NSString stringWithFormat:@"主题：%@",infoModel.threads];
     } else {
         self.numLab.text = @"主题：-";
     }
     if ([DataCheck isValidString:infoModel.posts]) {
-        self.postsLab.text = [NSString stringWithFormat:@"帖数：%@",[infoModel.posts managerCountWithNumstring]];
+        self.postsLab.text = [NSString stringWithFormat:@"帖数：%@",infoModel.posts];
     } else {
         self.postsLab.text = @"帖数：-";
     }

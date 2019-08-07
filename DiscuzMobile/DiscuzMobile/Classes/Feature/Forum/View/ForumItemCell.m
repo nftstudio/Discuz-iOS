@@ -84,15 +84,11 @@
     
     if ([DataCheck isValidString:infoModel.threads]) {
         
-        NSString *threads = [NSString stringWithFormat:@"主题:%@",[infoModel.threads onePointCountWithNumstring]];
-        
-//        NSString *threads = [NSString stringWithFormat:@"主题:%@",[@"99999999" onePointCountWithNumstring]];
+        NSString *threads = [NSString stringWithFormat:@"主题:%@",infoModel.threads];
         
         if ([DataCheck isValidString:infoModel.todayposts] && [infoModel.todayposts integerValue] > 0) {
             
-            NSString *todays = [NSString stringWithFormat:@"(%@)",[infoModel.todayposts onePointCountWithNumstring]];
-//            NSString *todays = [NSString stringWithFormat:@"(%@)",[@"9999" onePointCountWithNumstring]];
-            
+            NSString *todays = [NSString stringWithFormat:@"(%@)",infoModel.todayposts];
             NSMutableAttributedString *describe = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",threads,todays]];
             NSRange todayRange = NSMakeRange(describe.length - todays.length, todays.length);
             [describe addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:todayRange];
@@ -110,7 +106,6 @@
         [self.iconV sd_setImageWithURL:[NSURL URLWithString:infoModel.icon] placeholderImage:[UIImage imageNamed:@"forumCommon"] options:SDWebImageRetryFailed];
         
     } else {
-        
         if ([infoModel.todayposts integerValue] > 0) {
             self.iconV.image = [UIImage imageNamed:@"forumNew"];
         } else {

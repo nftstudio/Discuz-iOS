@@ -2,7 +2,7 @@
 //  SendEmailHelper.m
 //  DiscuzMobile
 //
-//  Created by 张积涛 on 2018/4/8.
+//  Created by ZhangJitao on 2018/4/8.
 //  Copyright © 2018年 com.comzenz-service. All rights reserved.
 //
 

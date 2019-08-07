@@ -2,7 +2,7 @@
 //  JTCacheManager.m
 //  DiscuzMobile
 //
-//  Created by 张积涛 on 2018/2/3.
+//  Created by ZhangJitao on 2018/2/3.
 //  Copyright © 2018年 com.comzenz-service. All rights reserved.
 //
 

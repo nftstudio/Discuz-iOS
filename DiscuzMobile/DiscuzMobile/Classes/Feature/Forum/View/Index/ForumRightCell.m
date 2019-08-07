@@ -11,6 +11,7 @@
 #import "ForumInfoModel.h"
 #import "NSString+MoreMethod.h"
 #import "LightGrayButton.h"
+#import "JudgeImageModel.h"
 
 @interface ForumRightCell()
 
@@ -71,7 +72,7 @@
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconV.mas_right).offset(10);
         make.top.equalTo(self.iconV).offset(-1);
-        make.right.equalTo(self).offset(-60);
+        make.right.equalTo(self).offset(-10);
         make.height.equalTo(self.iconV).multipliedBy(0.6);
     }];
     
@@ -126,22 +127,41 @@
     if ([DataCheck isValidString:infoModel.title]) {
         self.titleLab.text = infoModel.title;
     } else {
-        self.titleLab.text = infoModel.name;
+        if ([DataCheck isValidString:infoModel.todayposts] && [infoModel.todayposts integerValue] > 0) {
+            NSString *todayposts = [NSString stringWithFormat:@"(%@)",infoModel.todayposts];
+            NSString *forumName = [NSString stringWithFormat:@"%@%@",infoModel.name,todayposts];
+            NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:forumName];
+            NSRange todayRange = {infoModel.name.length,todayposts.length};
+            [att addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:todayRange];
+            [att addAttribute:NSFontAttributeName value:[FontSize fontSize:12] range:todayRange];
+            self.titleLab.attributedText = att;
+        } else {
+            self.titleLab.text = infoModel.name;
+        }
     }
     
     _info = infoModel;
     
     if ([DataCheck isValidString:infoModel.threads]) {
-        self.numLab.text = [NSString stringWithFormat:@"主题:%@",[infoModel.threads managerCountWithNumstring]];
+        self.numLab.text = [NSString stringWithFormat:@"主题:%@",infoModel.threads];
     } else {
         self.numLab.text = @"主题:-";
     }
     if ([DataCheck isValidString:infoModel.posts]) {
-        self.postsLab.text = [NSString stringWithFormat:@"帖数:%@",[infoModel.posts managerCountWithNumstring]];
+        self.postsLab.text = [NSString stringWithFormat:@"帖数:%@",infoModel.posts];
     } else {
         self.postsLab.text = @"帖数:-";
     }
-    [self.iconV sd_setImageWithURL:[NSURL URLWithString:infoModel.icon] placeholderImage:[UIImage imageNamed:@"forumCommon"] options:SDWebImageLowPriority | SDWebImageRetryFailed];
+    
+    if ([DataCheck isValidString:infoModel.icon] && [JudgeImageModel graphFreeModel] == NO) {
+        [self.iconV sd_setImageWithURL:[NSURL URLWithString:infoModel.icon] placeholderImage:[UIImage imageNamed:@"forumCommon"] options:SDWebImageLowPriority | SDWebImageRetryFailed];
+    } else {
+        if ([infoModel.todayposts integerValue] > 0) {
+            self.iconV.image = [UIImage imageNamed:@"forumNew"];
+        } else {
+            self.iconV.image = [UIImage imageNamed:@"forumCommon"];
+        }
+    }
     
     if ([DataCheck isValidString:infoModel.favorited]) {
         if ([infoModel.favorited isEqualToString:@"1"]) {

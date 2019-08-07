@@ -307,6 +307,8 @@
 		27FA50C91F1CB00400544229 /* MsglistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FA50C81F1CB00400544229 /* MsglistCell.m */; };
 		27FF32081F04E59000C05BA1 /* PostBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FF32071F04E59000C05BA1 /* PostBaseController.m */; };
 		483B0074811C3D35A0FB1660 /* libPods-DiscuzMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 756D57EE416AFC47A95ACD0F /* libPods-DiscuzMobile.a */; };
+		57FEEB19E942B503AED3CAB9 /* libPods-Jinbifun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A88F43B88E626CEAE9AA2C09 /* libPods-Jinbifun.a */; };
+		76393F384B0E4D032767E694 /* libPods-Penjing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E93C7A3F2F49C0D7D3E8C4E7 /* libPods-Penjing.a */; };
 		940028E722E5B6B400442CD0 /* DZNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028E622E5B6B400442CD0 /* DZNoticeModel.m */; };
 		940028ED22E5B8A600442CD0 /* DiscoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028EC22E5B8A600442CD0 /* DiscoverModel.m */; };
 		940028F022E5B94200442CD0 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028EF22E5B94200442CD0 /* BaseModel.m */; };
@@ -1069,6 +1071,24 @@
 		9485835C20FF343200BC3FEB /* FastPlaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9485835B20FF343200BC3FEB /* FastPlaceController.m */; };
 		9485835D20FF343200BC3FEB /* FastPlaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9485835B20FF343200BC3FEB /* FastPlaceController.m */; };
 		9485835E20FF343200BC3FEB /* FastPlaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9485835B20FF343200BC3FEB /* FastPlaceController.m */; };
+		94883DFE22F95864007E15E8 /* DiscoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028EC22E5B8A600442CD0 /* DiscoverModel.m */; };
+		94883DFF22F95865007E15E8 /* DiscoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028EC22E5B8A600442CD0 /* DiscoverModel.m */; };
+		94883E0022F95888007E15E8 /* VersionUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B1066C22F165D700D40827 /* VersionUpdate.m */; };
+		94883E0122F95888007E15E8 /* VersionUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B1066C22F165D700D40827 /* VersionUpdate.m */; };
+		94883E0222F9588D007E15E8 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B1067222F1678700D40827 /* SELUpdateAlertConst.m */; };
+		94883E0322F9588D007E15E8 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B1067222F1678700D40827 /* SELUpdateAlertConst.m */; };
+		94883E0422F95890007E15E8 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B1067122F1678700D40827 /* SELUpdateAlert.m */; };
+		94883E0522F95891007E15E8 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B1067122F1678700D40827 /* SELUpdateAlert.m */; };
+		94883E0722F958AE007E15E8 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028EF22E5B94200442CD0 /* BaseModel.m */; };
+		94883E0822F958AF007E15E8 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028EF22E5B94200442CD0 /* BaseModel.m */; };
+		94883E0922F958B1007E15E8 /* DZBaseVarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028F522E5B9DA00442CD0 /* DZBaseVarModel.m */; };
+		94883E0A22F958B2007E15E8 /* DZBaseVarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028F522E5B9DA00442CD0 /* DZBaseVarModel.m */; };
+		94883E0B22F958B5007E15E8 /* DZNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028E622E5B6B400442CD0 /* DZNoticeModel.m */; };
+		94883E0C22F958B6007E15E8 /* DZNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028E622E5B6B400442CD0 /* DZNoticeModel.m */; };
+		94883E0D22F958B9007E15E8 /* DZAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028F822E5BEB400442CD0 /* DZAttachment.m */; };
+		94883E0E22F958BA007E15E8 /* DZAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 940028F822E5BEB400442CD0 /* DZAttachment.m */; };
+		94883E0F22F959DD007E15E8 /* ThreadListModel+Forumdisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B53CB022F18674009A9432 /* ThreadListModel+Forumdisplay.m */; };
+		94883E1022F959DE007E15E8 /* ThreadListModel+Forumdisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B53CB022F18674009A9432 /* ThreadListModel+Forumdisplay.m */; };
 		948F453F2015BF2F0048EB79 /* CustomSearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 948F453E2015BF2F0048EB79 /* CustomSearchBarView.m */; };
 		948F45402015C1260048EB79 /* CustomSearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 948F453E2015BF2F0048EB79 /* CustomSearchBarView.m */; };
 		948F45412015C1270048EB79 /* CustomSearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 948F453E2015BF2F0048EB79 /* CustomSearchBarView.m */; };
@@ -1220,6 +1240,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00F0865D348E9BD21EF947BF /* Pods-Jinbifun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jinbifun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Jinbifun/Pods-Jinbifun.debug.xcconfig"; sourceTree = "<group>"; };
 		27001B6B1DEEBAC5004DF091 /* ActiveTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveTimeCell.h; sourceTree = "<group>"; };
 		27001B6C1DEEBAC5004DF091 /* ActiveTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveTimeCell.m; sourceTree = "<group>"; };
 		27001B6E1DEEC672004DF091 /* ActiveContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveContentCell.h; sourceTree = "<group>"; };
@@ -1764,6 +1785,7 @@
 		27FA50C81F1CB00400544229 /* MsglistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsglistCell.m; sourceTree = "<group>"; };
 		27FF32061F04E59000C05BA1 /* PostBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostBaseController.h; sourceTree = "<group>"; };
 		27FF32071F04E59000C05BA1 /* PostBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostBaseController.m; sourceTree = "<group>"; };
+		5B3E8284D2A50C0AB6F9EED6 /* Pods-Penjing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Penjing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Penjing/Pods-Penjing.debug.xcconfig"; sourceTree = "<group>"; };
 		756D57EE416AFC47A95ACD0F /* libPods-DiscuzMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DiscuzMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C8F936139DF4806371F4A2D /* Pods-DiscuzMobilePlv.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscuzMobilePlv.release.xcconfig"; path = "Pods/Target Support Files/Pods-DiscuzMobilePlv/Pods-DiscuzMobilePlv.release.xcconfig"; sourceTree = "<group>"; };
 		940028E522E5B6B400442CD0 /* DZNoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZNoticeModel.h; sourceTree = "<group>"; };
@@ -1990,6 +2012,8 @@
 		BA53D2316450EB8DDCDED622 /* Pods-DiscuzMobilePlv.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscuzMobilePlv.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DiscuzMobilePlv/Pods-DiscuzMobilePlv.debug.xcconfig"; sourceTree = "<group>"; };
 		D0C3EEEA19BC86FEE266C763 /* Pods-DiscuzMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscuzMobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DiscuzMobile/Pods-DiscuzMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		D649B7E245F727F8C09B6F43 /* Pods-DiscuzMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscuzMobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-DiscuzMobile/Pods-DiscuzMobile.release.xcconfig"; sourceTree = "<group>"; };
+		DABBF77F3190835B158C28E1 /* Pods-Penjing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Penjing.release.xcconfig"; path = "Pods/Target Support Files/Pods-Penjing/Pods-Penjing.release.xcconfig"; sourceTree = "<group>"; };
+		E901F1466DA96C8F06A12C58 /* Pods-Jinbifun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jinbifun.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jinbifun/Pods-Jinbifun.release.xcconfig"; sourceTree = "<group>"; };
 		E93C7A3F2F49C0D7D3E8C4E7 /* libPods-Penjing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Penjing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -2068,6 +2092,7 @@
 				94110F211FDFA09A0033E94C /* libc++.tbd in Frameworks */,
 				94110F221FDFA09A0033E94C /* libsqlite3.0.tbd in Frameworks */,
 				94110F251FDFA09A0033E94C /* libXG-SDK.a in Frameworks */,
+				57FEEB19E942B503AED3CAB9 /* libPods-Jinbifun.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2099,6 +2124,7 @@
 				941110AA1FDFB3870033E94C /* libc++.tbd in Frameworks */,
 				941110AB1FDFB3870033E94C /* libsqlite3.0.tbd in Frameworks */,
 				941110AE1FDFB3870033E94C /* libXG-SDK.a in Frameworks */,
+				76393F384B0E4D032767E694 /* libPods-Penjing.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2470,6 +2496,8 @@
 		2743468D1F53DB8E00196A63 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				27C51DDF1EBB07DC00048610 /* LiveController.h */,
+				27C51DE01EBB07DC00048610 /* LiveController.m */,
 				274346921F53DB8E00196A63 /* LiveRootController.h */,
 				274346931F53DB8E00196A63 /* LiveRootController.m */,
 				2743468E1F53DB8E00196A63 /* LiveDetailViewController.h */,
@@ -2483,6 +2511,8 @@
 		274346941F53DB8E00196A63 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				276B04211ECC432800697449 /* HotLivelistModel.h */,
+				276B04221ECC432800697449 /* HotLivelistModel.m */,
 				274346951F53DB8E00196A63 /* LiveDetailModel.h */,
 				274346961F53DB8E00196A63 /* LiveDetailModel.m */,
 			);
@@ -2492,6 +2522,7 @@
 		274346971F53DB8E00196A63 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				94883E1422F960A5007E15E8 /* First */,
 				2743469A1F53DB8E00196A63 /* LiveHostCell.h */,
 				2743469B1F53DB8E00196A63 /* LiveHostCell.m */,
 				274346A01F53DB8E00196A63 /* LiveViewerCell.h */,
@@ -2535,12 +2566,9 @@
 		27473AA31DD30C380024375F /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				9485835820FF2EA200BC3FEB /* FastPost */,
 				942E244020620B3C006A9CB0 /* BusinessLayer */,
 				27473AA41DD30C380024375F /* Base */,
 				27C51DD51EBB043700048610 /* Discover */,
-				2743468C1F53DB8E00196A63 /* Live */,
-				2732E7E41DDD87A300B2A57D /* Home */,
 				27CD9E421DDEB7FD0075831B /* Forum */,
 				270561E31E2DB1D10026F37F /* ThreadList */,
 				27CD9E5E1DDEB8020075831B /* Thread */,
@@ -2613,6 +2641,8 @@
 		27473AB91DD30C380024375F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				94F36BCF2080418A002AEF9E /* WebImageBrower */,
+				947ECAD92064D403002D3536 /* JTImagePicker */,
 				9438F07622F3E37F0093EB0B /* Device */,
 				9438F07522F3E3070093EB0B /* Email */,
 				9438F07422F3E2F20093EB0B /* Keyboard */,
@@ -2717,16 +2747,11 @@
 		27791B151ED68629002E5270 /* Ignore */ = {
 			isa = PBXGroup;
 			children = (
-				27791B161ED68629002E5270 /* Controllers */,
+				2732E7E41DDD87A300B2A57D /* Home */,
+				9485835820FF2EA200BC3FEB /* FastPost */,
+				2743468C1F53DB8E00196A63 /* Live */,
 			);
 			path = Ignore;
-			sourceTree = "<group>";
-		};
-		27791B161ED68629002E5270 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		277EDC511E6D5B8D00E8F0E1 /* CustomUI */ = {
@@ -2902,8 +2927,6 @@
 				27C51DDA1EBB050100048610 /* DiscoverManagerController.m */,
 				27C51DDC1EBB05E200048610 /* RecommendController.h */,
 				27C51DDD1EBB05E200048610 /* RecommendController.m */,
-				27C51DDF1EBB07DC00048610 /* LiveController.h */,
-				27C51DE01EBB07DC00048610 /* LiveController.m */,
 				9432553620F46022006FF78D /* DigestListController.h */,
 				9432553720F46022006FF78D /* DigestListController.m */,
 				9432553B20F462E3006FF78D /* NewestListController.h */,
@@ -2919,8 +2942,6 @@
 			children = (
 				273A4B411F611ED300F59C57 /* RecommendModel.h */,
 				273A4B421F611ED300F59C57 /* RecommendModel.m */,
-				276B04211ECC432800697449 /* HotLivelistModel.h */,
-				276B04221ECC432800697449 /* HotLivelistModel.m */,
 				940028EB22E5B8A600442CD0 /* DiscoverModel.h */,
 				940028EC22E5B8A600442CD0 /* DiscoverModel.m */,
 			);
@@ -2930,16 +2951,6 @@
 		27C51DD81EBB043700048610 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				27BADE491EBC2BF40042F226 /* LiveRecommentView.h */,
-				27BADE4A1EBC2BF40042F226 /* LiveRecommentView.m */,
-				27BADE431EBC27510042F226 /* LiveCell.h */,
-				27BADE441EBC27510042F226 /* LiveCell.m */,
-				27BADE4F1EBC53A90042F226 /* LiveImageView.h */,
-				27BADE501EBC53A90042F226 /* LiveImageView.m */,
-				27BADE4C1EBC33640042F226 /* HotliveCell.h */,
-				27BADE4D1EBC33640042F226 /* HotliveCell.m */,
-				27CB2A221EF28889007824C5 /* LiveHeaderCell.h */,
-				27CB2A231EF28889007824C5 /* LiveHeaderCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3542,17 +3553,12 @@
 		942E244020620B3C006A9CB0 /* BusinessLayer */ = {
 			isa = PBXGroup;
 			children = (
+				94883E1322F95FD7007E15E8 /* Fav */,
+				94883E1222F95FC8007E15E8 /* Praise */,
+				94883E1122F95FB8007E15E8 /* Response */,
 				94B567D422D87526008F1B69 /* Register */,
-				94F36BCF2080418A002AEF9E /* WebImageBrower */,
-				947ECAD92064D403002D3536 /* JTImagePicker */,
 				277EDC901E6D607900E8F0E1 /* Login */,
 				94D65D342068C9A50079A8CC /* upload */,
-				94C3F978205F8D7900A09DFD /* ResponseMessage.h */,
-				94C3F979205F8D7900A09DFD /* ResponseMessage.m */,
-				942E243B2061F332006A9CB0 /* PraiseHelper.h */,
-				942E243C2061F332006A9CB0 /* PraiseHelper.m */,
-				27118DE01EEFCB9E00786578 /* CollectionTool.h */,
-				27118DE11EEFCB9E00786578 /* CollectionTool.m */,
 			);
 			path = BusinessLayer;
 			sourceTree = "<group>";
@@ -3890,6 +3896,50 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		94883E1122F95FB8007E15E8 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				94C3F978205F8D7900A09DFD /* ResponseMessage.h */,
+				94C3F979205F8D7900A09DFD /* ResponseMessage.m */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		94883E1222F95FC8007E15E8 /* Praise */ = {
+			isa = PBXGroup;
+			children = (
+				942E243B2061F332006A9CB0 /* PraiseHelper.h */,
+				942E243C2061F332006A9CB0 /* PraiseHelper.m */,
+			);
+			path = Praise;
+			sourceTree = "<group>";
+		};
+		94883E1322F95FD7007E15E8 /* Fav */ = {
+			isa = PBXGroup;
+			children = (
+				27118DE01EEFCB9E00786578 /* CollectionTool.h */,
+				27118DE11EEFCB9E00786578 /* CollectionTool.m */,
+			);
+			path = Fav;
+			sourceTree = "<group>";
+		};
+		94883E1422F960A5007E15E8 /* First */ = {
+			isa = PBXGroup;
+			children = (
+				27BADE491EBC2BF40042F226 /* LiveRecommentView.h */,
+				27BADE4A1EBC2BF40042F226 /* LiveRecommentView.m */,
+				27BADE431EBC27510042F226 /* LiveCell.h */,
+				27BADE441EBC27510042F226 /* LiveCell.m */,
+				27BADE4F1EBC53A90042F226 /* LiveImageView.h */,
+				27BADE501EBC53A90042F226 /* LiveImageView.m */,
+				27BADE4C1EBC33640042F226 /* HotliveCell.h */,
+				27BADE4D1EBC33640042F226 /* HotliveCell.m */,
+				27CB2A221EF28889007824C5 /* LiveHeaderCell.h */,
+				27CB2A231EF28889007824C5 /* LiveHeaderCell.m */,
+			);
+			path = First;
+			sourceTree = "<group>";
+		};
 		9492087A2024365200543C09 /* JTNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -4006,6 +4056,10 @@
 				D649B7E245F727F8C09B6F43 /* Pods-DiscuzMobile.release.xcconfig */,
 				BA53D2316450EB8DDCDED622 /* Pods-DiscuzMobilePlv.debug.xcconfig */,
 				7C8F936139DF4806371F4A2D /* Pods-DiscuzMobilePlv.release.xcconfig */,
+				00F0865D348E9BD21EF947BF /* Pods-Jinbifun.debug.xcconfig */,
+				E901F1466DA96C8F06A12C58 /* Pods-Jinbifun.release.xcconfig */,
+				5B3E8284D2A50C0AB6F9EED6 /* Pods-Penjing.debug.xcconfig */,
+				DABBF77F3190835B158C28E1 /* Pods-Penjing.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -4109,9 +4163,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 94110F6D1FDFA09A0033E94C /* Build configuration list for PBXNativeTarget "Jinbifun" */;
 			buildPhases = (
+				18F7B0394632EDF2DD11A7D7 /* [CP] Check Pods Manifest.lock */,
 				94110DF41FDFA09A0033E94C /* Sources */,
 				94110F031FDFA09A0033E94C /* Frameworks */,
 				94110F261FDFA09A0033E94C /* Resources */,
+				CDFFB4B033C0AF3247BE5199 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4126,9 +4182,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 941110F61FDFB3880033E94C /* Build configuration list for PBXNativeTarget "Penjing" */;
 			buildPhases = (
+				05CA7FC15DFA6B595A8FEFD5 /* [CP] Check Pods Manifest.lock */,
 				94110F7D1FDFB3870033E94C /* Sources */,
 				9411108C1FDFB3870033E94C /* Frameworks */,
 				941110AF1FDFB3870033E94C /* Resources */,
+				D0BE8A98441EDC6197029CF1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4407,6 +4465,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		05CA7FC15DFA6B595A8FEFD5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Penjing-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		05D32BF4E52DF8B8D75BDDD8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4431,6 +4511,28 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DiscuzMobile/Pods-DiscuzMobile-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		18F7B0394632EDF2DD11A7D7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Jinbifun-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3AB6DC88E0BEE9C1F8D276CD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4447,6 +4549,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDFFB4B033C0AF3247BE5199 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Jinbifun/Pods-Jinbifun-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/mob_sharesdk/SDK/ShareSDK/Support/Required/ShareSDK.bundle",
+				"${PODS_ROOT}/mob_sharesdk/SDK/ShareSDK/Support/Optional/ShareSDKUI.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ShareSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ShareSDKUI.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Jinbifun/Pods-Jinbifun-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0BE8A98441EDC6197029CF1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Penjing/Pods-Penjing-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/mob_sharesdk/SDK/ShareSDK/Support/Required/ShareSDK.bundle",
+				"${PODS_ROOT}/mob_sharesdk/SDK/ShareSDK/Support/Optional/ShareSDKUI.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ShareSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ShareSDKUI.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Penjing/Pods-Penjing-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -4847,6 +5005,7 @@
 				94110E0F1FDFA09A0033E94C /* VoteDayVisableCell.m in Sources */,
 				94110E111FDFA09A0033E94C /* PostBaseController.m in Sources */,
 				94110E121FDFA09A0033E94C /* ActiveTimeCell.m in Sources */,
+				94883E0522F95891007E15E8 /* SELUpdateAlert.m in Sources */,
 				947ECB1E2064D403002D3536 /* WSImageBroserCell.m in Sources */,
 				94110E141FDFA09A0033E94C /* AsyncAppendency.m in Sources */,
 				94110E151FDFA09A0033E94C /* EndtimeCell.m in Sources */,
@@ -4868,6 +5027,7 @@
 				947ECB032064D403002D3536 /* JFImageManager.m in Sources */,
 				9432554D20F4BF93006FF78D /* WBStatusComposeViewController.m in Sources */,
 				94110E251FDFA09A0033E94C /* CenterCell.m in Sources */,
+				94883E0B22F958B5007E15E8 /* DZNoticeModel.m in Sources */,
 				94110E261FDFA09A0033E94C /* BoundManageCell.m in Sources */,
 				9492088920244D8700543C09 /* JTRequestManager.m in Sources */,
 				94110E271FDFA09A0033E94C /* ForumCollectionController.m in Sources */,
@@ -4915,6 +5075,7 @@
 				94110E501FDFA09A0033E94C /* JTContainerController.m in Sources */,
 				942959E022DC5EA10020B0E1 /* MBProgressHUD+Add.m in Sources */,
 				94D24A7E22DEF8F800F1D1A6 /* WebImageCacheNSURLProtocol.m in Sources */,
+				94883E0F22F959DD007E15E8 /* ThreadListModel+Forumdisplay.m in Sources */,
 				94110E511FDFA09A0033E94C /* UploadImageContainView.m in Sources */,
 				94110E521FDFA09A0033E94C /* BaseFloatingView.m in Sources */,
 				944A015622E16470003266FA /* UITextField+EmojiCheck.m in Sources */,
@@ -4939,6 +5100,7 @@
 				944A016522E17133003266FA /* NSString+EmojiCheck.m in Sources */,
 				94110E621FDFA09A0033E94C /* RootForumCell.m in Sources */,
 				94110E631FDFA09A0033E94C /* LaunchImageManager.m in Sources */,
+				94883E0D22F958B9007E15E8 /* DZAttachment.m in Sources */,
 				947ECB122064D403002D3536 /* JTImagePickerCell.m in Sources */,
 				9494508921196F8B0074C79E /* AudioModel.m in Sources */,
 				94110E641FDFA09A0033E94C /* ActivityApplyReplyCell.m in Sources */,
@@ -4962,6 +5124,7 @@
 				94110E741FDFA09A0033E94C /* HotliveCell.m in Sources */,
 				94110E761FDFA09A0033E94C /* DataCheck.m in Sources */,
 				94110E771FDFA09A0033E94C /* NSString+MoreMethod.m in Sources */,
+				94883E0922F958B1007E15E8 /* DZBaseVarModel.m in Sources */,
 				94110E781FDFA09A0033E94C /* RefereeCell.m in Sources */,
 				9434309A2022E56E009C0102 /* AppDelegate+XinGe.m in Sources */,
 				94D65D3A2068CA240079A8CC /* UploadAttachModel.m in Sources */,
@@ -4969,6 +5132,7 @@
 				944A015B22E16480003266FA /* UITextView+EmojiCheck.m in Sources */,
 				94110E7A1FDFA09A0033E94C /* ActivityApplyCell.m in Sources */,
 				94110E7B1FDFA09A0033E94C /* HMSegmentedControl.m in Sources */,
+				94883E0722F958AE007E15E8 /* BaseModel.m in Sources */,
 				94110E7C1FDFA09A0033E94C /* Web2AuthcodeView.m in Sources */,
 				94110E7D1FDFA09A0033E94C /* MessageModel.m in Sources */,
 				94110E7E1FDFA09A0033E94C /* LiveDetailModel.m in Sources */,
@@ -4994,6 +5158,7 @@
 				94A3E65720E611910039C560 /* EmoticonKeyboard.m in Sources */,
 				94110E921FDFA09A0033E94C /* UIImage+DrawCricleImage.m in Sources */,
 				94110E931FDFA09A0033E94C /* ViewPollPotionNumberViewController.m in Sources */,
+				94883E0022F95888007E15E8 /* VersionUpdate.m in Sources */,
 				94110E941FDFA09A0033E94C /* WebAuthcodeView.m in Sources */,
 				9493D7FF20F8B5B5007A03CA /* DropTipView.m in Sources */,
 				94110E951FDFA09A0033E94C /* TextIconModel.m in Sources */,
@@ -5088,6 +5253,7 @@
 				94110EE41FDFA09A0033E94C /* PartInSexCell.m in Sources */,
 				94110EE51FDFA09A0033E94C /* ThreadDetailView.m in Sources */,
 				94110EE61FDFA09A0033E94C /* PostNormalViewController.m in Sources */,
+				94883E0322F9588D007E15E8 /* SELUpdateAlertConst.m in Sources */,
 				94110EE71FDFA09A0033E94C /* LogoutCell.m in Sources */,
 				94171FF52025665E00A1328B /* JTCacheManager.m in Sources */,
 				94110EE81FDFA09A0033E94C /* ViewPollpotionViewController.m in Sources */,
@@ -5111,6 +5277,7 @@
 				94110EF81FDFA09A0033E94C /* AboutController.m in Sources */,
 				94110EFA1FDFA09A0033E94C /* AddressSelectView.m in Sources */,
 				94110EFB1FDFA09A0033E94C /* ApplyInfoListModel.m in Sources */,
+				94883DFE22F95864007E15E8 /* DiscoverModel.m in Sources */,
 				94110EFC1FDFA09A0033E94C /* UploadTool.m in Sources */,
 				94110EFD1FDFA09A0033E94C /* BannerImageView.m in Sources */,
 				94110EFE1FDFA09A0033E94C /* JTLoginView.m in Sources */,
@@ -5170,6 +5337,7 @@
 				94110F9E1FDFB3870033E94C /* EndtimeCell.m in Sources */,
 				948F45402015C1260048EB79 /* CustomSearchBarView.m in Sources */,
 				94920879202412EE00543C09 /* JTRequestManager+PathMethod.m in Sources */,
+				94883E0422F95890007E15E8 /* SELUpdateAlert.m in Sources */,
 				9432553A20F46022006FF78D /* DigestListController.m in Sources */,
 				94110FA01FDFB3870033E94C /* TYLaunchBaseAnimation.m in Sources */,
 				94110FA11FDFB3870033E94C /* CollectionForumController.m in Sources */,
@@ -5191,6 +5359,7 @@
 				94110FAF1FDFB3870033E94C /* BoundManageCell.m in Sources */,
 				9492088A20244D8700543C09 /* JTRequestManager.m in Sources */,
 				94110FB01FDFB3870033E94C /* ForumCollectionController.m in Sources */,
+				94883E0C22F958B6007E15E8 /* DZNoticeModel.m in Sources */,
 				94110FB11FDFB3870033E94C /* CountRootController.m in Sources */,
 				94110FB41FDFB3870033E94C /* SeccodeverifyView.m in Sources */,
 				94110FB61FDFB3870033E94C /* UUDatePicker_DateModel.m in Sources */,
@@ -5238,6 +5407,7 @@
 				94110FD91FDFB3870033E94C /* JTContainerController.m in Sources */,
 				942959E122DC5EA10020B0E1 /* MBProgressHUD+Add.m in Sources */,
 				94D24A7F22DEF8F800F1D1A6 /* WebImageCacheNSURLProtocol.m in Sources */,
+				94883E1022F959DE007E15E8 /* ThreadListModel+Forumdisplay.m in Sources */,
 				94110FDA1FDFB3870033E94C /* UploadImageContainView.m in Sources */,
 				94110FDB1FDFB3870033E94C /* BaseFloatingView.m in Sources */,
 				944A015722E16470003266FA /* UITextField+EmojiCheck.m in Sources */,
@@ -5262,6 +5432,7 @@
 				944A016622E17133003266FA /* NSString+EmojiCheck.m in Sources */,
 				94110FEA1FDFB3870033E94C /* MyPerson.m in Sources */,
 				94110FEB1FDFB3870033E94C /* RootForumCell.m in Sources */,
+				94883E0E22F958BA007E15E8 /* DZAttachment.m in Sources */,
 				94110FEC1FDFB3870033E94C /* LaunchImageManager.m in Sources */,
 				9494508A21196F8B0074C79E /* AudioModel.m in Sources */,
 				947ECB132064D403002D3536 /* JTImagePickerCell.m in Sources */,
@@ -5285,6 +5456,7 @@
 				94A3E64920E611740039C560 /* WBStatusComposeTextParser.m in Sources */,
 				94110FFC1FDFB3870033E94C /* SubjectCell.m in Sources */,
 				94110FFD1FDFB3870033E94C /* HotliveCell.m in Sources */,
+				94883E0A22F958B2007E15E8 /* DZBaseVarModel.m in Sources */,
 				94110FFF1FDFB3870033E94C /* DataCheck.m in Sources */,
 				941110001FDFB3870033E94C /* NSString+MoreMethod.m in Sources */,
 				941110011FDFB3870033E94C /* RefereeCell.m in Sources */,
@@ -5292,6 +5464,7 @@
 				944A015C22E16480003266FA /* UITextView+EmojiCheck.m in Sources */,
 				94D65D3B2068CA240079A8CC /* UploadAttachModel.m in Sources */,
 				941110021FDFB3870033E94C /* ReplyModel.m in Sources */,
+				94883E0822F958AF007E15E8 /* BaseModel.m in Sources */,
 				941110031FDFB3870033E94C /* ActivityApplyCell.m in Sources */,
 				941110041FDFB3870033E94C /* HMSegmentedControl.m in Sources */,
 				941110051FDFB3870033E94C /* Web2AuthcodeView.m in Sources */,
@@ -5317,6 +5490,7 @@
 				9411101A1FDFB3870033E94C /* LianMixAllViewController.m in Sources */,
 				9411101B1FDFB3870033E94C /* UIImage+DrawCricleImage.m in Sources */,
 				9411101C1FDFB3870033E94C /* ViewPollPotionNumberViewController.m in Sources */,
+				94883E0122F95888007E15E8 /* VersionUpdate.m in Sources */,
 				9411101D1FDFB3870033E94C /* WebAuthcodeView.m in Sources */,
 				9493D80020F8B5B5007A03CA /* DropTipView.m in Sources */,
 				9411101E1FDFB3870033E94C /* TextIconModel.m in Sources */,
@@ -5411,6 +5585,7 @@
 				9411106B1FDFB3870033E94C /* LiveImageView.m in Sources */,
 				9411106C1FDFB3870033E94C /* SelectTypeButton.m in Sources */,
 				9411106D1FDFB3870033E94C /* PartInSexCell.m in Sources */,
+				94883E0222F9588D007E15E8 /* SELUpdateAlertConst.m in Sources */,
 				9411106E1FDFB3870033E94C /* ThreadDetailView.m in Sources */,
 				9411106F1FDFB3870033E94C /* PostNormalViewController.m in Sources */,
 				941110701FDFB3870033E94C /* LogoutCell.m in Sources */,
@@ -5434,6 +5609,7 @@
 				941110801FDFB3870033E94C /* JudgeBoundView.m in Sources */,
 				941110811FDFB3870033E94C /* AboutController.m in Sources */,
 				941110831FDFB3870033E94C /* AddressSelectView.m in Sources */,
+				94883DFF22F95865007E15E8 /* DiscoverModel.m in Sources */,
 				941110841FDFB3870033E94C /* ApplyInfoListModel.m in Sources */,
 				941110851FDFB3870033E94C /* UploadTool.m in Sources */,
 				941110861FDFB3870033E94C /* BannerImageView.m in Sources */,
@@ -5604,11 +5780,7 @@
 				DEVELOPMENT_TEAM = 5ZLZJ65EY9;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/DiscuzMobile/PLVLive/PLVLiveSDK",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = DiscuzMobile/Classes/Config/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -5678,11 +5850,7 @@
 				DEVELOPMENT_TEAM = 5ZLZJ65EY9;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/DiscuzMobile/PLVLive/PLVLiveSDK",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = DiscuzMobile/Classes/Config/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -5795,6 +5963,7 @@
 		};
 		94110F6E1FDFA09A0033E94C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00F0865D348E9BD21EF947BF /* Pods-Jinbifun.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Jinbifun";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-Jinbifun";
@@ -5803,15 +5972,7 @@
 				DEVELOPMENT_TEAM = 5ZLZJ65EY9;
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/PlatformSDK/QQSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/Required",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/Optional",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/PlatformConnector",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/Required",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = DiscuzMobile/Classes/Config/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"Jinbifun=1",
@@ -5825,9 +5986,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/XgSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/lame",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/PlatformSDK/WeChatSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/Feature/PostThread/AudioTool/lame",
+					"$(PROJECT_DIR)/DiscuzMobile/Classes/Utility/Helpers/AudioTool/lame",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -5871,6 +6030,7 @@
 		};
 		94110F6F1FDFA09A0033E94C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E901F1466DA96C8F06A12C58 /* Pods-Jinbifun.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Jinbifun";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-Jinbifun";
@@ -5879,15 +6039,7 @@
 				DEVELOPMENT_TEAM = 5ZLZJ65EY9;
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/PlatformSDK/QQSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/Required",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/Optional",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/PlatformConnector",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/Required",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = DiscuzMobile/Classes/Config/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"Jinbifun=1",
@@ -5901,9 +6053,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/XgSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/lame",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/PlatformSDK/WeChatSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/Feature/PostThread/AudioTool/lame",
+					"$(PROJECT_DIR)/DiscuzMobile/Classes/Utility/Helpers/AudioTool/lame",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -5947,6 +6097,7 @@
 		};
 		941110F71FDFB3880033E94C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B3E8284D2A50C0AB6F9EED6 /* Pods-Penjing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Penjing";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-Penjing";
@@ -5955,15 +6106,7 @@
 				DEVELOPMENT_TEAM = 5ZLZJ65EY9;
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/PlatformSDK/QQSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/Required",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/Optional",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/PlatformConnector",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/Required",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = DiscuzMobile/Classes/Config/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"Penjing=1",
@@ -5977,9 +6120,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/XgSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/lame",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/PlatformSDK/WeChatSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/Feature/PostThread/AudioTool/lame",
+					"$(PROJECT_DIR)/DiscuzMobile/Classes/Utility/Helpers/AudioTool/lame",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -6023,6 +6164,7 @@
 		};
 		941110F81FDFB3880033E94C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DABBF77F3190835B158C28E1 /* Pods-Penjing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Penjing";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-Penjing";
@@ -6031,15 +6173,7 @@
 				DEVELOPMENT_TEAM = 5ZLZJ65EY9;
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/PlatformSDK/QQSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/Required",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/Optional",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/PlatformConnector",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/Required",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = DiscuzMobile/Classes/Config/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"Penjing=1",
@@ -6053,9 +6187,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/XgSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/lame",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/3rdparty/ShareSdk4.1.1/ShareSDK/Support/PlatformSDK/WeChatSDK",
-					"$(PROJECT_DIR)/DiscuzMobile/Classes/Feature/PostThread/AudioTool/lame",
+					"$(PROJECT_DIR)/DiscuzMobile/Classes/Utility/Helpers/AudioTool/lame",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

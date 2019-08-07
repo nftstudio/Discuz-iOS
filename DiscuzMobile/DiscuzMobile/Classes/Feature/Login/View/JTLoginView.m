@@ -165,7 +165,6 @@
     self.thirdView = [[UIView alloc] init];
     self.thirdView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.thirdView];
-    self.thirdView.hidden = YES;
     [self.thirdView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.loginBtn.mas_left);
         make.top.equalTo(self.forgetBtn.mas_bottom).offset(30);
@@ -176,6 +175,7 @@
     UIImageView *line1 = [[UIImageView alloc] init];
     line1.image = [UIImage imageTintColorWithName:@"third_line_l" andImageSuperView:line1];
     [self.thirdView addSubview:line1];
+    self.thirdView.hidden = YES;
     [line1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.thirdView.mas_left);
         make.top.equalTo(self.thirdView).offset(5);

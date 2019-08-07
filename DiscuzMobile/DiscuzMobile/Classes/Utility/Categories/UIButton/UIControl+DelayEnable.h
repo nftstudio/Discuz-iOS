@@ -2,7 +2,7 @@
 //  UIControl+DelayEnable.h
 //  DiscuzMobile
 //
-//  Created by 张积涛 on 2018/2/1.
+//  Created by ZhangJitao on 2018/2/1.
 //  Copyright © 2018年 com.comzenz-service. All rights reserved.
 //
 

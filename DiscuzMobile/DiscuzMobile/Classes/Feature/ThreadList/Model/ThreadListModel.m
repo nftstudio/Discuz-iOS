@@ -50,7 +50,7 @@ MJCodingImplementation
     }
     
     if ([@[@"views",@"replies",@"recommend_add"] containsObject:key]) {
-        value = [value managerCountWithNumstring];
+        value = [value onePointCountWithNumstring];
     } else if ([key isEqualToString:@"dateline"]) {
         NSCharacterSet *notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
         if ([value rangeOfCharacterFromSet:notDigits].location == NSNotFound) { // 是数字

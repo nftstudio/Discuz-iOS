@@ -78,12 +78,7 @@
                 make.height.mas_equalTo(self.frame.size.height - 16);
             }];
             [self.webview mas_updateConstraints:^(MASConstraintMaker *make) {
-#if DiscuzMobile
                 make.height.mas_equalTo(self.frame.size.height - 10);
-#else
-                make.height.mas_equalTo(self.frame.size.height - 20);
-#endif
-                
             }];
         }
 

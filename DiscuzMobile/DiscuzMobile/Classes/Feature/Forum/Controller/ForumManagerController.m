@@ -15,6 +15,8 @@
 #import "LoginController.h"
 #import "TTSearchController.h"
 
+static NSString *isFourmList = @"isFourmList";
+
 @interface ForumManagerController()
 
 @property (nonatomic, strong) NSMutableArray *controllerArr;
@@ -29,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _isList = [[NSUserDefaults standardUserDefaults] boolForKey:@"isFourmList"];
+    _isList = [[NSUserDefaults standardUserDefaults] boolForKey:isFourmList];
     [self setNavc];
     [self setPageView];
     
@@ -86,7 +88,7 @@
     [self setTab];
     [self setNavc];
     
-    [[NSUserDefaults standardUserDefaults] setBool:_isList forKey:@"isFourmList"];
+    [[NSUserDefaults standardUserDefaults] setBool:_isList forKey:isFourmList];
     [_containVc.collectonView reloadData];
 }
 
@@ -108,6 +110,7 @@
     [self.navigationController pushViewController:searchVC animated:YES];
 }
 
+#pragma mark - getter、setter
 - (NSMutableArray *)controllerArr {
     if (!_controllerArr) {
         _controllerArr = [NSMutableArray array];

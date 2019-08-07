@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.0'
 # ruby语法
 # target数组 如果有新的target直接加入该数组
-targetsArray = ['DiscuzMobile']
+targetsArray = ['DiscuzMobile','Jinbifun','Penjing']
 # 循环
 targetsArray.each do |t|
     target t do

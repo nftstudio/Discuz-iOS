@@ -36,8 +36,10 @@
     self.subject = [thread objectForKey:@"subject"];
     self.author = [thread objectForKey:@"author"];
     if (self.currentPage == 1) {
-        self.dateline = [[varDic objectForKey:@"postlist"][0] objectForKey:@"dateline"];
-        self.pid = [[varDic objectForKey:@"postlist"][0] objectForKey:@"pid"];
+        if ([DataCheck isValidArray:[varDic objectForKey:@"postlist"]]) {
+            self.dateline = [[varDic objectForKey:@"postlist"][0] objectForKey:@"dateline"];
+            self.pid = [[varDic objectForKey:@"postlist"][0] objectForKey:@"pid"];
+        }
     }
     
     NSDictionary *jsonDic = [self manageJsonWitnAttchment:threadDic];

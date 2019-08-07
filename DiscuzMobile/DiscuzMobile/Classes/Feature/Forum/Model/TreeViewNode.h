@@ -23,9 +23,8 @@
 
 - (void)setTreeNode:(NSDictionary *)dic;
 
-+ (NSArray *)setHotData:(id)responseObject;
-
 + (NSArray *)setAllforumData:(id)responseObject;
 
++ (NSArray *)setHotData:(id)responseObject;
 
 @end

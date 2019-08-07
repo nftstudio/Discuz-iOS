@@ -2,7 +2,7 @@
 //  AsyncAppendency.m
 //  DiscuzMobile
 //
-//  Created by 张积涛 on 2017/11/19.
+//  Created by ZhangJitao on 2017/11/19.
 //  Copyright © 2017年 com.comzenz-service. All rights reserved.
 //
 

@@ -21,9 +21,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
         [self p_setupView];
-//        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return self;
 }
@@ -82,17 +80,17 @@
     }
     
     if ([DataCheck isValidString:infoModel.threads]) {
-        self.numLab.text = [NSString stringWithFormat:@"主题：%@",[infoModel.threads managerCountWithNumstring]];
+        self.numLab.text = [NSString stringWithFormat:@"主题：%@",infoModel.threads];
     } else {
         self.numLab.text = @"主题：-";
     }
     if ([DataCheck isValidString:infoModel.posts]) {
-        self.postsLab.text = [NSString stringWithFormat:@"帖数：%@",[infoModel.posts managerCountWithNumstring]];
+        self.postsLab.text = [NSString stringWithFormat:@"帖数：%@",infoModel.posts];
     } else {
         self.postsLab.text = @"帖数：-";
     }
     
-    self.desLab.text = [NSString stringWithFormat:@"最后发表：%@",[infoModel.lastpost transformationStr]];
+    self.desLab.text = [NSString stringWithFormat:@"最后发表：%@",infoModel.lastpost];
     [self.iconV sd_setImageWithURL:[NSURL URLWithString:infoModel.icon] placeholderImage:[UIImage imageNamed:@"forumCommon"] options:SDWebImageLowPriority | SDWebImageRetryFailed];
 }
 

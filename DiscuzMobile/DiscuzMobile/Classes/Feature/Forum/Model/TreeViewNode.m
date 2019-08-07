@@ -15,34 +15,7 @@
 
 @implementation TreeViewNode
 
-- (NSMutableArray *)fids {
-    if (!_fids) {
-        _fids = [NSMutableArray array];
-    }
-    return _fids;
-}
-- (NSMutableArray *)nodeChildren {
-    if (!_nodeChildren) {
-        _nodeChildren = [NSMutableArray array];
-    }
-    return _nodeChildren;
-}
-
-- (NSMutableArray *)forumListArr {
-    if (!_forumListArr) {
-        _forumListArr = [NSMutableArray array];
-    }
-    return _forumListArr;
-}
-
-- (ForumInfoModel *)infoModel {
-    if (!_infoModel) {
-        self.infoModel = [[ForumInfoModel alloc] init];
-    }
-    return _infoModel;
-}
-
-#pragma mark - 设置单一节点
+#pragma mark - 设置单一节点section
 - (void)setTreeNode:(NSDictionary *)dic {
     
     self.nodeName = [dic objectForKey:@"name"];
@@ -82,7 +55,7 @@
 }
 
 
-#pragma mark - 递归获取某版块下的所有子版块
+#pragma mark - 递归获取某版块下的所有子版块row
 - (void)sublistNode:(NSDictionary *)fourmInfo {
     if ([DataCheck isValidDictionary:fourmInfo]) {
         if ([DataCheck isValidArray:[fourmInfo objectForKey:@"sublist"]]) {
@@ -115,22 +88,7 @@
     return nil;
 }
 
-+ (NSArray *)setHotData:(id)responseObject {
-    NSMutableArray *hotArr = [NSMutableArray array];
-    NSArray *dataArr = [[responseObject objectForKey:@"Variables"] objectForKey:@"data"];
-    if ([DataCheck isValidArray:dataArr]) {
-        for (int i = 0; i < dataArr.count; i++)  {
-            TreeViewNode * treeNode = [[TreeViewNode alloc] init];
-            NSMutableDictionary *nodeDic = [NSMutableDictionary dictionary];
-            nodeDic = [dataArr[i] mutableCopy];
-            [treeNode setTreeNode:nodeDic];
-            [hotArr addObject:treeNode];
-        }
-    }
-    return hotArr;
-}
-
-+ (NSArray *)setAllforumData:(id)responseObject { // 热门版块 没有主导航
++ (NSArray *)setAllforumData:(id)responseObject { // 设置全部版块  有主导航
     NSMutableArray *forumArray = [NSMutableArray array];
     NSArray *catlist = [[responseObject objectForKey:@"Variables"] objectForKey:@"catlist"];
     NSArray *forumlist = [[responseObject objectForKey:@"Variables"] objectForKey:@"forumlist"];
@@ -152,27 +110,55 @@
     
 }
 
-+ (NSArray *)setAllChildForumData:(id)responseObject {  // 设置全部版块  有主导航
-    NSMutableArray *forumArray = [NSMutableArray array];
-    NSArray *catlist = [[responseObject objectForKey:@"Variables"] objectForKey:@"catlist"];
-    NSArray *forumlist = [[responseObject objectForKey:@"Variables"] objectForKey:@"forumlist"];
-    if ([DataCheck isValidArray:forumlist]) {
-        for (int i = 0; i < catlist.count; i++) {
+#pragma mark - hot
++ (NSArray *)setHotData:(id)responseObject { // 热门全部版块  无主导航
+    NSMutableArray *hotArr = [NSMutableArray array];
+    NSArray *dataArr = [[responseObject objectForKey:@"Variables"] objectForKey:@"data"];
+    if ([DataCheck isValidArray:dataArr]) {
+        for (int i = 0; i < dataArr.count; i++)  {
             TreeViewNode * treeNode = [[TreeViewNode alloc] init];
             NSMutableDictionary *nodeDic = [NSMutableDictionary dictionary];
-            nodeDic = [catlist[i] mutableCopy];
-            [nodeDic setValue:forumlist forKey:@"forumlist"];
-            [nodeDic setValue:@"0" forKey:@"level"];
-            if (catlist.count >= 10) {
-                [nodeDic setValue:@"NO" forKey:@"isExpanded"];
-            }
+            nodeDic = [dataArr[i] mutableCopy];
             [treeNode setTreeNode:nodeDic];
-            [forumArray addObject:treeNode];
+            [hotArr addObject:treeNode];
         }
     }
-    return forumArray;
+    return hotArr;
 }
 
+#pragma mark - setter、getter
+- (void)setNodeName:(NSString *)nodeName {
+    if ([DataCheck isValidString:nodeName]) {
+        nodeName = [[nodeName transformationStr] flattenHTMLTrimWhiteSpace:YES];
+    }
+    _nodeName = nodeName;
+}
 
+- (NSMutableArray *)fids {
+    if (!_fids) {
+        _fids = [NSMutableArray array];
+    }
+    return _fids;
+}
+- (NSMutableArray *)nodeChildren {
+    if (!_nodeChildren) {
+        _nodeChildren = [NSMutableArray array];
+    }
+    return _nodeChildren;
+}
+
+- (NSMutableArray *)forumListArr {
+    if (!_forumListArr) {
+        _forumListArr = [NSMutableArray array];
+    }
+    return _forumListArr;
+}
+
+- (ForumInfoModel *)infoModel {
+    if (!_infoModel) {
+        self.infoModel = [[ForumInfoModel alloc] init];
+    }
+    return _infoModel;
+}
 
 @end

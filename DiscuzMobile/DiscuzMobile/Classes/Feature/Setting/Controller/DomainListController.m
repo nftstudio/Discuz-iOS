@@ -2,7 +2,7 @@
 //  DomainListController.m
 //  DiscuzMobile
 //
-//  Created by 张积涛 on 2018/3/30.
+//  Created by ZhangJitao on 2018/3/30.
 //  Copyright © 2018年 com.comzenz-service. All rights reserved.
 //
 
@@ -29,26 +29,34 @@ NSString * const domainName = @"name";
     if ([DataCheck isValidDictionary:dic] && [DataCheck isValidArray:dic[domain]]) {
         self.dataSourceArr = [NSMutableArray arrayWithArray:dic[domain]];
     } else {
-        NSDictionary *devDz = @{domain:@"https://guanjia.comsenz-service.com/",
-                             domainName:@"管家",
-                            };
+        
         NSDictionary *disDz = @{domain:@"https://bbs.comsenz-service.com/",
                                 domainName:@"掌上论坛",
                                 };
+        NSDictionary *devDz = @{domain:@"https://guanjia.comsenz-service.com/",
+                                domainName:@"管家测试",
+                                };
+        NSDictionary *rednet = @{domain:@"https://bbs.rednet.cn/",
+                                 domainName:@"红网",
+                                 };
+        NSDictionary *bird = @{domain:@"https://www.birdnet.cn/",
+                               domainName:@"鸟网",
+                               };
+        NSDictionary *taifeng = @{domain:@"https://bbs.typhoon.org.cn/",
+                                 domainName:@"台风",
+                                 };
+        NSDictionary *leshan = @{domain:@"https://mobile.leshan.cn/",
+                               domainName:@"乐山",
+                               };
         NSDictionary *jinbifun = @{domain:@"http://www.jinbifun.com/",
                                    domainName:@"金碧坊",
                                    };
         NSDictionary *penjing = @{domain:@"http://bbs.cnpenjing.com/",
                                    domainName:@"盆景艺术在线",
                                   };
-        NSDictionary *rednet = @{domain:@"https://bbs.rednet.cn/",
-                                  domainName:@"红网",
-                                  };
-        NSDictionary *bird = @{domain:@"https://www.birdnet.cn/",
-                                 domainName:@"鸟网",
-                                 };
         
-        NSArray *domainArray = @[disDz,devDz,jinbifun,penjing,rednet,bird];
+        
+        NSArray *domainArray = @[disDz,devDz,rednet,bird,taifeng,leshan,jinbifun,penjing,];
         [[FileManager shareInstance] writeDocumentPlist:@{domain:domainArray} fileName:@"domainList"];
         self.dataSourceArr = domainArray.mutableCopy;
     }
@@ -86,6 +94,7 @@ NSString * const domainName = @"name";
                               };
         [self.dataSourceArr addObject:dic];
         [[FileManager shareInstance] writeDocumentPlist:@{domain:self.dataSourceArr} fileName:@"domainList"];
+        [LoginModule signout];
         [[NSNotificationCenter defaultCenter] postNotificationName:DOMAINCHANGE object:nil];
         [self.tableView reloadData];
     }];
@@ -125,12 +134,19 @@ NSString * const domainName = @"name";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     NSDictionary *domainDic = self.dataSourceArr[indexPath.row];
+    NSString *detail = domainDic[domain];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    [userDefault setObject:domainDic[domain] forKey:domain];
-    [userDefault synchronize];
-    [[NSNotificationCenter defaultCenter] postNotificationName:DOMAINCHANGE object:Nil];
-    [tableView reloadData];
+    NSString *nowDomain = [userDefault objectForKey:domain];
+    
+    if (![detail isEqualToString:BASEURL] || !([DataCheck isValidString:nowDomain] && [nowDomain isEqualToString:detail])) {
+        [userDefault setObject:detail forKey:domain];
+        [userDefault synchronize];
+        [LoginModule signout];
+        [[NSNotificationCenter defaultCenter] postNotificationName:DOMAINCHANGE object:Nil];
+        [tableView reloadData];
+    }
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
