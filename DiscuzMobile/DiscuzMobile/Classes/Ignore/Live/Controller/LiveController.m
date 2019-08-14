@@ -55,9 +55,9 @@
         
         if (type == JTRequestTypeCache) {
             [self.HUD showLoadingMessag:@"正在加载" toView:self.view];
-            if ([DZApiRequest isCache:url_LiveHot andParameters:nil]) {
-                [self initRequest:JTRequestTypeRefresh];
-            }
+//            if ([DZApiRequest isCache:url_LiveHot andParameters:nil]) {
+//                [self initRequest:JTRequestTypeRefresh];
+//            }
         }
     } complete:^{
         [self.HUD hideAnimated:YES];
@@ -75,7 +75,7 @@
 // 热门直播
 -(void)downLoadData:(JTLoadType)type {
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
-        request.urlString = url_LiveHot;
+//        request.urlString = url_LiveHot;
         request.isCache = YES;
         request.loadType = type;
     } success:^(id responseObject, JTLoadType type) {
@@ -92,7 +92,7 @@
 
 - (void)downTodayRecommand:(JTLoadType)type {
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
-        request.urlString = url_LiveToday;
+//        request.urlString = url_LiveToday;
         request.isCache = YES;
         request.loadType = type;
     } success:^(id responseObject, JTLoadType type) {

@@ -44,7 +44,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.backgroundColor = [UIColor whiteColor];
-//    @[@"活动",@"交友",@"discuz",@"药神戳中泪点",@"克罗地亚赢了",@"刺激战场信号枪",@"工作细胞",@"超强台风",@"世界杯"]
     self.hotSearches = @[@"discuz",@"App",@"微社区",@"小程序",@"定制开发",@"应用中心",@"插件"].mutableCopy;
     self.hotSearchTags = [self addAndLayoutTagsWithTagsContentView:self.hotSearchView tagTexts:self.hotSearches].mutableCopy;
     [self setHotSearchStyle];

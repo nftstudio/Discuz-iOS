@@ -48,7 +48,7 @@ NSString * const debugPassword = @"debugPassword";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.tabBarController.tabBar setHidden:YES];
+    [self.logView thirdPlatformAuth];
 }
 
 - (void)viewDidLoad {
@@ -63,6 +63,8 @@ NSString * const debugPassword = @"debugPassword";
     [self downlodyan];
     [self setViewDelegate];
     [self setViewAction];
+    // 新进来的时候初始化下
+    [ShareCenter shareInstance].bloginModel = nil;
     
     isQCreateView = NO;
     
@@ -101,7 +103,6 @@ NSString * const debugPassword = @"debugPassword";
 - (void)setViewDelegate {
     self.logView.delegate = self;
     self.logView.pickView.delegate = self;
-    
     self.logView.countView.userNameTextField.delegate = self;
     self.logView.pwordView.userNameTextField.delegate = self;
     self.logView.securityView.userNameTextField.delegate = self;
@@ -118,114 +119,127 @@ NSString * const debugPassword = @"debugPassword";
 
 #pragma mark - 账号密码登录
 -(void)loginBtnClick {
-    DLog(@"登录咯");
     [self.view endEditing:YES];
     
     NSString *username = self.logView.countView.userNameTextField.text;
     NSString *password = self.logView.pwordView.userNameTextField.text;
     
     if (![DataCheck isValidString:username]) {
-        
         [MBProgressHUD showInfo:@"请输入用户名"];
-    } else if (![DataCheck isValidString:password]) {
-        
-        [MBProgressHUD showInfo:@"请输入密码"];
-    } else {
-        //       gei  &seccodeverify  验证码  &sechash={sechash值}    http header中加入之前获取到的saltkey,  coolkes
-        NSMutableDictionary * dic = [NSMutableDictionary dictionary];
-        [dic setValue:username forKey:@"username"];
-        [dic setValue:password forKey:@"password"];
-        [dic setValue:@"yes" forKey:@"loginsubmit"];
-        if (self.verifyView.isyanzhengma) {
-            [dic setValue:self.logView.authcodeView.textField.text forKey:@"seccodeverify"];
-            [dic setValue:[self.verifyView.secureData objectForKey:@"sechash"] forKey:@"sechash"];
-        }
-        if (isQCreateView) {
-            
-            NSDictionary * dicvalue = @{@"母亲的名字":@"1",
-                                        @"爷爷的名字":@"2",
-                                        @"父亲出生的城市":@"3",
-                                        @"您其中一位老师的名字":@"4",
-                                        @"您个人计算机的型号":@"5",
-                                        @"您最喜欢的餐馆名称":@"6",
-                                        @"驾驶执照最后四位数字":@"7"};
-            
-            [dic setValue:[dicvalue objectForKey:self.logView.securityView.userNameTextField.text] forKey:@"questionid"];
-            [dic setValue:self.logView.answerView.userNameTextField.text forKey:@"answer"];
-        }
-        [dic setValue:[Environment sharedEnvironment].formhash forKey:@"formhash"];
-        DLog(@"%@",dic);
-//        if ([DataCheck isValidString:self.preSalkey]) {
-//            [dic setValue:self.preSalkey forKey:@"saltkey"];
-//        }
-        
-        [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
-            request.methodType = JTMethodTypePOST;
-            request.urlString = url_CommonLogin;
-            request.parameters = dic;
-            [self.HUD showLoadingMessag:@"登录中" toView:self.view];
-        } success:^(id responseObject, JTLoadType type) {
-            DLog(@"%@",responseObject);
-            [self.HUD hideAnimated:NO];
-            if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]] && [[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] isEqualToString:@"login_question_empty"]) {
-                [self.logView.securityView mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.height.mas_equalTo(TEXTHEIGHT);
-                    self.logView.securityView.hidden = NO;
-                }];
-                [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
-            } else {
-                [self setUserInfo:responseObject];
-#if DEBUG
-                NSUserDefaults *userdefault = [NSUserDefaults standardUserDefaults];
-                [userdefault setObject:username forKey:debugUsername];
-                [userdefault setObject:password forKey:debugPassword];
-                [userdefault synchronize];
-#endif
-            }
-            
-        } failed:^(NSError *error) {
-            [self.HUD hideAnimated:YES];
-            [self showServerError:error];
-            
-        }];
+        return;
     }
+    if (![DataCheck isValidString:password]) {
+        [MBProgressHUD showInfo:@"请输入密码"];
+        return;
+    }
+    
+    //       gei  &seccodeverify  验证码  &sechash={sechash值}    http header中加入之前获取到的saltkey,  coolkes
+    NSMutableDictionary * dic = [NSMutableDictionary dictionary];
+    [dic setValue:username forKey:@"username"];
+    [dic setValue:password forKey:@"password"];
+    [dic setValue:@"yes" forKey:@"loginsubmit"];
+    if (self.verifyView.isyanzhengma) {
+        [dic setValue:self.logView.authcodeView.textField.text forKey:@"seccodeverify"];
+        [dic setValue:[self.verifyView.secureData objectForKey:@"sechash"] forKey:@"sechash"];
+    }
+    if (isQCreateView) {
+        NSDictionary * dicvalue = @{@"母亲的名字":@"1",
+                                    @"爷爷的名字":@"2",
+                                    @"父亲出生的城市":@"3",
+                                    @"您其中一位老师的名字":@"4",
+                                    @"您个人计算机的型号":@"5",
+                                    @"您最喜欢的餐馆名称":@"6",
+                                    @"驾驶执照最后四位数字":@"7"};
+        
+        [dic setValue:[dicvalue objectForKey:self.logView.securityView.userNameTextField.text] forKey:@"questionid"];
+        [dic setValue:self.logView.answerView.userNameTextField.text forKey:@"answer"];
+    }
+    [dic setValue:[Environment sharedEnvironment].formhash forKey:@"formhash"];
+    DLog(@"%@",dic);
+    
+    NSMutableDictionary *getData = [NSMutableDictionary dictionary];
+    if ([ShareCenter shareInstance].bloginModel.openid != nil) { // 三方登录过来的注册
+        [getData setValue:[ShareCenter shareInstance].bloginModel.logintype forKey:@"type"];
+        [dic setValue:[ShareCenter shareInstance].bloginModel.openid forKey:@"openid"];
+        
+        if ([[ShareCenter shareInstance].bloginModel.logintype isEqualToString:@"weixin"]
+            && [DataCheck isValidString:[ShareCenter shareInstance].bloginModel.unionid]) {
+            [dic setValue:[ShareCenter shareInstance].bloginModel.unionid forKey:@"unionid"];
+        }
+    }
+    [self.HUD showLoadingMessag:@"登录中" toView:self.view];
+    
+    [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
+        request.methodType = JTMethodTypePOST;
+        request.urlString = url_Login;
+        request.parameters = dic;
+        request.getParam = getData;
+    } success:^(id responseObject, JTLoadType type) {
+        [self.HUD hide];
+        if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]] && [[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] isEqualToString:@"login_question_empty"]) {
+            [self.logView.securityView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(TEXTHEIGHT);
+                self.logView.securityView.hidden = NO;
+            }];
+            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+        } else {
+            [self setUserInfo:responseObject];
+#if DEBUG
+            [self saveAccount];
+#endif
+        }
+        
+    } failed:^(NSError *error) {
+        [self.HUD hide];
+        [self showServerError:error];
+    }];
+}
+
+- (void)saveAccount {
+    NSString *username = self.logView.countView.userNameTextField.text;
+    NSString *password = self.logView.pwordView.userNameTextField.text;
+    NSUserDefaults *userdefault = [NSUserDefaults standardUserDefaults];
+    [userdefault setObject:username forKey:debugUsername];
+    [userdefault setObject:password forKey:debugPassword];
+    [userdefault synchronize];
 }
 
 #pragma mark - qq登录
 - (void)loginWithQQ {
-    
-    [[ShareCenter shareInstance] loginWithQQSuccess:^(id  _Nullable response) {
-        [self thirdConnectWithService:response];
+    [self.HUD showLoadingMessag:@"" toView:self.view];
+    [[ShareCenter shareInstance] loginWithQQSuccess:^(id  _Nullable postData, id  _Nullable getData) {
+        [self thirdConnectWithService:postData getData:getData];
+    } finish:^{
+        [self.HUD hide];
     }];
-    
 }
 
 #pragma mark - 微信登录
 - (void)loginWithWeiXin {
-    
-    [[ShareCenter shareInstance] loginWithWeiXinSuccess:^(id  _Nullable response) {
-        [self thirdConnectWithService:response];
+    [self.HUD showLoadingMessag:@"" toView:self.view];
+    [[ShareCenter shareInstance] loginWithWeiXinSuccess:^(id  _Nullable postData, id  _Nullable getData) {
+        [self thirdConnectWithService:postData getData:getData];
+    } finish:^{
+        [self.HUD hide];
     }];
-    
 }
 
-- (void)thirdConnectWithService:(NSDictionary *)dic {
-    DLog(@"openid等==========================%@",dic);
+- (void)thirdConnectWithService:(NSDictionary *)dic getData:(NSDictionary *)getData {
+    [self.HUD showLoadingMessag:@"" toView:self.view];
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
-        [self.HUD showLoadingMessag:@"拉取信息" toView:self.view];
-//        request.urlString = url_ThirdLogin;
-        request.urlString = url_CommonLogin;
+        request.urlString = url_Login;
         request.methodType = JTMethodTypePOST;
         request.parameters = dic;
+        request.getParam = getData;
     } success:^(id responseObject, JTLoadType type) {
         DLog(@"%@",responseObject);
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self setUserInfo:responseObject];
     } failed:^(NSError *error) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self showServerError:error];
         
-        if ([[dic objectForKey:@"type"] isEqualToString:@"weixin"]) {
+        if ([[getData objectForKey:@"type"] isEqualToString:@"weixin"]) {
             if ([ShareSDK hasAuthorized:SSDKPlatformTypeWechat]) {
                 [ShareSDK cancelAuthorize:SSDKPlatformTypeWechat];
             }
@@ -235,20 +249,14 @@ NSString * const debugPassword = @"debugPassword";
 
 #pragma mark - 请求成功操作
 - (void)setUserInfo:(id)responseObject {
-    
-    NSString *messagestatus;
 
-    [super setUserInfo:responseObject];
-    
-    if ([messagestatus isEqualToString:@"0"]){
+    NSString *messageval = [[responseObject objectForKey:@"Message"] objectForKey:@"messageval"];
+    if ([DataCheck isValidString:messageval] && [messageval containsString:@"no_bind"]) {
         // 去第三方绑定页面
         [self boundThirdview];
     } else {
-        if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]]) {
-            messagestatus = [[responseObject objectForKey:@"Message"] objectForKey:@"messagestatus"];
-        }
+        [super setUserInfo:responseObject];
     }
-    
 }
 
 
@@ -273,7 +281,7 @@ NSString * const debugPassword = @"debugPassword";
 
 - (void)registerNavview {
     // 重置一下
-    [ShareCenter shareInstance].bloginModel = nil;
+//    [ShareCenter shareInstance].bloginModel = nil;
     JTRegisterController * rvc =[[JTRegisterController alloc] init];
     [self.navigationController pushViewController:rvc animated:YES];
 }

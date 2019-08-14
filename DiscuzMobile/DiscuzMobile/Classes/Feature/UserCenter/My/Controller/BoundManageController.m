@@ -12,74 +12,51 @@
 #import "TextIconModel.h"
 #import "BoundInfoModel.h"
 
-#import <ShareSDK/ShareSDK.h>
-#import <ShareSDKConnector/ShareSDKConnector.h>
+#import "ShareCenter.h"
+#import "UIAlertController+Extension.h"
 
 @interface BoundManageController ()
 
 @property (nonatomic, strong) CenterUserInfoView *userInfoView;
-@property (nonatomic, strong) BoundInfoModel *boundInfoModel;
 
 @end
 
 @implementation BoundManageController
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.hidesBottomBarWhenPushed = YES;
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.userInfoView = [[CenterUserInfoView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 135)];
+    self.navigationItem.title = @"绑定管理";
+    self.userInfoView = [[CenterUserInfoView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 120)];
+    [self.userInfoView.identityLab setHidden:YES];
     self.tableView.tableHeaderView = self.userInfoView;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 80)];
-    self.userInfoView.nameLab.text = [[self.myInfoDic objectForKey:@"space"] objectForKey:@"username"];
-    [self.userInfoView setIdentityText:[[[self.myInfoDic objectForKey:@"space"] objectForKey:@"group"] objectForKey:@"grouptitle"]];
     
-    self.boundInfoModel = [[BoundInfoModel alloc] init];
-    
-    [self initDatasource];
+    [self requestData];
 }
 
-- (void)initDatasource {
-    
-    if (self.dataSourceArr.count > 0) {
-        [self.dataSourceArr removeAllObjects];
-    }
-    
-    NSDictionary *iwechat_user = [self.myInfoDic objectForKey:@"iwechat_user"];
-    [self.boundInfoModel setValuesForKeysWithDictionary:iwechat_user];
-    
-    NSString *wx_detail = @"绑定";
-    NSString *wx_show = @"微信(未绑定)";
-    if ([DataCheck isValidString:self.boundInfoModel.unionid]) {
-        wx_detail = @"解绑";
-        wx_show = @"微信(已绑定)";
-    }
-    TextIconModel *wx = [[TextIconModel alloc] initWithText:wx_show andIconName:@"bound_wx" andDetail:wx_detail];
-    [self.dataSourceArr addObject:wx];
-    
-    NSString *qq_detail = @"绑定";
-    NSString *qq_show = @"QQ(未绑定)";
-    if ([DataCheck isValidString:self.boundInfoModel.qqopenid]) {
-        qq_detail = @"解绑";
-        qq_show = @"QQ(已绑定)";
-    }
-    TextIconModel *qq = [[TextIconModel alloc] initWithText:qq_show andIconName:@"bound_qq" andDetail:qq_detail];
-    [self.dataSourceArr addObject:qq];
+- (void)requestData {
+    [self.HUD showLoadingMessag:@"" toView:nil];
+    [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
+        request.urlString = url_oauths;
+    } success:^(id responseObject, JTLoadType type) {
+        [self.HUD hide];
+        NSDictionary * info = [responseObject objectForKey:@"Variables"];
+        self.userInfoView.nameLab.text = [info objectForKey:@"member_username"];
+        [self.userInfoView.headView sd_setImageWithURL:[NSURL URLWithString:[info objectForKey:@"member_avatar"]]];
+        NSArray *users = [info objectForKey:@"users"];
+        if ([DataCheck isValidArray:users]) {
+            self.dataSourceArr = [BoundInfoModel mj_objectArrayWithKeyValuesArray:users];
+        }
+        [self.tableView reloadData];
+    } failed:^(NSError *error) {
+        [self.HUD hide];
+    }];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     return 50.0;
-    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -95,143 +72,126 @@
     BoundManageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellID];
     if (cell == nil) {
         cell = [[BoundManageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellID];
-        cell.detailLab.textColor = [UIColor redColor];
-        
-        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(boundTapAction:)];
-        cell.detailLab.userInteractionEnabled = YES;
-        cell.detailLab.tag = indexPath.row;
-        [cell.detailLab addGestureRecognizer:tapGes];
+        cell.detailBtn.tag = indexPath.row;
+        [cell.detailBtn addTarget:self action:@selector(boundTapAction:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
-    TextIconModel *model = self.dataSourceArr[indexPath.row];
+    BoundInfoModel *model = self.dataSourceArr[indexPath.row];
     [cell setData:model];
     
     return cell;
 }
 
-- (void)boundTapAction:(UITapGestureRecognizer *)sender {
-    UIView *view = sender.view;
-    NSInteger index = view.tag;
-    
-    NSString *type = @"weixin";
-    if (index == 1) {
-        type = @"qq";
-    }
-    TextIconModel *model = self.dataSourceArr[index];
-    if ([model.detail isEqualToString:@"解绑"]) {
-        
-        [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
-            NSDictionary *getDic = @{@"type":type};
-            [self.HUD showLoadingMessag:@"解除绑定" toView:self.view];
-            request.parameters = getDic;
-            request.urlString = url_unBindThird;
-        } success:^(id responseObject, JTLoadType type) {
-            [self.HUD hideAnimated:YES];
-            DLog(@"%@",[responseObject objectForKey:@"Message"]);
-            if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]]) {
-                NSDictionary *msgDic = [responseObject objectForKey:@"Message"];
-                if ([DataCheck isValidString:[msgDic objectForKey:@"messageval"]]) {
-                    NSString *messageStatus = [msgDic objectForKey:@"messageval"];
-                    if ([messageStatus containsString:@"success"]) {
-                        //                        [MBProgressHUD showInfo:@"解绑成功"];
-                        [LoginModule cleanLogType];
-                        if (self.refreshBlock) {
-                            self.refreshBlock();
-                        }
-                        [self downLoadData];
-                        return;
-                    }
-                    
-                    [MBProgressHUD showInfo:[msgDic objectForKey:@"messageval"]];
-                }
-                
-            }
-            
-            [MBProgressHUD showInfo:@"对不起，解绑失败"];
-            
-        } failed:^(NSError *error) {
-            [self.HUD hideAnimated:YES];
-        }];
-        
-    } else if ([model.detail isEqualToString:@"绑定"]) {
-        
-        if (type == 0) {
-            [self loginWithPlatformType:SSDKPlatformTypeWechat];
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 5;
+}
+
+- (void)boundTapAction:(UIButton *)sender {
+    NSInteger index = sender.tag;
+    BoundInfoModel *model = self.dataSourceArr[index];
+    if ([model.status isEqualToString:@"1"]) {
+        NSString *title = @"解除绑定？";
+        NSString *message = @"解绑后，将不能使用三方登录，登录此账号";
+        if ([model.type isEqualToString:@"minapp"]) {
+            title = @"解除小程序绑定？";
+            message = @"解绑后，打开小程序需要重新登录";
         }
-        else {
-            [self loginWithPlatformType:SSDKPlatformTypeQQ];
+        [UIAlertController alertTitle:title
+                              message:message
+                           controller:self
+                             doneText:@"确定"
+                           cancelText:@"取消"
+                           doneHandle:^{
+                               [self unbound:model];
+                           } cancelHandle:nil];
+    } else {
+        if ([model.type isEqualToString:@"minapp"]) {
+            [UIAlertController alertTitle:@"提示"
+                                  message:@"请前往小程序登录将自动完成绑定"
+                               controller:self
+                                 doneText:@"确定"
+                               cancelText:nil
+                               doneHandle:nil
+                             cancelHandle:nil];
+            return;
+        }
+        
+        [self.HUD showLoadingMessag:@"" toView:self.view];
+        if ([model.type isEqualToString:@"weixin"]) {
+            
+            [[ShareCenter shareInstance] loginWithWeiXinSuccess:^(id  _Nullable postData, id  _Nullable getData) {
+                [self thirdConnectWithService:postData getData:getData];
+            } finish:^{
+                [self.HUD hide];
+            }];
+        }
+        else if ([model.type isEqualToString:@"qq"]) {
+            [[ShareCenter shareInstance] loginWithQQSuccess:^(id  _Nullable postData, id  _Nullable getData) {
+                [self thirdConnectWithService:postData getData:getData];
+            } finish:^{
+                [self.HUD hide];
+            }];
         }
     }
 }
 
-- (void)loginWithPlatformType:(SSDKPlatformType)platformType {
+- (void)unbound:(BoundInfoModel *)model {
+    NSDictionary *postData = @{
+                               @"unbind":@"yes",
+                               @"type":model.type,
+                               @"formhash":[Environment sharedEnvironment].formhash
+                               };
     
-    WEAKSELF;
-    [ShareSDK getUserInfo:platformType
-           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
-               
-               if (state == SSDKResponseStateSuccess) {
-                   
-                   NSString *type = @"qq";
-                   
-                   NSDictionary *getDic = @{@"openid":user.uid,
-                                            @"type":type,
-                                            @"username":[Environment sharedEnvironment].member_username,
-//                                            @"password":[Environment sharedEnvironment].loggedPassword
-                                            
-                                            };
-                   
-                   if (platformType == SSDKPlatformTypeWechat) {
-                       type = @"weixin";
-                       if ([DataCheck isValidString:[user.rawData objectForKey:@"unionid"]]) {
-                           getDic = @{@"openid":[NSString stringWithFormat:@"%@&unionid=%@",user.uid,[user.rawData objectForKey:@"unionid"]],
-                                      @"type":type,@"username":[Environment sharedEnvironment].member_username,
-//                                      @"password":[Environment sharedEnvironment].loggedPassword
-                                      
-                                      };
-                       }
-                       
-                   }
-                   
-                   [weakSelf boundData:getDic];
-                   
-               } else {
-                   [MBProgressHUD showInfo:@"服务器繁忙请重试"];
-               }
-               }];
-}
-
-- (void)boundData:(NSDictionary *)getDic {
-    [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
-        [self.HUD showLoadingMessag:@"绑定中" toView:self.view];
-        request.urlString = url_BindThird;
-        request.parameters = getDic;
-    } success:^(id responseObject, JTLoadType type) {
-        [self.HUD hideAnimated:YES];
-        if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messagestatus"] isEqualToString:@"1"]) {
-            [self downLoadData];
-        } else {
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
-        }
-    } failed:^(NSError *error) {
-        [self.HUD hideAnimated:YES];
-    }];
-}
-
-
--(void)downLoadData {
+    [self.HUD showLoadingMessag:@"解除绑定" toView:self.view];
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
         request.methodType = JTMethodTypePOST;
-        request.urlString = url_UserInfo;
+        request.urlString = url_unBindThird;
+        request.parameters = postData;
     } success:^(id responseObject, JTLoadType type) {
+        [self.HUD hide];
+        NSDictionary *msgDic = [responseObject objectForKey:@"Message"];
+        if ([DataCheck isValidDictionary:msgDic]) {
+            NSString *messageStatus = [msgDic objectForKey:@"messageval"];
+            if ([DataCheck isValidString:messageStatus]) {
+                if ([messageStatus containsString:@"succeed"]) {
+                    [MBProgressHUD showInfo:@"解绑成功"];
+                    //                        [LoginModule cleanLogType];
+                    [self requestData];
+                    return;
+                }
+            }
+        }
         
-        self.myInfoDic = [responseObject objectForKey:@"Variables"];
-        [self initDatasource];
-        [self.tableView reloadData];
+        [MBProgressHUD showInfo:@"对不起，解绑失败"];
+        
     } failed:^(NSError *error) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
     }];
 }
 
+- (void)thirdConnectWithService:(NSDictionary *)dic getData:(NSDictionary *)getData {
+    [dic setValue:[Environment sharedEnvironment].formhash forKey:@"formhash"];
+    [dic setValue:@"yes" forKey:@"loginsubmit"];
+    [self.HUD showLoadingMessag:@"" toView:self.view];
+    [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
+        request.urlString = url_Login;
+        request.methodType = JTMethodTypePOST;
+        request.parameters = dic;
+        request.getParam = getData;
+    } success:^(id responseObject, JTLoadType type) {
+        [self.HUD hide];
+        NSDictionary *messageDic = [responseObject objectForKey:@"Message"];
+        if ([DataCheck isValidDictionary:messageDic]) {
+            NSString *messageval = [messageDic objectForKey:@"messageval"];
+            if ([messageval containsString:@"succeed"]) {
+                [MBProgressHUD showInfo:@"绑定成功"];
+                [self requestData];
+            }
+        }
+        
+    } failed:^(NSError *error) {
+        [self.HUD hide];
+        [self showServerError:error];
+    }];
+}
 
 @end

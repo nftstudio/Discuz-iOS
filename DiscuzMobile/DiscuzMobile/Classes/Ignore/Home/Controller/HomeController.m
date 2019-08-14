@@ -124,17 +124,15 @@
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
         request.urlString = url_RecommendBanner;
     } success:^(id responseObject, JTLoadType type) {
-        
-        DLog(@"%@",responseObject);
-        
-        if ([DataCheck isValidArray:[[responseObject objectForKey:@"Variables"] objectForKey:@"list"]]) {
+        NSArray *list = [[responseObject objectForKey:@"Variables"] objectForKey:@"list"];
+        if ([DataCheck isValidArray:list]) {
             if (self.scrollView.bannerArray.count > 0) {
                 self.scrollView.bannerArray = [NSMutableArray array];
                 for (UIView *v  in self.scrollView.subviews) {
                     [v removeFromSuperview];
                 }
             }
-            for (NSDictionary *dic in [[responseObject objectForKey:@"Variables"] objectForKey:@"list"]) {
+            for (NSDictionary *dic in list) {
                 JTBannerModel *banner = [[JTBannerModel alloc] init];
                 [banner setValuesForKeysWithDictionary:dic];
                 [self.scrollView.bannerArray addObject:banner];
@@ -172,8 +170,9 @@
     } success:^(id responseObject, JTLoadType type) {
         NSLog(@"responseObject myfacforum=====%@",responseObject);
         // 判断 list 表单是否存在   存在则存储
-        if ([DataCheck isValidArray:[[responseObject objectForKey:@"Variables"]objectForKey:@"list"]]) {
-            [self setHotData:[[responseObject objectForKey:@"Variables"]objectForKey:@"list"]];
+        NSArray *list = [[responseObject objectForKey:@"Variables"]objectForKey:@"list"];
+        if ([DataCheck isValidArray:list]) {
+            [self setHotData:list];
             [self.tableView reloadData];
         } else {
             [self downLoadData:@"hotforum"];
@@ -193,8 +192,9 @@
         
     } success:^(id responseObject, JTLoadType type) {
         [self.HUD hideAnimated:YES];
-        if ([DataCheck isValidArray:[[responseObject objectForKey:@"Variables"] objectForKey:@"data"]]) {
-            self.dataSourceArr = [[responseObject objectForKey:@"Variables"] objectForKey:@"data"];
+        NSArray *data = [[responseObject objectForKey:@"Variables"] objectForKey:@"data"];
+        if ([DataCheck isValidArray:data]) {
+            self.dataSourceArr = data.mutableCopy;
             if (self.hotSource.count > 0) {
                 [self.hotSource removeAllObjects];
             }
@@ -334,6 +334,7 @@
     }
 }
 
+#pragma mark - getter
 - (SlideShowScrollView *)scrollView {
     if (_scrollView == nil) {
         _scrollView = [[SlideShowScrollView alloc] init];

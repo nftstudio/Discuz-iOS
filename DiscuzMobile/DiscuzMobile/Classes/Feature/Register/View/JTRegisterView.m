@@ -8,8 +8,8 @@
 
 #import "JTRegisterView.h"
 #import "LoginCustomView.h"
-#import "JTQuestionAnswerView.h"
 #import "Web2AuthcodeView.h"
+#import "ShareCenter.h"
 
 #define TEXTHEIGHT 50
 
@@ -111,18 +111,6 @@
         make.height.mas_equalTo(TEXTHEIGHT);
     }];
     
-//    self.questAnswerView = [[JTQuestionAnswerView alloc] init];
-//    self.questAnswerView.logoV.image = [UIImage imageNamed:@"log_s"];
-//    self.questAnswerView.answerField.delegate = self;
-//    self.questAnswerView.hidden = YES;
-//    [self addSubview:self.questAnswerView];
-//    [self.questAnswerView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(contentView);
-//        make.top.equalTo(contentView.mas_bottom).offset(30);
-//        make.width.equalTo(contentView.mas_width);
-//        make.height.mas_equalTo(0);
-//    }];
-    
     // 验证码 有无
     self.authcodeView = [[Web2AuthcodeView alloc] init];
     self.authcodeView.hidden = YES;
@@ -159,6 +147,13 @@
     
     _usertermsView = [[UsertermsView alloc] init];
     [self addSubview:_usertermsView];
+    
+    [self addSubview:self.thridAuthTipLabl];
+    [self.thridAuthTipLabl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.width.equalTo(self.usertermsView);
+        make.top.equalTo(self.usertermsView.mas_bottom).offset(5);
+    }];
+    self.thridAuthTipLabl.hidden = YES;
 ////    [self.usertermsView mas_makeConstraints:^(MASConstraintMaker *make) {
 ////        make.left.equalTo(self.registerButton);
 ////        make.top.equalTo(self.registerButton.mas_bottom).offset(10);
@@ -174,6 +169,31 @@
     
 }
 
+- (void)thirdPlatformAuth {
+    if ([ShareCenter shareInstance].bloginModel) {
+        NSMutableAttributedString *describe = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"亲爱的%@ 注册关联掌上论坛账号即可一键登录",[ShareCenter shareInstance].bloginModel.username]];
+        NSRange dearRange = {0,3};
+        NSInteger nameLength = [[NSString stringWithFormat:@"%@",[ShareCenter shareInstance].bloginModel.username] length];
+        NSRange nameRange = {3,nameLength};
+        
+        NSRange allRange = {0,[describe length]};
+        [describe addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:allRange];
+        [describe addAttribute:NSFontAttributeName value:[FontSize forumtimeFontSize14] range:allRange];
+        
+        [describe addAttribute:NSForegroundColorAttributeName value:LIGHT_TEXT_COLOR range:dearRange];
+        [describe addAttribute:NSFontAttributeName value:[FontSize HomecellTimeFontSize16] range:dearRange];
+        
+        [describe addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:nameRange];
+        [describe addAttribute:NSFontAttributeName value:[FontSize HomecellTimeFontSize16] range:nameRange];
+        self.thridAuthTipLabl.attributedText = describe;
+        self.thridAuthTipLabl.hidden = NO;
+        [self.registerButton setTitle:@"注册" forState:UIControlStateNormal];
+    } else {
+        self.thridAuthTipLabl.hidden = YES;
+        [self.registerButton setTitle:@"注册" forState:UIControlStateNormal];
+    }
+}
+
 - (void)layoutSubviews {
     
     [super layoutSubviews];
@@ -183,6 +203,14 @@
         contentHeight = CGRectGetMaxY(_usertermsView.frame) + 50;
     }
     self.contentSize = CGSizeMake(WIDTH, contentHeight);
+}
+
+- (UILabel *)thridAuthTipLabl {
+    if (!_thridAuthTipLabl) {
+        _thridAuthTipLabl = [[UILabel alloc] init];
+        _thridAuthTipLabl.numberOfLines = 0;
+    }
+    return _thridAuthTipLabl;
 }
 
 @end

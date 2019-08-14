@@ -101,7 +101,7 @@
 }
 
 // 请求网络后获取数据传入。
-- (void)setPostType:(NSString *)poll andActivity:(NSString *)activity andDebate:(NSString *)debate andAllowspecialonly:(NSString *)allowspecialonly andAllowpost:(NSString *)allowpost {
+- (void)setPostType:(NSString *)poll activity:(NSString *)activity debate:(NSString *)debate allowspecialonly:(NSString *)allowspecialonly allowpost:(NSString *)allowpost {
     
     // 这里特殊帖子只包括
     NSDictionary *postDic = @{@"投票帖":poll,

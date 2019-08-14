@@ -233,7 +233,7 @@
     }
 }
 
-#pragma mark - getter setter
+#pragma mark - getter
 - (DTAttributedTextContentView *)attributedTextContextView {
     if (!_attributedTextContextView) {
         _attributedTextContextView = [[DTAttributedTextContentView alloc] initWithFrame:CGRectMake(10, 10, WIDTH - 20, CGRectGetHeight(self.contentView.frame) - 10)];

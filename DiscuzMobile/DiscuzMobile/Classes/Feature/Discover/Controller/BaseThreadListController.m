@@ -36,8 +36,14 @@
         self.urlString = url_newAll;
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstRequest:) name:JTCONTAINERQUEST object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:DOMAINCHANGE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(firstRequest:)
+                                                 name:JTCONTAINERQUEST
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshData)
+                                                 name:DOMAINCHANGE
+                                               object:nil];
     
     [self cacheRequest];
 }
@@ -93,8 +99,6 @@
     [self downLoadData:self.page andLoadType:JTRequestTypeRefresh];
 }
 
-
-
 #pragma mark - 数据下载
 - (void)downLoadData:(NSInteger)page andLoadType:(JTLoadType)type {
     
@@ -144,13 +148,10 @@
     }
 }
 
-
-
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSourceArr.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ThreadListModel *listModel = self.dataSourceArr[indexPath.row];
@@ -188,7 +189,6 @@
     tvc.tid = listModel.tid;
     [self.navigationController pushViewController:tvc animated:YES];
 }
-
 
 - (void)toOtherCenter:(UITapGestureRecognizer *)sender {
     

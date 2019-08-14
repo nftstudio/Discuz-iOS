@@ -8,7 +8,6 @@
 
 #import "JTResetPwdView.h"
 #import "LoginCustomView.h"
-#import "JTQuestionAnswerView.h"
 #import "Web2AuthcodeView.h"
 
 #define TEXTHEIGHT 50

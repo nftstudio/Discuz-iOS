@@ -109,7 +109,7 @@ NSString * const AttributedTextCellReuseIdentifier = @"AttributedTextCellReuseId
     }
     
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
-        request.urlString = url_LiveDetail;
+//        request.urlString = url_LiveDetail;
         request.parameters = @{@"tid":self.listModel.tid,
                                @"page":[NSString stringWithFormat:@"%ld",(long)self.page],
                                @"authorid":self.listModel.authorid};

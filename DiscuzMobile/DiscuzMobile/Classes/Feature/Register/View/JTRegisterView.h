@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UsertermsView.h"
 
-@class LoginCustomView,AuthcodeView,JTQuestionAnswerView,Web2AuthcodeView;
+@class LoginCustomView,AuthcodeView,Web2AuthcodeView;
 
 @interface JTRegisterView : UIScrollView <UITextFieldDelegate>
 @property (nonatomic, strong) LoginCustomView *usernameView;
@@ -17,9 +17,11 @@
 @property (nonatomic, strong) LoginCustomView *repassView;
 @property (nonatomic, strong) LoginCustomView *emailView;
 @property (nonatomic, strong) Web2AuthcodeView *authcodeView;
-//@property (nonatomic, strong) JTQuestionAnswerView *questAnswerView;
+@property (nonatomic, strong) UILabel *thridAuthTipLabl;
 
 @property (nonatomic, strong) UIButton *registerButton;
 @property (nonatomic, strong) UsertermsView *usertermsView;
+
+- (void)thirdPlatformAuth;
 
 @end

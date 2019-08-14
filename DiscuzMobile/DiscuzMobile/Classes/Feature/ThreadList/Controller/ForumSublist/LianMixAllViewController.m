@@ -64,8 +64,7 @@
 
 @implementation LianMixAllViewController
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.hidesBottomBarWhenPushed = YES;
@@ -512,7 +511,7 @@
 
 - (void)subSendVarible:(NSDictionary *)dic {
     
-    if ([DataCheck isValidDictionary:[dic objectForKey:@"forum"]]) {
+    if ([DataCheck isValidDictionary:[dic objectForKey:@"forum"]]) { // 版块信息设置
         
         self.forumInfo = [[ForumInfoModel alloc] init];
         [self.forumInfo setValuesForKeysWithDictionary:[dic objectForKey:@"forum"]];
@@ -529,7 +528,7 @@
         
     }
     
-    if ([DataCheck isValidArray:[dic objectForKey:@"sublist"]]) {
+    if ([DataCheck isValidArray:[dic objectForKey:@"sublist"]]) { // 子版块列表
         self.foldTableView.frame  = CGRectMake(0, self.infoView.height, WIDTH, 54);
         self.headView.frame = CGRectMake(0, 0, WIDTH, self.infoView.height + CGRectGetHeight(self.foldTableView.frame) + 5);
         self.tableView.tableHeaderView = self.headView;
@@ -543,24 +542,28 @@
     
     self.Variables = dic;
     
-    
-    if ([DataCheck isValidDictionary:[self.Variables objectForKey:@"group"]]) {
+    NSDictionary *group = [self.Variables objectForKey:@"group"];
+    if ([DataCheck isValidDictionary:group]) { // 能发的帖子类型处理
         NSString *allowpost = [[self.Variables objectForKey:@"allowperm"] objectForKey:@"allowpost"];
         
         NSString *allowpostpoll = @"0";
         NSString *allowpostactivity = @"0";
          NSString *allowpostdebate = @"0";
-        if ([DataCheck isValidString:[[self.Variables objectForKey:@"group"] objectForKey:@"allowpostpoll"]]) {
-            allowpostpoll = [[self.Variables objectForKey:@"group"] objectForKey:@"allowpostpoll"];
+        if ([DataCheck isValidString:[group objectForKey:@"allowpostpoll"]]) {
+            allowpostpoll = [group objectForKey:@"allowpostpoll"];
         }
-        if ([DataCheck isValidString:[[self.Variables objectForKey:@"group"] objectForKey:@"allowpostactivity"]]) {
-            allowpostactivity = [[self.Variables objectForKey:@"group"] objectForKey:@"allowpostactivity"];
+        if ([DataCheck isValidString:[group objectForKey:@"allowpostactivity"]]) {
+            allowpostactivity = [group objectForKey:@"allowpostactivity"];
         }
-        if ([DataCheck isValidString:[[self.Variables objectForKey:@"group"] objectForKey:@"allowpostdebate"]]) {
-            allowpostdebate = [[self.Variables objectForKey:@"group"] objectForKey:@"allowpostdebate"];
+        if ([DataCheck isValidString:[group objectForKey:@"allowpostdebate"]]) {
+            allowpostdebate = [group objectForKey:@"allowpostdebate"];
         }
         NSString *allowspecialonly = [[self.Variables objectForKey:@"forum"] objectForKey:@"allowspecialonly"];
-        [self.selectView setPostType:allowpostpoll andActivity:allowpostactivity andDebate:allowpostdebate andAllowspecialonly:allowspecialonly andAllowpost:allowpost];
+        [self.selectView setPostType:allowpostpoll
+                            activity:allowpostactivity
+                              debate:allowpostdebate
+                    allowspecialonly:allowspecialonly
+                           allowpost:allowpost];
         
     } else {
 //        [self.selectView setPostType:@"0" andActivity:@"0" andDebate:@"0" andAllowspecialonly:@"0" andAllowpost:@"0"];
@@ -649,6 +652,7 @@
     self.containVC.childCanScroll = NO;
 }
 
+#pragma mark - setter、getter
 - (NSMutableArray *)titleArr {
     if (!_titleArr) {
         _titleArr = [NSMutableArray array];

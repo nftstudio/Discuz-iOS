@@ -14,10 +14,6 @@ extern NSString * const url_Check;
 extern NSString * const url_RecommendBanner;
 // 推荐 列表
 extern NSString * const url_RecommendList;
-// 直播 热门
-extern NSString * const url_LiveHot;
-// 直播 今日推荐
-extern NSString * const url_LiveToday;
 // 精华
 extern NSString * const url_DigestAll;
 // 所有热帖
@@ -26,15 +22,6 @@ extern NSString * const url_HotAll;
 extern NSString * const url_newAll;
 // 删除帖子 GET传tid 和pid messageval = delete_success 删除成功
 extern NSString * const url_deleteThread;
-
-#pragma mark - 直播
-
-// 详情
-extern NSString * const url_LiveDetail;
-// 互动
-extern NSString * const url_LiveReply;
-// 直播推送
-extern NSString * const url_LivePusher;
 
 #pragma mark - 版块
 
@@ -81,11 +68,9 @@ extern NSString * const url_UploadHead;
 
 #pragma mark - 登录相关
 // 普通登录
-extern NSString * const url_CommonLogin;
-// 三方登录 post
-extern NSString * const url_ThirdLogin;
-// 绑定qq
-extern NSString * const url_BindThird;
+extern NSString * const url_Login;
+// 获取授权绑定信息
+extern NSString * const url_oauths;
 // 解绑
 extern NSString * const url_unBindThird;
 // 修改密码
@@ -94,8 +79,6 @@ extern NSString * const url_resetPwd;
 #pragma mark - 注册相关
 // 注册 + 第三方登录去注册绑定方法
 extern NSString * const url_Register;
-// 第三方登录去注册绑定方法
-extern NSString * const url_TirdRegister;
 
 #pragma mark - 消息
 // 回复短消息 post

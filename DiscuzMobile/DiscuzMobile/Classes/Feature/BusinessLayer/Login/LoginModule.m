@@ -24,8 +24,8 @@ NSString * const CookieValue = @"COOKIEVALU";
         }
         return;
     }
-    NSString *messagestatus = [[responseObject objectForKey:@"Variables"] objectForKey:@"messagestatus"];
-    if ([messagestatus isEqualToString:@"1"] || messagestatus == nil) { // 普通登录或者登录成功
+    NSString *messageval = [[responseObject objectForKey:@"Message"] objectForKey:@"messageval"];
+    if ([DataCheck isValidString:messageval] && [messageval containsString:@"succeed"]) { // 普通登录或者登录成功
         
         if(![DataCheck isValidString:[[responseObject objectForKey:@"Variables"] objectForKey:@"auth"]]) {
             [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
@@ -45,6 +45,10 @@ NSString * const CookieValue = @"COOKIEVALU";
                 }
             }
             handle?handle():nil;
+        }
+    } else {
+        if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]]) {
+            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
         }
     }
 }

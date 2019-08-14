@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-@class HorizontalImageTextView,TextIconModel;
+@class HorizontalImageTextView,BoundInfoModel;
 
 @interface BoundManageCell : UITableViewCell
 
 @property (nonatomic, strong) HorizontalImageTextView *nameV;
-@property (nonatomic, strong) UILabel *detailLab;
+@property (nonatomic, strong) UIButton *detailBtn;
 
-- (void)setData:(TextIconModel *)model;
+- (void)setData:(BoundInfoModel *)model;
 
 @end

@@ -32,8 +32,6 @@
 
 @property (nonatomic ,strong) NSDictionary *Variables;  //  数据
 
-@property (nonatomic, strong) NSArray *topCheckArray;
-
 @property (nonatomic, strong) NSMutableArray *topThreadArray;
 @property (nonatomic, strong) NSMutableArray *commonThreadArray;
 
@@ -50,7 +48,6 @@
     
     self.page = 1;
     self.notThisFidCount = 0;
-    self.topCheckArray = @[@"1",@"2",@"3"];
     
     [self inittableView];
     
@@ -58,7 +55,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(firstRequest:) name:THREADLISTFISTREQUEST object:nil];
     
-    DLog(@"===================%ld=====================",self.order);
     if (self.order == 0) {
         self.isRequest = YES;
         [self loadCache];
@@ -310,7 +306,6 @@
     
 }
 
-
 #pragma mark - tableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.topThreadArray.count > 0) {
@@ -496,11 +491,6 @@
         };
     }
     return _verifyThreadRemindView;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

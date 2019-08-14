@@ -21,8 +21,7 @@
 
 #pragma mark - 请求成功操作
 - (void)setUserInfo:(id)responseObject {
-    [LoginModule loginAnylyeData:responseObject andView:self.view andHandle:^{
-        // 登录成功操作
+    [LoginModule loginAnylyeData:responseObject andView:self.view andHandle:^{ // 登录成功操作
         [[XinGeCenter shareInstance] setXG]; // 设置信鸽推送
         
         [[NSNotificationCenter defaultCenter] postNotificationName:LOGINEDREFRESHGETINFO object:nil];
@@ -35,7 +34,6 @@
         if (navVC.childViewControllers.count == 1 && !self.isKeepTabbarSelected) {
             NSDictionary *userInfo = @{@"type":@"loginSuccess"};
             [[NSNotificationCenter defaultCenter] postNotificationName:SETSELECTINDEX object:nil userInfo:userInfo];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:SETSELECTINDEX object:nil userInfo:nil];
         }
     }];
 }

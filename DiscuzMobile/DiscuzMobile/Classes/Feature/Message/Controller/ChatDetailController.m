@@ -22,21 +22,17 @@
 
 @property (nonatomic, strong) UITableView *chatTableView;
 
-@property (nonatomic ,assign) NSInteger page;
-@property (nonatomic ,assign) BOOL isRefresh;
-@property (nonatomic ,assign) NSInteger pressIndexRow;
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, assign) BOOL isRefresh;
+@property (nonatomic, assign) NSInteger pressIndexRow;
 
 @property (nonatomic, strong) NSMutableDictionary *sourceDic;
 @property (nonatomic, strong) NSMutableArray<MessageModel *> *messageModelArr;
 @property (nonatomic, strong) NSMutableDictionary *cellHeights;  // 缓存cell高度
-
 // 表情键盘
 @property (nonatomic, strong) EmoticonKeyboard *emoKeyboard;
 
-
 @end
-
-//static CGFloat kToolBarH = 50;
 
 @implementation ChatDetailController
 
@@ -51,7 +47,6 @@
  *  添加TableView
  */
 - (void)addChatView {
-    self.view.backgroundColor = [UIColor whiteColor];
     self.chatTableView = [[UITableView alloc] init];
     self.chatTableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - kToolBarH);
     self.chatTableView.backgroundColor = [UIColor whiteColor];
@@ -89,7 +84,6 @@
     {
         self.edgesForExtendedLayout = UIRectEdgeAll;
     }
-    
     
     // 添加聊天tableview
     [self addChatView];
@@ -492,8 +486,6 @@
 }
 
 - (void)dealloc {
-    DLog(@"聊天界面销毁了");
-    // 移除通知
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

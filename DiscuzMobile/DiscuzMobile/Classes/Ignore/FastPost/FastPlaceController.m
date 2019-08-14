@@ -39,7 +39,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _navBarHairlineImageView = [UIImageView findHairlineImageViewUnder:self.navigationController.navigationBar];
-    self.view.backgroundColor = [UIColor whiteColor];
     [self createBarBtn:@"" type:NavItemText Direction:NavDirectionLeft];
     
     self.listVc.tabbarHeight = self.tabbarHeight;

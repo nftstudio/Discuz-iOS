@@ -8,7 +8,6 @@
 
 #import "TTJudgeBoundController.h"
 #import "JTRegisterController.h"
-#import "TTBoundController.h"
 #import "JudgeBoundView.h"
 
 @interface TTJudgeBoundController ()
@@ -29,9 +28,6 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"关联登录";
-    UIColor * color = [UIColor whiteColor];
-    NSDictionary * dict = [NSDictionary dictionaryWithObjectsAndKeys:color,NSForegroundColorAttributeName,[FontSize NavTitleFontSize18],NSFontAttributeName, nil];
-    self.navigationController.navigationBar.titleTextAttributes = dict;
     self.view.backgroundColor = mRGBColor(246, 246, 246);
     [self setAction];
 }
@@ -65,13 +61,7 @@
 }
 
 - (void)boundBtnClick {
-    TTBoundController *boundVC = [[TTBoundController alloc] init];
-    [self.navigationController pushViewController:boundVC animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self leftBarBtnClick];
 }
 
 

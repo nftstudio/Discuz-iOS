@@ -10,11 +10,9 @@
 #import "LoginController.h"
 #import "FontSize.h"
 @interface SendMessageViewController ()<UITextFieldDelegate,UITextViewDelegate,UIScrollViewDelegate>
-
-
-@property (nonatomic ,strong)UITextView * messageTextView;
-@property (nonatomic ,strong)UILabel * placeholderLabel;
-@property (nonatomic ,strong)UIScrollView * bgScrollView;
+@property (nonatomic, strong) UITextView *messageTextView;
+@property (nonatomic, strong) UILabel *placeholderLabel;
+@property (nonatomic, strong) UIScrollView *bgScrollView;
 @end
 
 @implementation SendMessageViewController
@@ -22,22 +20,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"发送消息";
-    DLog(@"--进入SendMessageViewController--");
     [self initUI];
     if ([DataCheck isValidString:self.uid]) {
         [self createBarBtn:@"取消" type:NavItemText Direction:NavDirectionLeft];
     }
-    DLog(@"%@",self.uid);
-//    self.titleTextField.text=self.uid;
-}
-
--(void)BarBtnClick{
-    [self.navigationController popViewControllerAnimated:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)leftBarBtnClick{
-
     [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

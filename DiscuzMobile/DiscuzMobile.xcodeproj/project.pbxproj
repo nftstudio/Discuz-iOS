@@ -196,14 +196,12 @@
 		27B95D8F1E2CA4DA005A931A /* HomeIconTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B95D8E1E2CA4DA005A931A /* HomeIconTextView.m */; };
 		27B9B1391E2621A0002E2710 /* JTRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B9B1381E2621A0002E2710 /* JTRegisterController.m */; };
 		27B9B13C1E2623AC002E2710 /* JTRegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B9B13B1E2623AC002E2710 /* JTRegisterView.m */; };
-		27B9B13F1E262EBE002E2710 /* JTQuestionAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B9B13E1E262EBE002E2710 /* JTQuestionAnswerView.m */; };
 		27BA3B6E1F3D808400D65AEA /* PartInMultiSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BA3B6D1F3D808400D65AEA /* PartInMultiSelectCell.m */; };
 		27BADE451EBC27510042F226 /* LiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BADE441EBC27510042F226 /* LiveCell.m */; };
 		27BADE4B1EBC2BF40042F226 /* LiveRecommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BADE4A1EBC2BF40042F226 /* LiveRecommentView.m */; };
 		27BADE4E1EBC33640042F226 /* HotliveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BADE4D1EBC33640042F226 /* HotliveCell.m */; };
 		27BADE511EBC53A90042F226 /* LiveImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BADE501EBC53A90042F226 /* LiveImageView.m */; };
 		27BAEE441E9F5869000475A0 /* systemNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BAEE431E9F5869000475A0 /* systemNoteCell.m */; };
-		27BB40141EEE44D60059C532 /* LogoutUnbindCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BB40131EEE44D60059C532 /* LogoutUnbindCell.m */; };
 		27BB401A1EEE8CA80059C532 /* ReplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BB40191EEE8CA80059C532 /* ReplyModel.m */; };
 		27BB401D1EEE90D90059C532 /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BB401C1EEE90D90059C532 /* ReplyCell.m */; };
 		27BD286B1EFCC59200B30446 /* PostDebateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BD286A1EFCC59200B30446 /* PostDebateController.m */; };
@@ -415,7 +413,6 @@
 		94110E5A1FDFA09A0033E94C /* RecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 273A4B421F611ED300F59C57 /* RecommendModel.m */; };
 		94110E5C1FDFA09A0033E94C /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2732E7CD1DDD84CB00B2A57D /* BaseTableViewController.m */; };
 		94110E5D1FDFA09A0033E94C /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716AF901DDD9D5700F580AC /* MessageCell.m */; };
-		94110E5F1FDFA09A0033E94C /* LogoutUnbindCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BB40131EEE44D60059C532 /* LogoutUnbindCell.m */; };
 		94110E601FDFA09A0033E94C /* AllOneButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D3390F1E31FA5D00345699 /* AllOneButtonCell.m */; };
 		94110E611FDFA09A0033E94C /* MyPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F30281ECE90F300C78A6C /* MyPerson.m */; };
 		94110E621FDFA09A0033E94C /* RootForumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E6AFA81E35AADB00BD0320 /* RootForumCell.m */; };
@@ -425,7 +422,6 @@
 		94110E681FDFA09A0033E94C /* ThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CD9E651DDEB8020075831B /* ThreadViewController.m */; };
 		94110E691FDFA09A0033E94C /* NSDictionarySR.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CD9D371DDEB04C0075831B /* NSDictionarySR.m */; };
 		94110E6A1FDFA09A0033E94C /* PartInMultiSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BA3B6D1F3D808400D65AEA /* PartInMultiSelectCell.m */; };
-		94110E6B1FDFA09A0033E94C /* JTQuestionAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B9B13E1E262EBE002E2710 /* JTQuestionAnswerView.m */; };
 		94110E6C1FDFA09A0033E94C /* ApplyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 276FA2BF1F2AEC2F00F8924B /* ApplyItemView.m */; };
 		94110E6D1FDFA09A0033E94C /* PartInPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 275BABB61F344C4A00DB804B /* PartInPayCell.m */; };
 		94110E6E1FDFA09A0033E94C /* PostActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798A2DA1F29C6B000FA09AE /* PostActivityViewController.m */; };
@@ -713,7 +709,6 @@
 		94110FE31FDFB3870033E94C /* RecommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 273A4B421F611ED300F59C57 /* RecommendModel.m */; };
 		94110FE51FDFB3870033E94C /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2732E7CD1DDD84CB00B2A57D /* BaseTableViewController.m */; };
 		94110FE61FDFB3870033E94C /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716AF901DDD9D5700F580AC /* MessageCell.m */; };
-		94110FE81FDFB3870033E94C /* LogoutUnbindCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BB40131EEE44D60059C532 /* LogoutUnbindCell.m */; };
 		94110FE91FDFB3870033E94C /* AllOneButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D3390F1E31FA5D00345699 /* AllOneButtonCell.m */; };
 		94110FEA1FDFB3870033E94C /* MyPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 273F30281ECE90F300C78A6C /* MyPerson.m */; };
 		94110FEB1FDFB3870033E94C /* RootForumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E6AFA81E35AADB00BD0320 /* RootForumCell.m */; };
@@ -723,7 +718,6 @@
 		94110FF11FDFB3870033E94C /* ThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CD9E651DDEB8020075831B /* ThreadViewController.m */; };
 		94110FF21FDFB3870033E94C /* NSDictionarySR.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CD9D371DDEB04C0075831B /* NSDictionarySR.m */; };
 		94110FF31FDFB3870033E94C /* PartInMultiSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BA3B6D1F3D808400D65AEA /* PartInMultiSelectCell.m */; };
-		94110FF41FDFB3870033E94C /* JTQuestionAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B9B13E1E262EBE002E2710 /* JTQuestionAnswerView.m */; };
 		94110FF51FDFB3870033E94C /* ApplyItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 276FA2BF1F2AEC2F00F8924B /* ApplyItemView.m */; };
 		94110FF61FDFB3870033E94C /* PartInPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 275BABB61F344C4A00DB804B /* PartInPayCell.m */; };
 		94110FF71FDFB3870033E94C /* PostActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798A2DA1F29C6B000FA09AE /* PostActivityViewController.m */; };
@@ -1585,8 +1579,6 @@
 		27B9B1381E2621A0002E2710 /* JTRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTRegisterController.m; sourceTree = "<group>"; };
 		27B9B13A1E2623AC002E2710 /* JTRegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTRegisterView.h; sourceTree = "<group>"; };
 		27B9B13B1E2623AC002E2710 /* JTRegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTRegisterView.m; sourceTree = "<group>"; };
-		27B9B13D1E262EBE002E2710 /* JTQuestionAnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTQuestionAnswerView.h; sourceTree = "<group>"; };
-		27B9B13E1E262EBE002E2710 /* JTQuestionAnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTQuestionAnswerView.m; sourceTree = "<group>"; };
 		27BA3B6C1F3D808400D65AEA /* PartInMultiSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartInMultiSelectCell.h; sourceTree = "<group>"; };
 		27BA3B6D1F3D808400D65AEA /* PartInMultiSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartInMultiSelectCell.m; sourceTree = "<group>"; };
 		27BADE431EBC27510042F226 /* LiveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveCell.h; sourceTree = "<group>"; };
@@ -1599,8 +1591,6 @@
 		27BADE501EBC53A90042F226 /* LiveImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveImageView.m; sourceTree = "<group>"; };
 		27BAEE421E9F5869000475A0 /* systemNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = systemNoteCell.h; sourceTree = "<group>"; };
 		27BAEE431E9F5869000475A0 /* systemNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = systemNoteCell.m; sourceTree = "<group>"; };
-		27BB40121EEE44D60059C532 /* LogoutUnbindCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutUnbindCell.h; sourceTree = "<group>"; };
-		27BB40131EEE44D60059C532 /* LogoutUnbindCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoutUnbindCell.m; sourceTree = "<group>"; };
 		27BB40181EEE8CA80059C532 /* ReplyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyModel.h; sourceTree = "<group>"; };
 		27BB40191EEE8CA80059C532 /* ReplyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyModel.m; sourceTree = "<group>"; };
 		27BB401B1EEE90D90059C532 /* ReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyCell.h; sourceTree = "<group>"; };
@@ -2344,12 +2334,6 @@
 				27B5E9081E24D5AA00FA4952 /* LoginController.m */,
 				27C82D5F1EB040D500D781CB /* TTJudgeBoundController.h */,
 				27C82D601EB040D500D781CB /* TTJudgeBoundController.m */,
-				27C82D621EB040E000D781CB /* TTBoundController.h */,
-				27C82D631EB040E000D781CB /* TTBoundController.m */,
-				27B9B1371E2621A0002E2710 /* JTRegisterController.h */,
-				27B9B1381E2621A0002E2710 /* JTRegisterController.m */,
-				945F46D51FC6C67700F3C540 /* UsertermsController.h */,
-				945F46D61FC6C67800F3C540 /* UsertermsController.m */,
 				94A7560820FD92A20031FA05 /* ResetPwdController.h */,
 				94A7560920FD92A20031FA05 /* ResetPwdController.m */,
 			);
@@ -2368,26 +2352,14 @@
 		2732E7D71DDD872E00B2A57D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2732E7F41DDD893F00B2A57D /* AuthcodeView.h */,
-				2732E7F51DDD893F00B2A57D /* AuthcodeView.m */,
-				276B3A521E7BBF9C00799F63 /* UsertermsView.h */,
-				276B3A531E7BBF9C00799F63 /* UsertermsView.m */,
 				276CABB91DF6B06900902C38 /* Web2AuthcodeView.h */,
 				276CABBA1DF6B06900902C38 /* Web2AuthcodeView.m */,
 				2732E7FA1DDD893F00B2A57D /* LoginCustomView.h */,
 				2732E7FB1DDD893F00B2A57D /* LoginCustomView.m */,
-				2716AF6E1DDD932600F580AC /* ZHPickView.h */,
-				2716AF6F1DDD932600F580AC /* ZHPickView.m */,
-				27B9B13D1E262EBE002E2710 /* JTQuestionAnswerView.h */,
-				27B9B13E1E262EBE002E2710 /* JTQuestionAnswerView.m */,
 				27C82D651EB0413700D781CB /* JudgeBoundView.h */,
 				27C82D661EB0413700D781CB /* JudgeBoundView.m */,
 				2789F3BB1FB96A1500A220E9 /* JTLoginView.h */,
 				2789F3BC1FB96A1600A220E9 /* JTLoginView.m */,
-				27C82D671EB0413700D781CB /* BoundView.h */,
-				27C82D681EB0413700D781CB /* BoundView.m */,
-				27B9B13A1E2623AC002E2710 /* JTRegisterView.h */,
-				27B9B13B1E2623AC002E2710 /* JTRegisterView.m */,
 				94A7560320FD8FD30031FA05 /* JTResetPwdView.h */,
 				94A7560420FD8FD30031FA05 /* JTResetPwdView.m */,
 			);
@@ -2576,6 +2548,7 @@
 				27CD9CDC1DDEA1E60075831B /* UserCenter */,
 				2716AF921DDDA1B400F580AC /* Setting */,
 				2732E7BF1DDD846B00B2A57D /* Login */,
+				94430F3322FBBBAB008E3F67 /* Register */,
 				2732E7AB1DDD839300B2A57D /* Message */,
 				27E6AFAA1E35FAA200BD0320 /* Search */,
 			);
@@ -2747,6 +2720,8 @@
 		27791B151ED68629002E5270 /* Ignore */ = {
 			isa = PBXGroup;
 			children = (
+				94430F3022FBB576008E3F67 /* NavCode */,
+				94430F2F22FBB541008E3F67 /* LoginBound */,
 				2732E7E41DDD87A300B2A57D /* Home */,
 				9485835820FF2EA200BC3FEB /* FastPost */,
 				2743468C1F53DB8E00196A63 /* Live */,
@@ -2757,24 +2732,24 @@
 		277EDC511E6D5B8D00E8F0E1 /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
+				94430F3222FBB739008E3F67 /* RadioCheck */,
+				94430F3122FBB69E008E3F67 /* SecCode */,
 				277EDC721E6D5BD700E8F0E1 /* HpTextView */,
 				275BABC41F346ECA00DB804B /* AddressSelectView */,
+				277EDC581E6D5B8D00E8F0E1 /* JTSegmentedControl */,
+				277EDC5D1E6D5B8D00E8F0E1 /* LaunchImage */,
+				277EDC661E6D5B8D00E8F0E1 /* TitleSelectView.h */,
+				277EDC671E6D5B8D00E8F0E1 /* TitleSelectView.m */,
 				277EDC521E6D5B8D00E8F0E1 /* DropDownView.h */,
 				277EDC531E6D5B8D00E8F0E1 /* DropDownView.m */,
+				2716AF6E1DDD932600F580AC /* ZHPickView.h */,
+				2716AF6F1DDD932600F580AC /* ZHPickView.m */,
 				27234C9C1EA499DB008A8B13 /* EmptyAlertView.h */,
 				27234C9D1EA499DB008A8B13 /* EmptyAlertView.m */,
 				277EDC801E6D5BD700E8F0E1 /* JTPlaceholderTextView.h */,
 				277EDC811E6D5BD700E8F0E1 /* JTPlaceholderTextView.m */,
 				277EDC561E6D5B8D00E8F0E1 /* InstroductionView.h */,
 				277EDC571E6D5B8D00E8F0E1 /* InstroductionView.m */,
-				277EDC581E6D5B8D00E8F0E1 /* JTSegmentedControl */,
-				277EDC5D1E6D5B8D00E8F0E1 /* LaunchImage */,
-				277EDC621E6D5B8D00E8F0E1 /* QCheckBox.h */,
-				277EDC631E6D5B8D00E8F0E1 /* QCheckBox.m */,
-				277EDC641E6D5B8D00E8F0E1 /* QRadioButton.h */,
-				277EDC651E6D5B8D00E8F0E1 /* QRadioButton.m */,
-				277EDC661E6D5B8D00E8F0E1 /* TitleSelectView.h */,
-				277EDC671E6D5B8D00E8F0E1 /* TitleSelectView.m */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -3319,8 +3294,6 @@
 				2758C3E01EE7F39A001D2A11 /* NormalThreadToolCell.m */,
 				2736A9B91EE8FD4E002182C0 /* audioListCell.h */,
 				2736A9BA1EE8FD4E002182C0 /* audioListCell.m */,
-				2738C8481F03B0D30016CF05 /* SeccodeverifyView.h */,
-				2738C8491F03B0D30016CF05 /* SeccodeverifyView.m */,
 				2798A2D31F29B91100FA09AE /* SelectTypeButton.h */,
 				2798A2D41F29B91100FA09AE /* SelectTypeButton.m */,
 				2798A2DC1F29E09800FA09AE /* SelectTipView.h */,
@@ -3468,8 +3441,6 @@
 				274A936F1F17026400302596 /* BoundManageCell.m */,
 				27D339071E31A34C00345699 /* LogoutCell.h */,
 				27D339081E31A34C00345699 /* LogoutCell.m */,
-				27BB40121EEE44D60059C532 /* LogoutUnbindCell.h */,
-				27BB40131EEE44D60059C532 /* LogoutUnbindCell.m */,
 			);
 			path = CenterView;
 			sourceTree = "<group>";
@@ -3807,6 +3778,85 @@
 				27473AC11DD30C380024375F /* DZDevice.m */,
 			);
 			path = Device;
+			sourceTree = "<group>";
+		};
+		94430F2F22FBB541008E3F67 /* LoginBound */ = {
+			isa = PBXGroup;
+			children = (
+				27C82D671EB0413700D781CB /* BoundView.h */,
+				27C82D681EB0413700D781CB /* BoundView.m */,
+				27C82D621EB040E000D781CB /* TTBoundController.h */,
+				27C82D631EB040E000D781CB /* TTBoundController.m */,
+			);
+			path = LoginBound;
+			sourceTree = "<group>";
+		};
+		94430F3022FBB576008E3F67 /* NavCode */ = {
+			isa = PBXGroup;
+			children = (
+				2732E7F41DDD893F00B2A57D /* AuthcodeView.h */,
+				2732E7F51DDD893F00B2A57D /* AuthcodeView.m */,
+			);
+			path = NavCode;
+			sourceTree = "<group>";
+		};
+		94430F3122FBB69E008E3F67 /* SecCode */ = {
+			isa = PBXGroup;
+			children = (
+				2738C8481F03B0D30016CF05 /* SeccodeverifyView.h */,
+				2738C8491F03B0D30016CF05 /* SeccodeverifyView.m */,
+			);
+			path = SecCode;
+			sourceTree = "<group>";
+		};
+		94430F3222FBB739008E3F67 /* RadioCheck */ = {
+			isa = PBXGroup;
+			children = (
+				277EDC621E6D5B8D00E8F0E1 /* QCheckBox.h */,
+				277EDC631E6D5B8D00E8F0E1 /* QCheckBox.m */,
+				277EDC641E6D5B8D00E8F0E1 /* QRadioButton.h */,
+				277EDC651E6D5B8D00E8F0E1 /* QRadioButton.m */,
+			);
+			path = RadioCheck;
+			sourceTree = "<group>";
+		};
+		94430F3322FBBBAB008E3F67 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				94430F3622FBBBC9008E3F67 /* Controller */,
+				94430F3522FBBBBF008E3F67 /* Model */,
+				94430F3422FBBBB6008E3F67 /* View */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		94430F3422FBBBB6008E3F67 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				276B3A521E7BBF9C00799F63 /* UsertermsView.h */,
+				276B3A531E7BBF9C00799F63 /* UsertermsView.m */,
+				27B9B13A1E2623AC002E2710 /* JTRegisterView.h */,
+				27B9B13B1E2623AC002E2710 /* JTRegisterView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		94430F3522FBBBBF008E3F67 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		94430F3622FBBBC9008E3F67 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				945F46D51FC6C67700F3C540 /* UsertermsController.h */,
+				945F46D61FC6C67800F3C540 /* UsertermsController.m */,
+				27B9B1371E2621A0002E2710 /* JTRegisterController.h */,
+				27B9B1381E2621A0002E2710 /* JTRegisterController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		946F381F206E457E00BC752C /* Model */ = {
@@ -4749,7 +4799,6 @@
 				2732E7D01DDD84CB00B2A57D /* BaseTableViewController.m in Sources */,
 				94983CF620E9BDE600519D8F /* ChatContentCell.m in Sources */,
 				2716AF911DDD9D5700F580AC /* MessageCell.m in Sources */,
-				27BB40141EEE44D60059C532 /* LogoutUnbindCell.m in Sources */,
 				27D339101E31FA5D00345699 /* AllOneButtonCell.m in Sources */,
 				944A016422E17133003266FA /* NSString+EmojiCheck.m in Sources */,
 				273F30291ECE90F300C78A6C /* MyPerson.m in Sources */,
@@ -4766,7 +4815,6 @@
 				27BA3B6E1F3D808400D65AEA /* PartInMultiSelectCell.m in Sources */,
 				9492087E20243A8B00543C09 /* JTURLRequest.m in Sources */,
 				943430A32022EB2F009C0102 /* AppDelegate+Local.m in Sources */,
-				27B9B13F1E262EBE002E2710 /* JTQuestionAnswerView.m in Sources */,
 				276FA2C01F2AEC2F00F8924B /* ApplyItemView.m in Sources */,
 				942959E922DC6ABB0020B0E1 /* UIView+CurrentController.m in Sources */,
 				275BABB71F344C4A00DB804B /* PartInPayCell.m in Sources */,
@@ -5094,7 +5142,6 @@
 				94110E5A1FDFA09A0033E94C /* RecommendModel.m in Sources */,
 				94110E5C1FDFA09A0033E94C /* BaseTableViewController.m in Sources */,
 				94110E5D1FDFA09A0033E94C /* MessageCell.m in Sources */,
-				94110E5F1FDFA09A0033E94C /* LogoutUnbindCell.m in Sources */,
 				94110E601FDFA09A0033E94C /* AllOneButtonCell.m in Sources */,
 				94110E611FDFA09A0033E94C /* MyPerson.m in Sources */,
 				944A016522E17133003266FA /* NSString+EmojiCheck.m in Sources */,
@@ -5111,7 +5158,6 @@
 				94110E6A1FDFA09A0033E94C /* PartInMultiSelectCell.m in Sources */,
 				9492087F20243A8B00543C09 /* JTURLRequest.m in Sources */,
 				943430A42022EB2F009C0102 /* AppDelegate+Local.m in Sources */,
-				94110E6B1FDFA09A0033E94C /* JTQuestionAnswerView.m in Sources */,
 				94110E6C1FDFA09A0033E94C /* ApplyItemView.m in Sources */,
 				94110E6D1FDFA09A0033E94C /* PartInPayCell.m in Sources */,
 				942959EA22DC6ABB0020B0E1 /* UIView+CurrentController.m in Sources */,
@@ -5427,7 +5473,6 @@
 				94110FE51FDFB3870033E94C /* BaseTableViewController.m in Sources */,
 				94983CF820E9BDE600519D8F /* ChatContentCell.m in Sources */,
 				94110FE61FDFB3870033E94C /* MessageCell.m in Sources */,
-				94110FE81FDFB3870033E94C /* LogoutUnbindCell.m in Sources */,
 				94110FE91FDFB3870033E94C /* AllOneButtonCell.m in Sources */,
 				944A016622E17133003266FA /* NSString+EmojiCheck.m in Sources */,
 				94110FEA1FDFB3870033E94C /* MyPerson.m in Sources */,
@@ -5444,7 +5489,6 @@
 				94110FF31FDFB3870033E94C /* PartInMultiSelectCell.m in Sources */,
 				9492088020243A8B00543C09 /* JTURLRequest.m in Sources */,
 				943430A52022EB2F009C0102 /* AppDelegate+Local.m in Sources */,
-				94110FF41FDFB3870033E94C /* JTQuestionAnswerView.m in Sources */,
 				94110FF51FDFB3870033E94C /* ApplyItemView.m in Sources */,
 				942959EB22DC6ABB0020B0E1 /* UIView+CurrentController.m in Sources */,
 				94110FF61FDFB3870033E94C /* PartInPayCell.m in Sources */,

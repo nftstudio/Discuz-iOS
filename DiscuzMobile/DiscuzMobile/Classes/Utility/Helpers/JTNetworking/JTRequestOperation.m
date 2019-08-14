@@ -153,8 +153,7 @@
         return nil;
     }
     [self headersAndTimeConfig:request];
-    
-    if (request.getParam != nil) {
+    if (request.getParam != nil && [request.getParam count] > 0) {
         request.urlString = [NSString jt_urlString:request.urlString appendingParameters:request.getParam];
     }
     
@@ -197,7 +196,7 @@
                                progress:(JTProgressBlock)progress
                                 success:(JTRequestSuccess)success
                                  failed:(JTRequestFailed)failed{
-    if (request.getParam != nil) {
+    if (request.getParam != nil && [request.getParam count] > 0) {
         request.urlString = [NSString jt_urlString:request.urlString appendingParameters:request.getParam];
     }
     return [self POST:[NSString jt_stringUTF8Encoding:request.urlString] parameters:request.parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {

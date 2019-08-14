@@ -83,7 +83,7 @@ NSString * const LiveInteractionCellReuseIdentifier = @"LiveInteractionCellReuse
     }
     
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
-        request.urlString = url_LiveReply;
+//        request.urlString = url_LiveReply;
         request.parameters = @{@"tid":self.listModel.tid,
                                @"page":[NSString stringWithFormat:@"%ld",(long)self.page],
                                @"authorid":self.listModel.authorid};

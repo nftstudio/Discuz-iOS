@@ -31,7 +31,10 @@
     if ([DataCheck isValidArray:data]) {
         for (NSDictionary * dic in data) {
             
-            ThreadListModel *listModel = [ThreadListModel dealGetSingleModel:dic andPage:page andGroup:gropDic andType:typeDic];
+            ThreadListModel *listModel = [ThreadListModel dealGetSingleModel:dic
+                                                                     andPage:page
+                                                                    andGroup:gropDic
+                                                                     andType:typeDic];
             [allArray addObject:listModel];
             
             if (page == 1) {

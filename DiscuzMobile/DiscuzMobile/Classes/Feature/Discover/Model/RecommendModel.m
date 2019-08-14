@@ -13,15 +13,14 @@
 
 + (NSArray *)setRecommendData:(id)responseObject {
     NSMutableArray *hotArr = [NSMutableArray array];
-    
-    if ([DataCheck isValidArray:[[responseObject objectForKey:@"Variables"] objectForKey:@"recommonthread_list"]]) {
+    NSArray *recommonthread_list = [[responseObject objectForKey:@"Variables"] objectForKey:@"recommonthread_list"];
+    if ([DataCheck isValidArray:recommonthread_list]) {
         
         NSMutableDictionary *gropDic = [NSMutableDictionary dictionary];
-        if ([DataCheck isValidDictionary:[[responseObject objectForKey:@"Variables"] objectForKey:@"groupiconid"]]) {
-            gropDic = [NSMutableDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"Variables"] objectForKey:@"groupiconid"]];
+        NSDictionary *groupiconid = [[responseObject objectForKey:@"Variables"] objectForKey:@"groupiconid"];
+        if ([DataCheck isValidDictionary:groupiconid]) {
+            gropDic = groupiconid.mutableCopy;
         }
-        
-        NSArray *recommonthread_list = [[responseObject objectForKey:@"Variables"] objectForKey:@"recommonthread_list"];
         
         for (NSDictionary *dic in recommonthread_list) {
             RecommendModel *home = [[RecommendModel alloc] init];

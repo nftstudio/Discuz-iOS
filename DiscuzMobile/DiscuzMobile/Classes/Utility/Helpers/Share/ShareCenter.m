@@ -122,76 +122,78 @@
 }
 
 #pragma mark - qq登录
-- (void)loginWithQQSuccess:(void(^)(id response))success {
+- (void)loginWithQQSuccess:(void(^_Nullable)(id _Nullable postData,id _Nullable getData))success finish:(void(^_Nullable)(void))finish {
     
     if ([ShareSDK hasAuthorized:SSDKPlatformTypeQQ]) { // 由于qq登录需要切换账号
         [ShareSDK cancelAuthorize:SSDKPlatformTypeQQ];
     }
     
-    [self loginWithPlatformType:SSDKPlatformTypeQQ success:success];
+    [self loginWithPlatformType:SSDKPlatformTypeQQ success:success finish:finish];
     
 }
 
-#pragma mark - 微信登录
-- (void)loginWithWeiXinSuccess:(void(^)(id response))success {
+#pragma mark - 微信登录finish
+- (void)loginWithWeiXinSuccess:(void(^_Nullable)(id _Nullable postData,id _Nullable getData))success finish:(void(^_Nullable)(void))finish {
     // 去授权登录
-    [self loginWithPlatformType:SSDKPlatformTypeWechat success:success];;
+    [self loginWithPlatformType:SSDKPlatformTypeWechat success:success finish:finish];;
     
 }
 
 
 #pragma mark - qq登录
-- (void)loginWithPlatformType:(SSDKPlatformType)platformType success:(void(^)(id response))success {
+- (void)loginWithPlatformType:(SSDKPlatformType)platformType success:(void(^)(id postData, id getData))success finish:(void(^)(void))finish {
     
     self.bloginModel = nil;
     WEAKSELF;
     [ShareSDK getUserInfo:platformType
            onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
-               
-               if (state == SSDKResponseStateSuccess) {
-                   // 汉字GBK编码
-                   NSString *dataGBK = [user.nickname utf2gbk];
-                   NSString *type = @"qq";
-                   if (platformType == SSDKPlatformTypeWechat) {
-                       type = @"weixin";
+               dispatch_async(dispatch_get_main_queue(), ^{
+                   
+                   finish?finish():nil;
+                   if (state == SSDKResponseStateSuccess) {
+                       // 汉字GBK编码
+                       NSString *dataGBK = [user.nickname utf2gbk];
+                       NSString *type = @"qq";
+                       if (platformType == SSDKPlatformTypeWechat) {
+                           type = @"weixin";
+                       }
+                       
+                       if ([DataCheck isValidString:user.uid]) {
+                           NSMutableDictionary *dic = @{@"openid":user.uid,
+//                                                        @"type":type,
+                                                        //                                                    @"username":user.nickname
+                                                        
+                                                        }.mutableCopy;
+                           
+                           weakSelf.bloginModel = [TTLoginModel initWithLogintype:type andOpenid:user.uid andGbkname:dataGBK andUsername:user.nickname];
+                           if ([type isEqualToString:@"weixin"]) {
+                               if ([DataCheck isValidString:[user.rawData objectForKey:@"unionid"]]) {
+                                   [dic setValue:[user.rawData objectForKey:@"unionid"]  forKey:@"unionid"];
+                                   self.bloginModel.unionid = [user.rawData objectForKey:@"unionid"];
+                               }
+                           }
+                           
+                           
+                           success?success(dic,@{@"type":type}):nil;
+                           DLog(@"openid等==========================%@",dic);
+                           
+                       } else {
+                           [MBProgressHUD showInfo:@"服务器繁忙请重试"];
+                       }
+                   }
+                   else if (state == SSDKResponseStateCancel) {
+                       [MBProgressHUD showInfo:@"取消登录"];
                    }
                    
-                   if ([DataCheck isValidString:user.uid]) {
-                       NSMutableDictionary *dic = @{@"openid":user.uid,
-                                                    @"type":type,
-                                                    @"username":user.nickname}.mutableCopy;
-                       
-                       weakSelf.bloginModel = [TTLoginModel initWithLogintype:type andOpenid:user.uid andGbkname:dataGBK andUsername:user.nickname];
-                       if ([type isEqualToString:@"weixin"]) {
-                           if ([DataCheck isValidString:[user.rawData objectForKey:@"unionid"]]) {
-                               [dic setValue:[user.rawData objectForKey:@"unionid"]  forKey:@"unionid"];
-                               self.bloginModel.unionid = [user.rawData objectForKey:@"unionid"];
-                           }
-                       }
-                       
-                       if (success) {
-                           success(dic);
-                       }
-                       
-                       DLog(@"openid等==========================%@",dic);
-                       
-                   } else {
-                       [MBProgressHUD showInfo:@"服务器繁忙请重试"];
+                   else if (state == SSDKResponseStateFail) {
+                       [MBProgressHUD showInfo:@"登录授权失败"];
                    }
-               }
-               else if (state == SSDKResponseStateCancel) {
-                   [MBProgressHUD showInfo:@"取消登录"];
-               }
-               
-               else if (state == SSDKResponseStateFail) {
-                   [MBProgressHUD showInfo:@"登录授权失败"];
-               }
-               
-               else {
-                   DLog(@"%@",error);
-                   [MBProgressHUD showInfo:error.description];
-               }
-               
+                   
+                   else {
+                       DLog(@"%@",error);
+                       [MBProgressHUD showInfo:error.description];
+                   }
+               });
            }];
 }
 

@@ -10,6 +10,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 #import <ShareSDKExtension/ShareSDK+Extension.h>
+#import "ShareCenter.h"
 
 #import "WXApi.h"
 #import "LoginCustomView.h"
@@ -153,7 +154,6 @@
     self.forgetBtn.hidden = YES;
     self.forgetBtn.titleLabel.font = [UIFont systemFontOfSize:14.0];
     [self.forgetBtn setTitle:@"忘记密码？" forState:UIControlStateNormal];
-    //    self.thirdLoginBtn.hidden = YES;
     [self.forgetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.loginBtn.mas_right);
         make.top.equalTo(self.loginBtn.mas_bottom).offset(5);
@@ -161,13 +161,20 @@
         make.height.mas_equalTo(25);
     }];
     
+    [self addSubview:self.thridAuthTipLabl];
+    [self.thridAuthTipLabl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.width.equalTo(self.loginBtn);
+        make.top.equalTo(self.forgetBtn.mas_bottom).offset(5);
+    }];
+    self.thridAuthTipLabl.hidden = YES;
+    
     
     self.thirdView = [[UIView alloc] init];
     self.thirdView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.thirdView];
     [self.thirdView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.loginBtn.mas_left);
-        make.top.equalTo(self.forgetBtn.mas_bottom).offset(30);
+        make.top.equalTo(self.thridAuthTipLabl.mas_bottom).offset(30);
         make.width.mas_equalTo(contentView.mas_width);
         make.height.mas_equalTo(15 + 20 + 45);
     }];
@@ -175,7 +182,6 @@
     UIImageView *line1 = [[UIImageView alloc] init];
     line1.image = [UIImage imageTintColorWithName:@"third_line_l" andImageSuperView:line1];
     [self.thirdView addSubview:line1];
-    self.thirdView.hidden = YES;
     [line1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.thirdView.mas_left);
         make.top.equalTo(self.thirdView).offset(5);
@@ -260,9 +266,32 @@
     
 }
 
+- (void)thirdPlatformAuth {
+    if ([ShareCenter shareInstance].bloginModel) {
+        NSMutableAttributedString *describe = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"亲爱的%@ 关联掌上论坛账号即可一键登录",[ShareCenter shareInstance].bloginModel.username]];
+        NSRange dearRange = {0,3};
+        NSInteger nameLength = [[NSString stringWithFormat:@"%@",[ShareCenter shareInstance].bloginModel.username] length];
+        NSRange nameRange = {3,nameLength};
+        NSRange allRange = {0,[describe length]};
+        [describe addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:allRange];
+        [describe addAttribute:NSFontAttributeName value:[FontSize forumtimeFontSize14] range:allRange];
+        
+        [describe addAttribute:NSForegroundColorAttributeName value:LIGHT_TEXT_COLOR range:dearRange];
+        [describe addAttribute:NSFontAttributeName value:[FontSize HomecellTimeFontSize16] range:dearRange];
+        
+        [describe addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:nameRange];
+        [describe addAttribute:NSFontAttributeName value:[FontSize HomecellTimeFontSize16] range:nameRange];
+        self.thridAuthTipLabl.attributedText = describe;
+        self.thridAuthTipLabl.hidden = NO;
+        [self.loginBtn setTitle:@"关联" forState:UIControlStateNormal];
+    } else {
+        self.thridAuthTipLabl.hidden = YES;
+        [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+    }
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
-    DLog(@"%f====>%f",self.thirdView.frame.origin.y,self.frame.size.height);
     if (CGRectGetMaxY(self.thirdView.frame) + 50 > self.frame.size.height) {
         self.contentSize = CGSizeMake(WIDTH, CGRectGetMaxY(self.thirdView.frame) + 50);
     } else {
@@ -276,6 +305,14 @@
         [_pickView setToolbarTintColor:TOOLBAR_BACK_COLOR];
     }
     return _pickView;
+}
+
+- (UILabel *)thridAuthTipLabl {
+    if (!_thridAuthTipLabl) {
+        _thridAuthTipLabl = [[UILabel alloc] init];
+        _thridAuthTipLabl.numberOfLines = 0;
+    }
+    return _thridAuthTipLabl;
 }
 
 @end

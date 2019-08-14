@@ -494,7 +494,7 @@
                 
                 [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
                     request.methodType = JTMethodTypePOST;
-                    request.urlString = url_LivePusher;
+//                    request.urlString = url_LivePusher;
                     request.getParam = getDic;
                     request.parameters = postDic;
                     

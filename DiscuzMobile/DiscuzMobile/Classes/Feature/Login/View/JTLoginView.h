@@ -25,10 +25,15 @@ typedef void(^WechatBlock)(void);
 @property (nonatomic, strong) UIButton *loginBtn;
 @property (nonatomic, strong) UIButton *forgetBtn;
 
+@property (nonatomic, strong) UILabel *thridAuthTipLabl;
 @property (nonatomic, strong) UIView *thirdView;
 @property (nonatomic, strong) UIButton *wechatBtn;
 @property (nonatomic, strong) UIButton *qqBtn;
 
 @property (nonatomic, strong) ZHPickView *pickView;
+
+- (void)thirdPlatformAuth;
+
+- (void)loginBtnState;
 
 @end

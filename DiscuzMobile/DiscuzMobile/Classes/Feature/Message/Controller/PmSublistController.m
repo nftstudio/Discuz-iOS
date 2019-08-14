@@ -19,7 +19,6 @@
 #import "MessageNoticeCenter.h"
 
 @interface PmSublistController ()
-
 @end
 
 @implementation PmSublistController
@@ -57,16 +56,16 @@
     if ([self.typeModel.module isEqualToString:@"mypm"]) { // 我的消息
         
         parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page],
-                                    @"filter":self.typeModel.filter}.mutableCopy;
+                      @"filter":self.typeModel.filter}.mutableCopy;
         urlString = url_MsgList;
     } else if ([self.typeModel.view isEqualToString:@"mypost"]) {// 我的帖子
         parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page],
-                                    @"type":self.typeModel.type}.mutableCopy;
+                      @"type":self.typeModel.type}.mutableCopy;
         urlString = url_ThreadMsgList;
         
     } else if ([self.typeModel.view isEqualToString:@"interactive"]) {// 坛友互动
         parameter = @{@"page":[NSString stringWithFormat:@"%ld",self.page],
-                                    @"type":self.typeModel.type}.mutableCopy;
+                      @"type":self.typeModel.type}.mutableCopy;
         urlString = url_InteractiveMsgList;
         
     } else if ([self.typeModel.view isEqualToString:@"system"] || [self.typeModel.view isEqualToString:@"manage"]) {// 系统提醒 | 管理工作
@@ -91,30 +90,18 @@
     [self.HUD hideAnimated:YES];
     [self mj_endRefreshing];
     
-    if ([DataCheck isValidArray:[[responseObject objectForKey:@"Variables"] objectForKey:@"list"]]) {
+    NSArray *arr = [[responseObject objectForKey:@"Variables"] objectForKey:@"list"];
+    if ([DataCheck isValidArray:arr]) {
         
         if (self.page == 1) {
-            if (self.dataSourceArr.count > 0) {
-                self.dataSourceArr = [NSMutableArray array];
-            }
-            NSArray *arr = [[responseObject objectForKey:@"Variables"] objectForKey:@"list"];
-            
-            for (NSDictionary *dic in arr) {
-                MessageListModel *model = [[MessageListModel alloc] init];
-                [model setValuesForKeysWithDictionary:dic];
-                [self.dataSourceArr addObject:model];
-            }
-            
-        } else {
-            NSArray *arr = [[responseObject objectForKey:@"Variables"] objectForKey:@"list"];
-            for (NSDictionary *dic in arr) {
-                MessageListModel *model = [[MessageListModel alloc] init];
-                [model setValuesForKeysWithDictionary:dic];
-                [self.dataSourceArr addObject:model];
-            }
+            self.dataSourceArr = [NSMutableArray array];
         }
         
-        
+        for (NSDictionary *dic in arr) {
+            MessageListModel *model = [[MessageListModel alloc] init];
+            [model setValuesForKeysWithDictionary:dic];
+            [self.dataSourceArr addObject:model];
+        }
     }
     
     if ([DataCheck isValidString:[[responseObject objectForKey:@"Variables"] objectForKey:@"count"]]) {
@@ -160,9 +147,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
     return self.dataSourceArr.count;
-    
 }
 
 
@@ -176,8 +161,7 @@
         
         
         MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:CellId];
-        if (cell == nil)
-        {
+        if (cell == nil) {
             cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellId];
         }
         
@@ -187,8 +171,7 @@
     else {
         
         MsglistCell *cell = [tableView dequeueReusableCellWithIdentifier:alertId];
-        if (cell == nil)
-        {
+        if (cell == nil) {
             cell = [[MsglistCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:alertId];
         }
         

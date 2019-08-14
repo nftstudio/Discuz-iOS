@@ -14,16 +14,13 @@
 #import "PmTypeModel.h"
 
 @interface PmTopTabController ()
-
 @property (nonatomic, strong) NSMutableArray *dataArray;
-
 @end
 
 @implementation PmTopTabController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     switch (self.pmType) {
         case pm_mypm:
@@ -67,13 +64,12 @@
         [ctArr addObject:listVC];
     }
     
-    
     CGRect segmentRect = CGRectMake(0, 0, WIDTH, 44);
     JTContainerController *rootVC = [[JTContainerController alloc] init];
     [rootVC setSubControllers:ctArr parentController:self andSegmentRect:segmentRect];
 }
 
--(void)rightBarBtnClick{
+- (void)rightBarBtnClick {
     SendMessageViewController *sendVC = [[SendMessageViewController alloc] init];
     [self.navigationController pushViewController:sendVC animated:YES];
 }
@@ -84,7 +80,5 @@
     }
     return _dataArray;
 }
-
-
 
 @end

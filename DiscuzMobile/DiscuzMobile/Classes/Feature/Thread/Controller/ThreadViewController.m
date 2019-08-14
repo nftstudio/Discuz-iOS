@@ -676,7 +676,7 @@
             [UIAlertController alertTitle:nil message:message  controller:self doneText:@"确定" cancelText:nil doneHandle:^{
                 [self.navigationController popViewControllerAnimated:YES];
             } cancelHandle:nil];
-            [self.HUD hideAnimated:YES];
+            [self.HUD hide];
         }];
         if (!haveAuther) {
             return;
@@ -685,8 +685,6 @@
         [self emptyHide];
         self.threadModel.currentPage = self.currentPageId;
         
-        [Environment sharedEnvironment].formhash= [[responseObject objectForKey:@"Variables"] objectForKey:@"formhash"];
-        DLog(@"responseObject new download%@",responseObject);
         if (self.currentPageId == 1) {
             
             [self.detailView.webView.scrollView.mj_header endRefreshing];
@@ -694,8 +692,9 @@
             
             self.threadModel.threadDic = responseObject;
             
-            if ([DataCheck isValidString:[[[responseObject objectForKey:@"Variables"] objectForKey:@"thread"] objectForKey:@"forumnames"]]) {
-                self.title = [[[responseObject objectForKey:@"Variables"] objectForKey:@"thread"] objectForKey:@"forumnames"];
+            NSString *forumnames = [[[responseObject objectForKey:@"Variables"] objectForKey:@"thread"] objectForKey:@"forumnames"];
+            if ([DataCheck isValidString:forumnames]) {
+                self.title = forumnames;
             }
             
             if ([LoginModule isLogged]) {
@@ -722,8 +721,8 @@
             
             [self.detailView.webView.scrollView.mj_footer endRefreshing];
             self.threadModel.threadDic = responseObject;
-            NSArray *newList = [[responseObject objectForKey:@"Variables"] objectForKey:@"postlist"];
-            if (![DataCheck isValidArray:newList])
+            NSArray *postlist = [[responseObject objectForKey:@"Variables"] objectForKey:@"postlist"];
+            if (![DataCheck isValidArray:postlist])
             {
                 self.currentPageId --;
                 [MBProgressHUD showInfo:@"没有更多的帖子了"];
@@ -752,7 +751,6 @@
             [self newDownLoadData];
             requestCount ++;
         } else {
-            DLog( @" %@ " , error);
             if (self.currentPageId > 1) {
                 self.currentPageId --;
             }
@@ -760,7 +758,7 @@
                 [self emptyShow];
             }
             self.threadModel.currentPage = self.currentPageId;
-            [self.HUD hideAnimated:YES];
+            [self.HUD hide];
             [self showServerError:error];
         }
     }];
@@ -823,7 +821,6 @@
     NSMutableDictionary * dic = [NSMutableDictionary dictionary];
     [dic setObject:self.detailView.emoKeyboard.textBarView.textView.text forKey:@"message"];
     [dic setObject:[Environment sharedEnvironment].formhash forKey:@"formhash"];
-    [dic setObject:@"IOS" forKey:@"mobiletype"];
     [dic setObject:self.threadModel.tid  forKey:@"tid"];
     // 引用回复 post 增加 两个参数
     if (_isReferenceReply) {
@@ -864,19 +861,18 @@
         request.urlString = url_Sendreply;
         request.parameters = dic;
     } success:^(id responseObject, JTLoadType type) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         NSDictionary *messageDic = [responseObject objectForKey:@"Message"];
-        DLog(@"%@",[messageDic objectForKey:@"messagestr"]);
-        if ([DataCheck isValidString:[messageDic objectForKey:@"messageval"]]) {
+        NSString *messagestr = [messageDic objectForKey:@"messagestr"];
+        NSString *messageval = [messageDic objectForKey:@"messageval"];
+        if ([DataCheck isValidString:messageval]) {
 
-            NSString *message = [[messageDic objectForKey:@"messageval"] componentsSeparatedByString:@"_"].lastObject;
-
-            if ([message isEqualToString:@"succeed"] || [message isEqualToString:@"success"]) {
+            if ([messageval containsString:@"succeed"] || [messageval containsString:@"success"]) {
                 _isReferenceReply = NO;
                 
                 [self.detailView.emoKeyboard clearData];
-
-                if (![[messageDic objectForKey:@"messagestr"] containsString:@"审核"]) {
+                
+                if (![messagestr containsString:@"审核"]) {
                     [MBProgressHUD showInfo:@"回帖成功"];
                     if (_currentPageId==1) {
                         if (self.threadModel.replies + 1 < self.threadModel.ppp - 1) {
@@ -886,28 +882,23 @@
                         }
                     }
                 } else {
-                    [MBProgressHUD showInfo:[messageDic objectForKey:@"messagestr"]];
+                    [MBProgressHUD showInfo:messagestr];
                 }
-
             }
-
             else {
-                [MBProgressHUD showInfo:[messageDic objectForKey:@"messagestr"]];
-                if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] isEqualToString:@"post_sm_isnull"]) {
+                [MBProgressHUD showInfo:messagestr];
+                if ([messageval isEqualToString:@"post_sm_isnull"]) {
                     self.detailView.emoKeyboard.textBarView.textView.text = nil;
                 }
             }
         } else {
             [MBProgressHUD showInfo:@"回帖失败"];
         }
-
-
         [self.HUD hideAnimated:YES];
 
     } failed:^(NSError *error) {
-        DLog(@"%@",error);
         [self showServerError:error];
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
     }];
 }
 
@@ -1003,7 +994,7 @@
     [self downlodyan];
 }
 
-#pragma mark - getter setter
+#pragma mark - getter
 - (SeccodeverifyView *)verifyView {
     if (!_verifyView) {
         _verifyView = [[SeccodeverifyView alloc] init];

@@ -11,8 +11,7 @@
 @implementation CustomSearchBarView
 
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self setupViews];
@@ -26,22 +25,15 @@
     [self addSubview:self.searchBar];
     
     self.cancelBtn.frame = CGRectMake(CGRectGetWidth(self.frame) - 60, 0, 60, CGRectGetHeight(self.frame));
-    
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
-//    self.cancelBtn.frame = CGRectMake(CGRectGetWidth(self.frame) - 50, 0, 50, CGRectGetHeight(self.frame));
-//    self.searchBar.frame = CGRectMake(0, 1, CGRectGetWidth(self.frame) - 50, CGRectGetHeight(self.frame) - 2);
-    DLog(@"%lf",self.frame.size.width);
 }
 
 - (UIButton *)cancelBtn {
     if (_cancelBtn == nil) {
         _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _cancelBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-//        _cancelBtn.titleLabel.textAlignment = NSTextAlignmentRight;
         [_cancelBtn setTitleColor:MAIN_TITLE_COLOR forState:UIControlStateNormal];
         _cancelBtn.titleLabel.font = [UIFont systemFontOfSize:15.0];
         [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];

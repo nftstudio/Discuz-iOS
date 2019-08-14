@@ -51,12 +51,14 @@
     _authCodeField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _authCodeField.tag = 103;
     _authCodeField.placeholder = @"请输入验证码";
+    _authCodeField.hidden = YES;
     [self addSubview:_authCodeField];
     
     _codeView = [[AuthcodeView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_authCodeField.frame) + 15, CGRectGetMinY(_authCodeField.frame), 100, 40)];
+    _codeView.hidden = YES;
     [self addSubview:_codeView];
     
-    UILabel *tips2 = [[UILabel alloc] initWithFrame:CGRectMake(8, CGRectGetMaxY(_codeView.frame) + 22, WIDTH - 16, 28)];
+    UILabel *tips2 = [[UILabel alloc] initWithFrame:CGRectMake(8, CGRectGetMaxY(_passwordField.frame) + 22, WIDTH - 16, 28)];
     
     tips2.textColor = LIGHT_TEXT_COLOR;
     tips2.font = [FontSize HomecellTimeFontSize14];

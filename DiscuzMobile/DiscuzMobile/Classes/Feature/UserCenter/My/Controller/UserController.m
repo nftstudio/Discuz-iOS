@@ -13,7 +13,6 @@
 #import "MYCenterHeader.h"
 #import "LogoutCell.h"
 #import "CenterCell.h"
-#import "LogoutUnbindCell.h"
 
 #import "MyFriendViewController.h"
 #import "CollectionRootController.h"
@@ -36,26 +35,17 @@
 @interface UserController ()
 
 @property (nonatomic, strong) MYCenterHeader *myHeader;
-
-@property (nonatomic, assign) NSInteger failureTime;
-
-@property (nonatomic, strong) NSMutableDictionary *iwechat_user;
-
 @property (nonatomic, strong) CenterManageModel *centerModel;
-
-// 相机相册
-@property (nonatomic, strong) ImagePickerView *pickerView;
+@property (nonatomic, strong) ImagePickerView *pickerView;    // 相机相册
 
 @end
 
 @implementation UserController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     [self setNavc];
-    self.failureTime = 0;
     
     // 135 + 85
     self.myHeader = [[MYCenterHeader alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 220)];
@@ -67,16 +57,18 @@
     
     [self tooBarAction];
     
-    [self initData];
-    
     [self.HUD showLoadingMessag:@"拉取信息" toView:self.view];
     [self downLoadData];
+    
     WEAKSELF;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakSelf initData];
         [weakSelf downLoadData];
     }];
     
+    [self addNotify];
+}
+
+- (void)addNotify {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiReloadData) name:REFRESHCENTER object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(signout) name:SIGNOUTNOTIFY object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notiReloadData) name:DOMAINCHANGE object:nil];
@@ -88,11 +80,10 @@
 
 #pragma mark - 设置导航栏
 -(void)setNavc{
-    
     [self createBarBtn:@"" type:NavItemText Direction:NavDirectionLeft];
     [self createBarBtn:@"setting" type:NavItemImage Direction:NavDirectionRight];
     
-    self.title = @"我的";
+    self.navigationItem.title = @"我的";
 }
 
 - (void)rightBarBtnClick {
@@ -107,7 +98,6 @@
 }
 
 - (void)initData {
-    
     self.centerModel = [[CenterManageModel alloc] initWithType:JTCenterTypeMy];
 }
 
@@ -157,16 +147,14 @@
 -(void)downLoadData {
     
     [self initData];
-    
+    static NSInteger requestCount = 0;
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
         request.methodType = JTMethodTypePOST;
         request.urlString = url_UserInfo;
     } success:^(id responseObject, JTLoadType type) {
-        self.failureTime = 0;
-        [self.HUD hideAnimated:YES];
+        requestCount = 0;
+        [self.HUD hide];
         [self.tableView.mj_header endRefreshing];
-        
-        DLog(@"%@",responseObject);
         
         if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"] isEqualToString:@"请先登录后才能继续浏览"]) {
             [self signout];
@@ -186,20 +174,15 @@
         [self.myHeader.userInfoView setIdentityText:[[[self.centerModel.myInfoDic objectForKey:@"space"] objectForKey:@"group"] objectForKey:@"grouptitle"]];
         [self.myHeader.userInfoView.headView sd_setImageWithURL:[NSURL URLWithString:[Environment sharedEnvironment].member_avatar] placeholderImage:[UIImage imageNamed:@"noavatar_small"] options:SDWebImageRefreshCached];
         
-        if ([DataCheck isValidDictionary:[[responseObject objectForKey:@"Variables"] objectForKey:@"iwechat_user"]]) {
-            self.iwechat_user = [NSMutableDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"Variables"] objectForKey:@"iwechat_user"]];
-        }
-        
-        DLog(@"AAA%@",self.centerModel.myInfoDic);
         [self.tableView reloadData];
         
     } failed:^(NSError *error) {
-        self.failureTime ++;
-        if (self.failureTime == 5) {
+        requestCount ++;
+        if (requestCount == 5) {
             [self signout];
             [self initLogin];
         }
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self.tableView.mj_header endRefreshing];
         [self showServerError:error];
         [self.tableView reloadData];
@@ -214,17 +197,10 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-//            return 0.1;  // 把第一个用户组给隐藏了
-        }
-    }
-    else if (indexPath.section == 2) {
+    if (indexPath.section == 2) {
         return 60;
     }
     return 50.0;
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -257,7 +233,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellID = @"CenterID";
     static NSString *LogoutID = @"LogoutID";
-    static NSString *UnbindID = @"UnbindID";
     
     if (indexPath.section == 0 || indexPath.section == 1) {
         CenterCell *cell = [tableView dequeueReusableCellWithIdentifier:CellID];
@@ -267,15 +242,10 @@
         TextIconModel *model;
         cell.accessoryType = UITableViewCellAccessoryNone;
         if (indexPath.section == 0) {
-            
-            
-            if (indexPath.row == 1 || indexPath.row == 2) {
-                
+            if (indexPath.row == 0) {
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
-            
             model = self.centerModel.manageArr[indexPath.row];
-            
         } else if (indexPath.section == 1) {
             if (self.centerModel.infoArr.count > indexPath.row) {
                 model = self.centerModel.infoArr[indexPath.row];
@@ -285,25 +255,10 @@
         return cell;
         
     } else {
-        
-        
-        if ([self isUnbindShow]) {
-            LogoutUnbindCell *cell = [tableView dequeueReusableCellWithIdentifier:UnbindID];
-            if (cell == nil) {
-                cell = [[LogoutUnbindCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:UnbindID];
-                UITapGestureRecognizer *logoutGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(signoutAction)];
-                [cell.logoutLab addGestureRecognizer:logoutGes];
-                UITapGestureRecognizer *unbindGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(unBindAction)];
-                [cell.unbindLab addGestureRecognizer:unbindGes];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            }
-            return cell;
-        }
         LogoutCell *cell = [tableView dequeueReusableCellWithIdentifier:LogoutID];
         if (cell == nil) {
             cell = [[LogoutCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LogoutID];
         }
-        
         cell.lab.text = @"退出";
         return cell;
     }
@@ -311,20 +266,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return;
             BoundManageController *boundVc = [[BoundManageController alloc] init];
-            boundVc.myInfoDic = self.centerModel.myInfoDic;
-            WEAKSELF;
-            boundVc.refreshBlock = ^{
-                [weakSelf downLoadData];
-            };
+            boundVc.hidesBottomBarWhenPushed = YES;
             [self showViewController:boundVc sender:nil];
         }
         
         if (indexPath.row == 1) {
+            return;
             ResetPwdController *restVc = [[ResetPwdController alloc] init];
             restVc.hidesBottomBarWhenPushed = YES;
             [self showViewController:restVc sender:nil];
@@ -340,43 +290,13 @@
     if (indexPath.section == 2) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
-        if ([self isUnbindShow]) {
-            return;
-        }
-        
         NSString *message = @"您确定退出？退出将不能体验全部功能。";
         NSString *donetip = @"退出";
-        
+
         [UIAlertController alertTitle:@"提示" message:message controller:self doneText:donetip cancelText:@"取消" doneHandle:^{
             [self signout];
         } cancelHandle:nil];
     }
-}
-
-- (BOOL)isUnbindShow {
-    if ([LoginModule isThirdplatformLogin]) {
-        if ([[Environment sharedEnvironment].member_loginstatus isEqualToString:@"qq"] && [DataCheck isValidString:[self.iwechat_user objectForKey:@"qqopenid"]]) {
-            return YES;
-        } else if(([[Environment sharedEnvironment].member_loginstatus isEqualToString:@"weixin"] && [DataCheck isValidString:[self.iwechat_user objectForKey:@"unionid"]])) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
-- (void)unBindAction {
-    NSString *type;
-    if ([[Environment sharedEnvironment].member_loginstatus isEqualToString:@"qq"]) {
-        type = @"QQ";
-    } else if ([[Environment sharedEnvironment].member_loginstatus isEqualToString:@"weixin"]) {
-        type = @"微信";
-    }
-    NSString *message = [NSString stringWithFormat:@"您确定解除绑定？解除后将无法使用该%@登录此账号",type];
-    NSString *donetip = @"确定";
-    
-    [UIAlertController alertTitle:@"提示" message:message controller:self doneText:donetip cancelText:@"取消" doneHandle:^{
-        [self unBind];
-    } cancelHandle:nil];
 }
 
 - (void)signoutAction {
@@ -387,50 +307,12 @@
     } cancelHandle:nil];
 }
 
-- (void)unBind {
-    
-    if ([LoginModule isThirdplatformLogin]) {
-        
-        [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
-            NSDictionary *getDic = @{@"type":[Environment sharedEnvironment].member_loginstatus};
-            [self.HUD showLoadingMessag:@"解除绑定" toView:self.view];
-            request.parameters = getDic;
-            request.urlString = url_unBindThird;
-        } success:^(id responseObject, JTLoadType type) {
-            [self.HUD hideAnimated:YES];
-            DLog(@"%@",[responseObject objectForKey:@"Message"]);
-            if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]]) {
-                NSDictionary *msgDic = [responseObject objectForKey:@"Message"];
-                if ([DataCheck isValidString:[msgDic objectForKey:@"messageval"]]) {
-                    NSString *messageStatus = [msgDic objectForKey:@"messageval"];
-                    if ([messageStatus containsString:@"success"]) {
-                        
-                        [LoginModule cleanLogType];
-                        
-                        [self.tableView reloadData];
-                        return;
-                    }
-                    
-                    [MBProgressHUD showInfo:[msgDic objectForKey:@"messageval"]];
-                }
-                
-            }
-            
-            [MBProgressHUD showInfo:@"对不起，解绑失败"];
-            
-        } failed:^(NSError *error) {
-            [self.HUD hideAnimated:YES];
-        }];
-    }
-}
-
 - (void)modifyAvatar {
     WEAKSELF;
     self.pickerView.finishPickingBlock = ^(UIImage *image) {
         [weakSelf uploadImage:image];
     };
     [self.pickerView openSheet];
-    
 }
 
 - (void)uploadImage:(UIImage *)image {
@@ -464,8 +346,6 @@
 }
 
 - (void)signout {
-    DLog(@"退出");
-    self.failureTime = 0;
     [LoginModule signout];
     [self initData];
     [self.tableView reloadData];
@@ -478,13 +358,6 @@
     LoginController *login = [[LoginController alloc] init];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:login];
     [self presentViewController:nc animated:YES completion:nil];
-}
-
-- (NSMutableDictionary *)iwechat_user {
-    if (!_iwechat_user) {
-        _iwechat_user = [NSMutableDictionary dictionary];
-    }
-    return _iwechat_user;
 }
 
 - (ImagePickerView *)pickerView {

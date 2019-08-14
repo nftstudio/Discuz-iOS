@@ -451,25 +451,29 @@
             DLog(@"%@",responseObject);
             [self.HUD hideAnimated:YES];
             self.Variables = [responseObject objectForKey:@"Variables"];
-            if ([DataCheck isValidDictionary:[self.Variables objectForKey:@"group"]]) {
+            NSDictionary *group = [self.Variables objectForKey:@"group"];
+            if ([DataCheck isValidDictionary:group]) { // 能发的帖子类型处理
                 NSString *allowpost = [[self.Variables objectForKey:@"allowperm"] objectForKey:@"allowpost"];
                 
                 NSString *allowpostpoll = @"0";
                 NSString *allowpostactivity = @"0";
                 NSString *allowpostdebate = @"0";
-                if ([DataCheck isValidString:[[self.Variables objectForKey:@"group"] objectForKey:@"allowpostpoll"]]) {
-                    allowpostpoll = [[self.Variables objectForKey:@"group"] objectForKey:@"allowpostpoll"];
+                if ([DataCheck isValidString:[group objectForKey:@"allowpostpoll"]]) {
+                    allowpostpoll = [group objectForKey:@"allowpostpoll"];
                 }
-                if ([DataCheck isValidString:[[self.Variables objectForKey:@"group"] objectForKey:@"allowpostactivity"]]) {
-                    allowpostactivity = [[self.Variables objectForKey:@"group"] objectForKey:@"allowpostactivity"];
+                if ([DataCheck isValidString:[group objectForKey:@"allowpostactivity"]]) {
+                    allowpostactivity = [group objectForKey:@"allowpostactivity"];
                 }
-                if ([DataCheck isValidString:[[self.Variables objectForKey:@"group"] objectForKey:@"allowpostdebate"]]) {
-                    allowpostdebate = [[self.Variables objectForKey:@"group"] objectForKey:@"allowpostdebate"];
+                if ([DataCheck isValidString:[group objectForKey:@"allowpostdebate"]]) {
+                    allowpostdebate = [group objectForKey:@"allowpostdebate"];
                 }
                 NSString *allowspecialonly = [[self.Variables objectForKey:@"forum"] objectForKey:@"allowspecialonly"];
-                [self.selectView setPostType:allowpostpoll andActivity:allowpostactivity andDebate:allowpostdebate andAllowspecialonly:allowspecialonly andAllowpost:allowpost];
+                [self.selectView setPostType:allowpostpoll
+                                    activity:allowpostactivity
+                                      debate:allowpostdebate
+                            allowspecialonly:allowspecialonly
+                                   allowpost:allowpost];
                 
-                [self showTypeView];
             } else {
                 [MBProgressHUD showInfo:@"暂无发帖权限"];
             }

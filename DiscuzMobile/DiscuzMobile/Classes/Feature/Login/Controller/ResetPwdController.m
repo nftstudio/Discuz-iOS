@@ -7,27 +7,24 @@
 //
 
 #import "ResetPwdController.h"
+#import "UsertermsController.h"
+
 #import "JTResetPwdView.h"
-#import "XinGeCenter.h"
 #import "AuthcodeView.h"
 #import "LoginCustomView.h"
-#import "JTQuestionAnswerView.h"
-#import "UsertermsController.h"
 #import "Web2AuthcodeView.h"
+
+#import "XinGeCenter.h"
 
 @interface ResetPwdController ()
 @property (nonatomic,strong) JTResetPwdView *resetView;
-
 @property (nonatomic, strong) NSString *bbrulestxt;
 @end
 
 @implementation ResetPwdController
 - (void)loadView {
-    
     [super loadView];
-    
     _resetView = [[JTResetPwdView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    
     self.view = _resetView;
 }
 
@@ -36,7 +33,6 @@
     
     [super viewDidLoad];
     self.navigationItem.title = @"修改密码";
-    self.view.backgroundColor = [UIColor whiteColor];
     
     _resetView.delegate = self;
     [_resetView.submitButton addTarget:self action:@selector(submitButtonClick) forControlEvents:UIControlEventTouchUpInside];

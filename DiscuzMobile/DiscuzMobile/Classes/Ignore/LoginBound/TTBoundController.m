@@ -32,9 +32,6 @@
     _boundView.delegate = self;
     _boundView.contentSize = CGSizeMake(WIDTH, HEIGHT + 1);
     self.navigationItem.title = @"登录绑定";
-    UIColor * color = [UIColor whiteColor];
-    NSDictionary * dict = [NSDictionary dictionaryWithObjectsAndKeys:color,NSForegroundColorAttributeName,[FontSize NavTitleFontSize18],NSFontAttributeName, nil];
-    self.navigationController.navigationBar.titleTextAttributes = dict;
     self.view.backgroundColor = mRGBColor(246, 246, 246);
     
     [self setAction];
@@ -89,7 +86,10 @@
     NSString *pass = _boundView.passwordField.text;
     NSString *code = _boundView.authCodeField.text;
     
-    if ([DataCheck isValidString:name] && [DataCheck isValidString:pass] && [DataCheck isValidString:code]) {
+    if ([DataCheck isValidString:name]
+        && [DataCheck isValidString:pass]
+//        && [DataCheck isValidString:code]
+        ) {
         if ([self isCodeRight]) {
             [self boundData];
         }
@@ -98,9 +98,10 @@
             [MBProgressHUD showInfo:@"请输入用户"];
         } else if (![DataCheck isValidString:pass]) {
             [MBProgressHUD showInfo:@"请输入密码"];
-        } else if (![DataCheck isValidString:code]) {
-            [MBProgressHUD showInfo:@"请输入验证码"];
         }
+//        else if (![DataCheck isValidString:code]) {
+//            [MBProgressHUD showInfo:@"请输入验证码"];
+//        }
     }
 }
 
@@ -120,7 +121,7 @@
             if ([[ShareCenter shareInstance].bloginModel.logintype isEqualToString:@"weixin"] && [DataCheck isValidString:[ShareCenter shareInstance].bloginModel.unionid]) {
                 [getDic setValue:[ShareCenter shareInstance].bloginModel.unionid forKey:@"unionid"];
             }
-            request.urlString = url_BindThird;
+//            request.urlString = url_BindThird;
             request.parameters = getDic;
         } success:^(id responseObject, JTLoadType type) {
             [self.HUD hideAnimated:YES];

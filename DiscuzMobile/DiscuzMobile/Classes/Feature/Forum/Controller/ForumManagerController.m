@@ -110,7 +110,7 @@ static NSString *isFourmList = @"isFourmList";
     [self.navigationController pushViewController:searchVC animated:YES];
 }
 
-#pragma mark - getter、setter
+#pragma mark - getter
 - (NSMutableArray *)controllerArr {
     if (!_controllerArr) {
         _controllerArr = [NSMutableArray array];

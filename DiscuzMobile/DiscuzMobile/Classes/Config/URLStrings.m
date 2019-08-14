@@ -11,15 +11,10 @@
 NSString * const url_Check =  @"?version=5&module=check";
 
 #pragma mark - 发现
-
 // 推荐 banner
 NSString * const url_RecommendBanner = @"?module=iwechat&data=json&version=5";
 // 推荐 列表
 NSString * const url_RecommendList = @"?module=recommon_thread&version=5&mapifrom=ios";
-// 直播 热门
-NSString * const url_LiveHot = @"?module=livethread&version=5";
-// 直播 今日推荐
-NSString * const url_LiveToday = @"?module=recommon_livethread&version=5";
 // 所有热帖
 NSString * const url_HotAll = @"?module=digestthread&version=5";
 
@@ -28,18 +23,7 @@ NSString * const url_DigestAll = @"?module=forumguide&view=digest&version=5";
 // 最新
 NSString * const url_newAll = @"?module=forumguide&view=newthread&version=5";
 
-
-#pragma mark - 直播
-
-// 详情
-NSString * const url_LiveDetail = @"?version=5&ppp=10&module=viewthread&ordertype=1&submodule=checkpost";
-// 互动
-NSString * const url_LiveReply = @"?module=threadreply&version=5";
-// 直播推送
-NSString * const url_LivePusher = @"plugin.php?id=iwechat:wechat_note&ac=threadpusher";
-
 #pragma mark - 版块
-
 // 全部
 NSString * const url_Forumindex = @"?module=forumindex&version=5";
 // 热门
@@ -83,22 +67,18 @@ NSString * const url_UploadHead =@"?module=uploadavatar&version=2";
 
 #pragma mark - 登录相关
 // 普通登录 post
-NSString * const url_CommonLogin = @"?module=login&version=5";
-
-// 三方登录 post
-NSString * const url_ThirdLogin = @"?version=5&module=weiqqconnect";
-// 绑定第三方qq、微信
-NSString * const url_BindThird =  @"?version=5&module=weiqqlogin";
+NSString * const url_Login = @"?module=login&version=5";
+// 获取授权绑定信息
+NSString * const url_oauths = @"?module=oauths&version=5";
 // 解绑
-NSString * const url_unBindThird =  @"index.php?version=5&module=unbind";
+NSString * const url_unBindThird =  @"?module=oauths&op=unbind&version=5";
 
 NSString * const url_resetPwd = @"?module=edit_password&version=5";
+
 
 #pragma mark - 注册相关
 // 注册
 NSString * const url_Register =  @"?module=register&version=5";
-// 第三方登录去注册绑定方法
-NSString * const url_TirdRegister =  @"?version=5&module=weiqqregister";
 
 #pragma mark - 消息
 // 回复短消息 post
@@ -154,7 +134,6 @@ NSString * const url_Pollvote = @"?module=pollvote&version=1&pollsubmit=yes";
 #pragma mark - 验证码
 // 验证码图片地址 三种类型  注册 登录 发帖回帖
 NSString * const url_secureCode = @"?module=secure&version=5";
-
 
 // 搜索 subject=%@
 NSString * const url_Search = @"?module=search&version=5";

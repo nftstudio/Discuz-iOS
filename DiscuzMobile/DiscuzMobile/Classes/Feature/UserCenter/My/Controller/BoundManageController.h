@@ -11,8 +11,4 @@
 typedef void(^RefreshBlock)(void);
 
 @interface BoundManageController : BaseTableViewController
-
-@property (nonatomic, strong) NSMutableDictionary *myInfoDic;
-@property (nonatomic, copy) RefreshBlock refreshBlock;
-
 @end
