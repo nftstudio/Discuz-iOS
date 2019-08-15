@@ -12,9 +12,6 @@
 #import "ZHPickView.h"
 @class LoginCustomView, Web2AuthcodeView, ZHPickView;
 
-typedef void(^QQBlock)(void);
-typedef void(^WechatBlock)(void);
-
 @interface JTLoginView : UIScrollView
 
 @property (nonatomic, strong) LoginCustomView *countView;
@@ -33,7 +30,5 @@ typedef void(^WechatBlock)(void);
 @property (nonatomic, strong) ZHPickView *pickView;
 
 - (void)thirdPlatformAuth;
-
-- (void)loginBtnState;
 
 @end

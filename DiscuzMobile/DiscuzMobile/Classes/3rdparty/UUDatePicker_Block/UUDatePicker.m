@@ -19,9 +19,6 @@
 #define UU_GRAY [UIColor redColor];
 #define UU_BLACK [UIColor blackColor];
 
-#ifndef isIOS7
-#define isIOS7  ([[[UIDevice currentDevice]systemVersion]floatValue] >= 7.0)
-#endif
 
 @interface UUDatePicker ()
 {
@@ -215,13 +212,13 @@
 {
     if (self.datePickerStyle == UUDateStyle_YearMonthDayHourMinute){
         
-        if (iPhone5 || iPhone4) {
+        if (iPhone320) {
             [self creatValuePointXs:@[@"80",@"135",@"190",@"245",@"300"]
                           withNames:@[@"年",@"月",@"日",@"时",@"分"]];
-        } else if (iPhone6) {
-            [self creatValuePointXs:@[@"100",@"155",@"210",@"270",@"320"]
+        } else if (iPhone375) {
+            [self creatValuePointXs:@[@"100",@"155",@"210",@"270",@"330"]
                           withNames:@[@"年",@"月",@"日",@"时",@"分"]];
-        } else if (iPhone6Plus) {
+        } else if (iPhone414) {
             [self creatValuePointXs:@[@"120",@"173",@"227",@"285",@"340"]
                           withNames:@[@"年",@"月",@"日",@"时",@"分"]];
         } else {
@@ -229,33 +226,17 @@
                           withNames:@[@"年",@"月",@"日",@"时",@"分"]];
         }
         
-
-//        if (isIOS7) {
-//            [self creatValuePointXs:@[@"80",@"135",@"190",@"245",@"300"]
-//                          withNames:@[@"年",@"月",@"日",@"时",@"分"]];
-//        }
-        
         return 5;
     }
     if (self.datePickerStyle == UUDateStyle_YearMonthDay){
-        if (isIOS7) {
-            [self creatValuePointXs:@[@"120",@"200",@"270"]
-                      withNames:@[@"年",@"月",@"日"]];
-            }
+        
         return 3;
     }
     if (self.datePickerStyle == UUDateStyle_MonthDayHourMinute){
-        if (isIOS7) {
-        [self creatValuePointXs:@[@"90",@"160",@"230",@"285"]
-                      withNames:@[@"月",@"日",@"时",@"分"]];
-            }
+        
         return 4;
     }
     if (self.datePickerStyle == UUDateStyle_HourMinute){
-        if (isIOS7) {
-        [self creatValuePointXs:@[@"140",@"245"]
-                      withNames:@[@"时",@"分"]];
-            }
         return 2;
     }
     

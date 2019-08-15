@@ -182,11 +182,11 @@
                        }
                    }
                    else if (state == SSDKResponseStateCancel) {
-                       [MBProgressHUD showInfo:@"取消登录"];
+                       [MBProgressHUD showInfo:@"取消授权"];
                    }
                    
                    else if (state == SSDKResponseStateFail) {
-                       [MBProgressHUD showInfo:@"登录授权失败"];
+                       [MBProgressHUD showInfo:@"授权失败"];
                    }
                    
                    else {

@@ -202,7 +202,7 @@
         
         CGRect frameT = self.frame;
         self.frame=CGRectMake(frameT.origin.x, frameT.origin.y, 96, 6.5+0.25+38.25 * _titleArr.count);
-        if (iPhone4 || iPhone5) {
+        if (iPhone320) {
             CGRect frameT =self.frame;
             self.frame = CGRectMake(frameT.origin.x+5, frameT.origin.y, frameT.size.width, frameT.size.height);
         }
@@ -244,7 +244,7 @@
             CGRect frameT = self.frame;
           self.frame=CGRectMake(frameT.origin.x, frameT.origin.y, 96, 6.5+0.25+38.25 * _titleArr.count);
 
-        if (iPhone4 || iPhone5) {
+        if (iPhone320) {
             CGRect frameT =self.frame;
             self.frame = CGRectMake(frameT.origin.x+5, frameT.origin.y, frameT.size.width, frameT.size.height);
         }
@@ -255,7 +255,6 @@
 -(void)buttonClick:(UIButton *)btn{
     
     if ([_delegate respondsToSelector:@selector(postBtnClick:)]) {
-        
          [_delegate postBtnClick:btn];
     }
 }

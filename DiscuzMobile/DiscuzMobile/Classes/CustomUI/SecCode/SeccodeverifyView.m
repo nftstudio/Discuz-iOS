@@ -108,10 +108,8 @@
 
     self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
     UIView *  bgview = [[UIView alloc]initWithFrame:CGRectMake(40, 116, WIDTH-80, 300)];
-    if (iPhone4 || iPhone5) {
+    if (iPhone320) {
         bgview.frame = CGRectMake(40, 80, WIDTH-80, 260);
-    } else if( iPhone6) {
-        
     }
     
     bgview.backgroundColor = mRGBColor(241, 241, 241);

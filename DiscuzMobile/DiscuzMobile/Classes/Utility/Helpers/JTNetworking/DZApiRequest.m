@@ -57,9 +57,8 @@
 }
 
 + (NSString *)checkUrl:(NSString *)urlStr {
-    if (![urlStr containsString:@"plugin.php"]) {
-        urlStr = [NSString stringWithFormat:@"api/mobile/%@",urlStr];
-    }
+    
+    urlStr = [NSString stringWithFormat:@"api/mobile/%@",urlStr];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *domain = [userDefault objectForKey:@"domain"];
     if ([DataCheck isValidString:domain]) {
@@ -80,6 +79,11 @@
                 [MessageNoticeCenter shareInstance].noticeDic = [NSMutableDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"Variables"] objectForKey:@"notice"]];
             }
         }
+        return;
+    }
+    NSString *error = [responseObject objectForKey:@"error"];
+    if ([DataCheck isValidString:error] && [error isEqualToString:@"module_not_exists"]) {
+        [MBProgressHUD showInfo:@"该模块暂未开放"];
     }
 }
 

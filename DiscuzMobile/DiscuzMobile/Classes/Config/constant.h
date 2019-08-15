@@ -49,13 +49,11 @@
 #define  iOS10   ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0)
 #define  iOS11   ([[UIDevice currentDevice].systemVersion floatValue] >= 11.0)
 
-#pragma mark - 判断机型 ============================================
-
-#define  iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
-#define  iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
-#define  iPhone6Plus ((int)[UIScreen mainScreen].scale == 3)
-#define  iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
-#define  iPhone320 ([[UIScreen mainScreen] currentMode].size.width == 640)
+#define phoneScale (int)[UIScreen mainScreen].scale
+#pragma mark - 判断屏幕适配 ============================================
+#define iPhone320 WIDTH == 320
+#define iPhone375 WIDTH == 375
+#define iPhone414 WIDTH == 414
 
 #pragma mark - 通知 ================================================
 

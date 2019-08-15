@@ -150,7 +150,7 @@
     
     [self addSubview:self.thridAuthTipLabl];
     [self.thridAuthTipLabl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.width.equalTo(self.usertermsView);
+        make.left.width.equalTo(self.registerButton);
         make.top.equalTo(self.usertermsView.mas_bottom).offset(5);
     }];
     self.thridAuthTipLabl.hidden = YES;
