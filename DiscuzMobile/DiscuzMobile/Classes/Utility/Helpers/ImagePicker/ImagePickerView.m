@@ -7,6 +7,7 @@
 //
 
 #import "ImagePickerView.h"
+#import "UIAlertController+Extension.h"
 
 @interface ImagePickerView() <UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -18,42 +19,27 @@
 
 
 -(void)openSheet {
-    
-    //在这里呼出下方菜单按钮项
-     UIActionSheet *action = [[UIActionSheet alloc]
-                      initWithTitle:nil
-                      delegate:self
-                      cancelButtonTitle:@"取消"
-                      destructiveButtonTitle:nil
-                      otherButtonTitles: @"拍照", @"从手机相册获取",nil];
-     [action showInView:self.navigationController.view];
-    
+    [UIAlertController alertSheetTitle:nil
+                               message:nil
+                            controller:self.navigationController
+                           doneTextArr:@[@"拍照", @"从手机相册获取"]
+                            cancelText:@"取消"
+                            doneHandle:^(NSInteger index) {
+                                if (index == 0) {
+                                    [self takePhoto];
+                                } else if (index == 1) {
+                                    [self LocalPhoto];
+                                }
+                            } cancelHandle:^{
+                                
+                            }];
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    //呼出的菜单按钮点击后的响应
-    if (buttonIndex == actionSheet.cancelButtonIndex) {
-        DLog(@"取消");
-    }
-    
-    switch (buttonIndex) {
-            
-        case 0:  //打开照相机拍照
-            [self takePhoto];
-            break;
-            
-        case 1:  //打开本地相册
-            [self LocalPhoto];
-            break;
-    }
-}
 //开始拍照
 -(void)takePhoto {
     
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
         self.pickerCT.sourceType = sourceType;
         [self present];
     } else {
@@ -66,8 +52,7 @@
 }
 
 //当选择一张图片后进入这里
-- (void)imagePickerController:(UIImagePickerController * )picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
+- (void)imagePickerController:(UIImagePickerController * )picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     
@@ -82,7 +67,6 @@
             }
         }];
     }
-    
 }
 
 //打开本地相册
@@ -95,9 +79,7 @@
     
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    DLog(@"您取消了选择图片");
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 

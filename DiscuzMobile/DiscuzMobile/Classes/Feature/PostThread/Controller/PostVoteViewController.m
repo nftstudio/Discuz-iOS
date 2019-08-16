@@ -32,11 +32,6 @@
 @interface PostVoteViewController ()<UITextFieldDelegate, UITextViewDelegate, QRadioButtonDelegate, QCheckBoxDelegate, ZHPickViewDelegate>
 
 @property (nonatomic, strong) PostVoteModel *voteModel;
-
-//@property (nonatomic, strong) NSString *typeString;
-
-@property (nonatomic ,strong) UIActionSheet  *myActionSheet;
-
 @property (nonatomic, assign) NSInteger imgBtnTag;
 @property (nonatomic, strong) NSMutableDictionary *pollImageDic;
 
@@ -55,7 +50,6 @@
 - (void)viewDidLoad {
 
     [super viewDidLoad];
-    DLog(@"--进入PostVoteViewController--");
     self.imgBtnTag = 0;
     self.navigationItem.title = @"发起投票";
     

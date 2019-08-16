@@ -144,6 +144,7 @@
 - (void)loginWithPlatformType:(SSDKPlatformType)platformType success:(void(^)(id postData, id getData))success finish:(void(^)(void))finish {
     
     self.bloginModel = nil;
+    
     WEAKSELF;
     [ShareSDK getUserInfo:platformType
            onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
@@ -161,8 +162,7 @@
                        if ([DataCheck isValidString:user.uid]) {
                            NSMutableDictionary *dic = @{@"openid":user.uid,
 //                                                        @"type":type,
-                                                        //                                                    @"username":user.nickname
-                                                        
+//                                                        @"username":user.nickname
                                                         }.mutableCopy;
                            
                            weakSelf.bloginModel = [TTLoginModel initWithLogintype:type andOpenid:user.uid andGbkname:dataGBK andUsername:user.nickname];
@@ -172,10 +172,7 @@
                                    self.bloginModel.unionid = [user.rawData objectForKey:@"unionid"];
                                }
                            }
-                           
-                           
                            success?success(dic,@{@"type":type}):nil;
-                           DLog(@"openid等==========================%@",dic);
                            
                        } else {
                            [MBProgressHUD showInfo:@"服务器繁忙请重试"];
@@ -184,13 +181,10 @@
                    else if (state == SSDKResponseStateCancel) {
                        [MBProgressHUD showInfo:@"取消授权"];
                    }
-                   
                    else if (state == SSDKResponseStateFail) {
                        [MBProgressHUD showInfo:@"授权失败"];
                    }
-                   
                    else {
-                       DLog(@"%@",error);
                        [MBProgressHUD showInfo:error.description];
                    }
                });
