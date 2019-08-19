@@ -72,12 +72,8 @@
     self.title = self.username;
     
     kToolBarH = 50;
-    if (@available(iOS 11.0, *)) {
-        CGFloat bottom = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom;
-        bottom = bottom>20?20:bottom;
-        kToolBarH = 50 + bottom;
-    }
     
+    kToolBarH = 50 + SafeAreaBottomHeight;
     
     // 加自定义表情键盘必须添加这行代码。
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
@@ -123,12 +119,7 @@
     if (_emoKeyboard == nil) {
         //        CGRect fr = CGRectMake(0, 0, WIDTH, HEIGHT - 67);
         CGFloat tabbarH = 50;
-        CGFloat bottom = 0;
-        if (@available(iOS 11.0, *)) {
-            bottom = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom;
-            bottom = bottom>20?20:bottom;
-        }
-        _emoKeyboard = [[EmoticonKeyboard alloc] initWithFrame:CGRectMake(0, HEIGHT - tabbarH - bottom, WIDTH, tabbarH)];
+        _emoKeyboard = [[EmoticonKeyboard alloc] initWithFrame:CGRectMake(0, HEIGHT - tabbarH - SafeAreaBottomHeight, WIDTH, tabbarH)];
     }
     return _emoKeyboard;
 }

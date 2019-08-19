@@ -53,9 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    DLog(@"--进入PostThreadViewController--");
-    self.title = @"发帖";
+    self.navigationItem.title = @"发帖";
     
     [self createBarBtn:@"发布" type:NavItemText Direction:NavDirectionRight];
     self.tableView.backgroundColor = [UIColor whiteColor];
@@ -109,7 +107,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat detailH = HEIGHT - self.navbarMaxY - 265 - 55;
+    CGFloat keyboardHeight = 265;
+    CGFloat detailH = HEIGHT - self.navbarMaxY - keyboardHeight - 55 - SafeAreaBottomHeight;
     if (self.typeArray.count > 0) {
         detailH -= 55;
     }
@@ -128,13 +127,13 @@
         if ([AudioTool shareInstance].audioArray.count > 0) {
             return 50;
         } else {
-            return 265;
+            return keyboardHeight;
         }
         
     }
      else {
          if ([AudioTool shareInstance].audioArray.count > 0) {
-             return 265;
+             return keyboardHeight;
          }
         return 0;
     }

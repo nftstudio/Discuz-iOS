@@ -89,13 +89,7 @@
 
 - (void)loadView {
     [super loadView];
-    if (@available(iOS 11.0, *)) {
-        CGFloat bottom = [UIApplication sharedApplication].delegate.window.safeAreaInsets.bottom;
-        bottom = bottom>20?20:bottom;
-        self.detailView = [[ThreadDetailView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - bottom)];
-    } else {
-        self.detailView = [[ThreadDetailView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    }
+    self.detailView = [[ThreadDetailView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT - SafeAreaBottomHeight)];
     self.view = self.detailView;
 }
 

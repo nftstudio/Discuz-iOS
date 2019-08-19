@@ -58,12 +58,7 @@ static const NSInteger RowFaceCount = 9;
         keyboardHeight = height;
     }
     
-    SCHeight = HEIGHT;
-    if (@available(iOS 11.0, *)) {
-        CGFloat bottom = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom;
-        bottom = bottom>20?20:bottom;
-        SCHeight = HEIGHT - bottom;
-    }
+    SCHeight = HEIGHT - SafeAreaBottomHeight;
     
     emotionVHeight = keyboardHeight - toolBarHeight;
     

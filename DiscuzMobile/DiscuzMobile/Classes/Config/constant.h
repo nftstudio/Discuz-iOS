@@ -55,6 +55,10 @@
 #define iPhone375 WIDTH == 375
 #define iPhone414 WIDTH == 414
 
+#define StatusBarHeight [UIApplication sharedApplication].statusBarFrame.size.height
+#define SafeAreaTopHeight ((HEIGHT >= 812.0) && [[UIDevice currentDevice].model isEqualToString:@"iPhone"] ? 88 : 64)
+#define SafeAreaBottomHeight ((HEIGHT >= 812.0) && [[UIDevice currentDevice].model isEqualToString:@"iPhone"]  ? 30 : 0)
+
 #pragma mark - 通知 ================================================
 
 // tabbar个人中心选中

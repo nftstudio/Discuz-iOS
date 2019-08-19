@@ -583,12 +583,7 @@
 - (EmoticonKeyboard *)emoKeyboard {
     if (_emoKeyboard == nil) {
         CGFloat tabbarH = 50;
-        CGFloat bottom = 0;
-        if (@available(iOS 11.0, *)) {
-            bottom = [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom;
-            bottom = bottom>20?20:bottom;
-        }
-        _emoKeyboard = [[EmoticonKeyboard alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame) - tabbarH -bottom, WIDTH, tabbarH)];
+        _emoKeyboard = [[EmoticonKeyboard alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame) - tabbarH - SafeAreaBottomHeight, WIDTH, tabbarH)];
 
     }
     return _emoKeyboard;
