@@ -964,7 +964,6 @@
 		9432554A20F4BF7F006FF78D /* WBEmoticonInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E64220E611710039C560 /* WBEmoticonInputView.m */; };
 		9432554B20F4BF8B006FF78D /* WBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E64320E611720039C560 /* WBModel.m */; };
 		9432554C20F4BF90006FF78D /* WBStatusComposeTextParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E64120E611710039C560 /* WBStatusComposeTextParser.m */; };
-		9432554D20F4BF93006FF78D /* WBStatusComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E64720E611740039C560 /* WBStatusComposeViewController.m */; };
 		9432554E20F4BF96006FF78D /* WBStatusHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E64420E611730039C560 /* WBStatusHelper.m */; };
 		9432554F20F4BF98006FF78D /* WBStatusLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E64620E611740039C560 /* WBStatusLayout.m */; };
 		943430942022B56C009C0102 /* UIControl+DelayEnable.m in Sources */ = {isa = PBXBuildFile; fileRef = 943430932022B56C009C0102 /* UIControl+DelayEnable.m */; };
@@ -1151,8 +1150,6 @@
 		94A3E64F20E611740039C560 /* WBStatusHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E64420E611730039C560 /* WBStatusHelper.m */; };
 		94A3E65020E611740039C560 /* WBStatusLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E64620E611740039C560 /* WBStatusLayout.m */; };
 		94A3E65120E611740039C560 /* WBStatusLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E64620E611740039C560 /* WBStatusLayout.m */; };
-		94A3E65220E611740039C560 /* WBStatusComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E64720E611740039C560 /* WBStatusComposeViewController.m */; };
-		94A3E65320E611740039C560 /* WBStatusComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E64720E611740039C560 /* WBStatusComposeViewController.m */; };
 		94A3E65620E611910039C560 /* EmoticonKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E65520E611910039C560 /* EmoticonKeyboard.m */; };
 		94A3E65720E611910039C560 /* EmoticonKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E65520E611910039C560 /* EmoticonKeyboard.m */; };
 		94A3E65820E611910039C560 /* EmoticonKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A3E65520E611910039C560 /* EmoticonKeyboard.m */; };
@@ -1939,7 +1936,6 @@
 		94A3E63C20E6116E0039C560 /* WBEmoticonInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBEmoticonInputView.h; sourceTree = "<group>"; };
 		94A3E63D20E6116F0039C560 /* WBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBModel.h; sourceTree = "<group>"; };
 		94A3E63E20E611700039C560 /* WBStatusLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatusLayout.h; sourceTree = "<group>"; };
-		94A3E63F20E611700039C560 /* WBStatusComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatusComposeViewController.h; sourceTree = "<group>"; };
 		94A3E64020E611710039C560 /* WBStatusComposeTextParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatusComposeTextParser.h; sourceTree = "<group>"; };
 		94A3E64120E611710039C560 /* WBStatusComposeTextParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatusComposeTextParser.m; sourceTree = "<group>"; };
 		94A3E64220E611710039C560 /* WBEmoticonInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBEmoticonInputView.m; sourceTree = "<group>"; };
@@ -1947,7 +1943,6 @@
 		94A3E64420E611730039C560 /* WBStatusHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatusHelper.m; sourceTree = "<group>"; };
 		94A3E64520E611730039C560 /* WBStatusHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatusHelper.h; sourceTree = "<group>"; };
 		94A3E64620E611740039C560 /* WBStatusLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatusLayout.m; sourceTree = "<group>"; };
-		94A3E64720E611740039C560 /* WBStatusComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatusComposeViewController.m; sourceTree = "<group>"; };
 		94A3E65420E611900039C560 /* EmoticonKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmoticonKeyboard.h; sourceTree = "<group>"; };
 		94A3E65520E611910039C560 /* EmoticonKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmoticonKeyboard.m; sourceTree = "<group>"; };
 		94A3E65920E611B00039C560 /* TextbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextbarView.h; sourceTree = "<group>"; };
@@ -2787,8 +2782,6 @@
 				94A3E64320E611720039C560 /* WBModel.m */,
 				94A3E64020E611710039C560 /* WBStatusComposeTextParser.h */,
 				94A3E64120E611710039C560 /* WBStatusComposeTextParser.m */,
-				94A3E63F20E611700039C560 /* WBStatusComposeViewController.h */,
-				94A3E64720E611740039C560 /* WBStatusComposeViewController.m */,
 				94A3E64520E611730039C560 /* WBStatusHelper.h */,
 				94A3E64420E611730039C560 /* WBStatusHelper.m */,
 				94A3E63E20E611700039C560 /* WBStatusLayout.h */,
@@ -4723,7 +4716,6 @@
 				94A7560F20FDDCD50031FA05 /* FastPostController.m in Sources */,
 				94983D0520EA088C00519D8F /* ChatYYLabel.m in Sources */,
 				947ECB022064D403002D3536 /* JFImageManager.m in Sources */,
-				94A3E65220E611740039C560 /* WBStatusComposeViewController.m in Sources */,
 				94A3E64E20E611740039C560 /* WBStatusHelper.m in Sources */,
 				9494508B21196F8B0074C79E /* AudioTool.m in Sources */,
 				27EE72BE1E30A80100982875 /* CenterCell.m in Sources */,
@@ -5073,7 +5065,6 @@
 				9494508C21196F8B0074C79E /* AudioTool.m in Sources */,
 				94110E231FDFA09A0033E94C /* FootRootController.m in Sources */,
 				947ECB032064D403002D3536 /* JFImageManager.m in Sources */,
-				9432554D20F4BF93006FF78D /* WBStatusComposeViewController.m in Sources */,
 				94110E251FDFA09A0033E94C /* CenterCell.m in Sources */,
 				94883E0B22F958B5007E15E8 /* DZNoticeModel.m in Sources */,
 				94110E261FDFA09A0033E94C /* BoundManageCell.m in Sources */,
@@ -5398,7 +5389,6 @@
 				94A7561120FDDCD50031FA05 /* FastPostController.m in Sources */,
 				94983D0720EA088C00519D8F /* ChatYYLabel.m in Sources */,
 				947ECB042064D403002D3536 /* JFImageManager.m in Sources */,
-				94A3E65320E611740039C560 /* WBStatusComposeViewController.m in Sources */,
 				94A3E64F20E611740039C560 /* WBStatusHelper.m in Sources */,
 				9494508D21196F8B0074C79E /* AudioTool.m in Sources */,
 				94110FAE1FDFB3870033E94C /* CenterCell.m in Sources */,

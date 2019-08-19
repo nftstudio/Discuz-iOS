@@ -23,31 +23,27 @@
 
 @implementation ViewPollpotionViewController
 
--(void)viewDidLoad{
-    
+- (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self downLoadData];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return cell.frame.size.height;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSourceArr.count;
-    
 }
 
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     static NSString * CellID= @"viewReplyCellID";
     ViewPollpotionCell * cell = [tableView dequeueReusableCellWithIdentifier:CellID];
@@ -63,32 +59,21 @@
     cell.frame = rect;
     DLog(@"%f",rect.size.height);
     return cell;
-
 }
 
--(void)ViewPollpotionCellClick:(ViewPollpotionCell *)cell{
+- (void)ViewPollpotionCellClick:(ViewPollpotionCell *)cell {
     
     if (![self isLogin]) {
         return;
     }
-    
     SendMessageViewController * senVC=[[SendMessageViewController alloc]init];
-    
     if ([DataCheck isValidString:cell.nameLabel.text]) {
          senVC.uid = cell.nameLabel.text;
     }
     [self.navigationController pushViewController:senVC animated:YES];
 }
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    DLog(@"ViewPollpotionCelldidSelectRowAtIndexPath");
-    
-}
-
-- (void)downLoadData
-{
+- (void)downLoadData {
     
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
         NSDictionary *postDic = @{@"tid":self.tid,
@@ -120,36 +105,5 @@
         [self emptyShow];
     }];
 }
-- (void)createImageViewArrayData:(NSMutableArray *)muttableArrData{
-//    NSMutableArray *arrayValue = [[NSMutableArray alloc]init];
-//    NSMutableArray *arrayImageValue = [[NSMutableArray alloc]init];
-//    NSMutableArray *arrayImageValue2 = [[NSMutableArray alloc]init];
-//    for (int i = 1; i<= muttableArrData.count; i++)
-//    {
-//        NSString *value = [NSString stringWithFormat:@"%d",i];
-//        NSString *imageName = [NSString stringWithFormat:@"image%@.png",value];
-//        UIImage *image = [UIImage imageNamed:imageName];
-//        DLog(@"imageName == %@",imageName);
-//        [arrayValue addObject:value];
-//        [arrayImageValue addObject:image];
-//    }
-//    
-//    for (int i = 6;i<=10; i++ )
-//    {
-//        NSString *value = [NSString stringWithFormat:@"%d",i];
-//        NSString *imageName = [NSString stringWithFormat:@"image%@.png",value];
-//        UIImage *image = [UIImage imageNamed:imageName];
-//        [arrayImageValue2 addObject:image];
-//        
-//    }
-//    _array = arrayValue;
-//    _arrayImage = arrayImageValue;
-//    _arrayImage =arrayImageValue2;
-}
-
-- (void)dealloc {
-    DLog(@"ViewPollpotionViewController销毁了");
-}
-
 
 @end

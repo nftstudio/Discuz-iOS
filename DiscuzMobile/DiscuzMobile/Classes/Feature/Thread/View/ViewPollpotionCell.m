@@ -12,24 +12,15 @@
 
 @implementation ViewPollpotionCell
 
-- (void)awakeFromNib {
-    // Initialization code
-    [super awakeFromNib];
-}
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
-        
         [self createUI];
     }
     return self;
 }
 
--(void)createUI{
-    
-
+- (void)createUI {
     self.headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 16, 40, 40)];
 //    _headImageView.layer.cornerRadius = 4.0;
     _headImageView.layer.cornerRadius = CGRectGetWidth(self.headImageView.frame) / 2;
@@ -52,33 +43,33 @@
     
     [self addSubview:_messageBtn];
 }
--(void)messageOnAction:(UIButton *)btn{
-    NSLog(@"messageOnAction");
-    
+
+- (void)messageOnAction:(UIButton *)btn {
     if ([self.delegate respondsToSelector:@selector(ViewPollpotionCellClick:)]) {
         [self.delegate performSelector:@selector(ViewPollpotionCellClick:) withObject:self];
     }
 }
--(void)setdata:(NSDictionary*)dic{
-    
-    if ([DataCheck isValidString:[dic objectForKey:@"username"]]) {
-          self.nameLabel.text = [dic objectForKey:@"username"];
-    }else{
+
+- (void)setdata:(NSDictionary*)dic {
+    NSString *username = [dic objectForKey:@"username"];
+    NSString *uid = [dic objectForKey:@"uid"];
+    if ([DataCheck isValidString:username]) {
+        self.nameLabel.text = username;
+    }else {
         self.nameLabel.text = @"游客 不能发消息";
     }
     NSURL * url =[NSURL URLWithString:[dic objectForKey:@"avatar"]];
     [self.headImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"noavatar_small"]];
+    if ([[Environment sharedEnvironment].member_uid isEqualToString:uid]) {
+        _messageBtn.hidden = YES;
+    } else {
+        _messageBtn.hidden = NO;
+    }
 }
 
 -(CGFloat)cellheigh{
 
     return self.headImageView.frame.origin.y +self.headImageView.frame.size.height+10;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
 }
 
 @end
