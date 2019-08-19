@@ -31,6 +31,22 @@
     [controller presentViewController:alertCT animated:YES completion:nil];
 }
 
++ (void)alertTitle:(NSString *)title message:(NSString *)message controller:(UIViewController *)controller doneTextArr:(NSArray *)doneTextArr cancelText:(NSString *)cancelText doneHandle:(void(^)(NSInteger index))doneHandle cancelHandle:(void(^)(void))cancelHandle {
+    
+    UIAlertController *alertCT = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    for (NSInteger i = 0; i < doneTextArr.count; i++) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:doneTextArr[i] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            doneHandle?doneHandle(i):nil;
+        }];
+        [alertCT addAction:action];
+    }
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelText style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        cancelHandle?cancelHandle():nil;
+    }];
+    [alertCT addAction:cancelAction];
+    [controller presentViewController:alertCT animated:YES completion:nil];
+}
+
 + (void)alertSheetTitle:(NSString *)title message:(NSString *)message controller:(UIViewController *)controller doneTextArr:(NSArray *)doneTextArr cancelText:(NSString *)cancelText doneHandle:(void(^)(NSInteger index))doneHandle cancelHandle:(void(^)(void))cancelHandle {
     
     UIAlertController *sheetAlertVc = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];

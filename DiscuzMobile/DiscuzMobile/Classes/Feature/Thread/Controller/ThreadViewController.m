@@ -31,8 +31,6 @@
 #import "ShareCenter.h"
 #import "JTWebImageBrowerHelper.h"
 
-
-
 @interface ThreadViewController ()<UITextFieldDelegate, UIWebViewDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) ThreadDetailView *detailView; // 详细页view 替换原来的view
@@ -42,9 +40,7 @@
 @property (nonatomic, assign) BOOL  isReferenceReply;           // 是否是 引用回复
 @property (nonatomic, strong) NSString * noticetrimstr;         // 引用回复内容
 @property (nonatomic, strong) NSString * reppid;                // 被引用帖子pid
-@property (nonatomic, strong) UIButton * collectBtn;            // 收藏按钮
 @property (nonatomic, strong) NSString * jubaoPid;              // 举报 id
-@property (nonatomic, strong) NSString * mytidUrl;              // 此页面 url   后 改成拼接的 不固定
 
 @property (nonatomic,strong) NSMutableArray *picurlArray; // 页面图片 （接口限制，只有一张）
 
@@ -79,7 +75,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.HUD hideAnimated:YES];
+    [self.HUD hide];
     [super viewWillDisappear:animated];
 }
 
@@ -109,7 +105,6 @@
 
 #pragma mark - 点击webview的时候收起键盘
 - (void)tapGestureAction:(UITapGestureRecognizer *)sender {
-    DLog(@"点击了webview");
     [self.detailView.emoKeyboard hideCustomerKeyBoard];
 }
 
@@ -126,7 +121,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    DLog(@"进来了");
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
         self.edgesForExtendedLayout = UIRectEdgeAll;
     }
@@ -136,7 +130,6 @@
     [self newDownLoadData];
     [self addNotifi];
 }
-
 
 - (void)commitInit {
     // 设置代理
@@ -192,19 +185,16 @@
 }
 
 - (void)uploadImageArr:(NSArray *)imageArr {
-    NSString *uploadhash = @"";
-    if ([DataCheck isValidDictionary:self.threadModel.uploadhash]) {
-        uploadhash = self.threadModel.uploadhash;
-    }
+    NSString *uploadhash = self.threadModel.uploadhash;
     if (![DataCheck isValidString:uploadhash]) {
         [MBProgressHUD showInfo:@"无权限上传图片"];
         return;
     }
     
-    NSMutableDictionary *dic=@{@"hash":uploadhash,
-                        @"uid":[NSString stringWithFormat:@"%@",[Environment sharedEnvironment].member_uid],
-                        }.mutableCopy;
-    NSMutableDictionary * getdic=@{@"fid":self.threadModel.fid}.mutableCopy;
+    NSDictionary *dic=@{@"hash":uploadhash,
+                        @"uid":[Environment sharedEnvironment].member_uid,
+                        };
+    NSDictionary * getdic=@{@"fid":self.threadModel.fid};
     
     [self.detailView.emoKeyboard.uploadView uploadImageArray:imageArr.copy getDic:getdic postDic:dic];
 }
@@ -242,17 +232,14 @@
     [_bridge registerHandler:@"onShare" handler:^(id data, WVJBResponseCallback responseCallback) {
       // 分享
         [weakSelf shareSome];
-        responseCallback(@"Response from testObjcCallback");
     }];
     
     [_bridge registerHandler:@"onPraise" handler:^(id data, WVJBResponseCallback responseCallback) {
        // 点赞
         [weakSelf createPraise:data];
-        responseCallback(@"Response from testObjcCallback");
     }];
     
     [_bridge registerHandler:@"supportDebate" handler:^(id data, WVJBResponseCallback responseCallback) {
-        
         if ([DataCheck isValidString:data]) {
             if ([data isEqualToString:@"0"]) {
                 NSLog(@"支持正方辩手");
@@ -263,7 +250,6 @@
     }];
     
     [_bridge registerHandler:@"joinDebate" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"加入辩手");
         if ([DataCheck isValidString:data]) {
             if ([data isEqualToString:@"0"]) {
                 NSLog(@"加入正方辩手");
@@ -273,24 +259,19 @@
         }
     }];
     
-    
     [_bridge registerHandler:@"endDebate" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSLog(@"结束辩论");
-        
     }];
     
     [_bridge registerHandler:@"onDiscussUser" handler:^(id data, WVJBResponseCallback responseCallback) {
        // 引用回复
         [weakSelf ReferenceReply:data textview:weakSelf.detailView.emoKeyboard.textBarView.textView];
-        responseCallback(@"Response from testObjcCallback");
     }];
     
     [_bridge registerHandler:@"onUserInfo" handler:^(id data, WVJBResponseCallback responseCallback) {
          //查看用户信息
         [weakSelf creatOterUserCenterVC:data];
-        responseCallback(@"Response from testObjcCallback");
     }];
-    
     
     [_bridge registerHandler:@"onThreadThumbsClicked" handler:^(id data, WVJBResponseCallback responseCallback) {
         //查看大图
@@ -299,7 +280,6 @@
         [weakSelf.picurlArray addObject:urlstr];
         // 创建图片浏览
         [[JTWebImageBrowerHelper shareInstance] showPhotoImageSources:weakSelf.picurlArray thumImages:weakSelf.picurlArray currentIndex:0 imageContainView:weakSelf.detailView.webView];
-        responseCallback(@"Response from testObjcCallback查看大图");
     }];
     
     [_bridge registerHandler:@"onthreadContentThumbsClick" handler:^(id data, WVJBResponseCallback responseCallback) {
@@ -310,14 +290,10 @@
             index = 0;
         }
         [[JTWebImageBrowerHelper shareInstance] showPhotoImageSources:imgs thumImages:imgs currentIndex:index imageContainView:weakSelf.detailView.webView];
-        responseCallback(@"Response from testObjcCallback查看大图");
     }];
-    
-    
     
     [_bridge registerHandler:@"onLoadMore" handler:^(id data, WVJBResponseCallback responseCallback) {
         // 加载更多
-        responseCallback(@"Response from testObjcCallback");
     }];
    
     [_bridge registerHandler:@"onSendPoll" handler:^(id data, WVJBResponseCallback responseCallback) {
@@ -325,37 +301,29 @@
         if (data) {
             [weakSelf createPostVote:data];
         }
-        responseCallback(@"Response from testObjcCallback");
     }];
     
     [_bridge registerHandler:@"onVisitVoters" handler:^(id data, WVJBResponseCallback responseCallback) {
          //查看参与投票人
         [weakSelf createVisitVotesrs:data];
-        responseCallback(@"Response from testObjcCallback");
     }];
     
     [_bridge registerHandler:@"onSubmit" handler:^(id data, WVJBResponseCallback responseCallback) {
         //参加活动取消活动
         [weakSelf createActivitie:weakSelf.threadModel.isActivity];
-        responseCallback(@"Response from testObjcCallback");
     }];
     
     [_bridge registerHandler:@"onComplain" handler:^(id data, WVJBResponseCallback responseCallback) {
         //举报
         weakSelf.jubaoPid = data;
         [weakSelf createComplain];
-        responseCallback(@"Response from testObjcCallback");
     }];
-    
     
     [_bridge registerHandler:@"manageActive" handler:^(id data, WVJBResponseCallback responseCallback) {
         [weakSelf manageActivity];
-        // 活动管理
-        responseCallback(@"Response from testObjcCallback");
     }];
-    
-    
 }
+
 #pragma mark  - 参加活动&取消活动
 - (void)createActivitie:(BOOL)data{
     
@@ -378,7 +346,6 @@
 }
 
 - (void)manageActivity {
-    
     ManageActivityController *mgActive = [[ManageActivityController alloc] init];
     mgActive.threadModel = self.threadModel;
     [self showViewController:mgActive sender:nil];
@@ -404,34 +371,32 @@
         request.parameters = postDic;
         request.getParam = dic;
     } success:^(id responseObject, JTLoadType type) {
-        DLog(@"%@",responseObject);
-        if ([DataCheck isValidString:[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"]]) {
-            if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] containsString:@"_success"]) {
-                [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+        [self.HUD hide];
+        NSString *messageval = [[responseObject objectForKey:@"Message"] objectForKey:@"messageval"];
+        NSString *messagestr = [[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"];
+        if ([DataCheck isValidString:messageval]) {
+            if ([messageval containsString:@"_success"]) {
+                [MBProgressHUD showInfo:messagestr];
                 self.currentPageId = 1;
                 [self newDownLoadData];
                 return;
             }
         }
-        [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
-        DLog(@"//取消活动");
-        [self.HUD hideAnimated:YES];
+        [MBProgressHUD showInfo:messagestr];
     } failed:^(NSError *error) {
+        [self.HUD hide];
         [self showServerError:error];
-        [self.HUD hideAnimated:YES];
     }];
 }
 
 
 #pragma mark  - 举报
 -(void)createComplain{
-    
     if (![self isLogin]) {
         return;
     }
     
     [self createComplainView];
-    
 }
 
 - (void)loginedReshData {
@@ -439,19 +404,72 @@
     [self newDownLoadData];
 }
 
-- (void)createComplainView{
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"举报"
-                                                     message:@""
-                                                    delegate:self
-                                           cancelButtonTitle:@"取消"
-                                           otherButtonTitles:@"广告垃圾",@"违规内容",@"恶意灌水",@"重复发帖", nil];
-    alert.tag=100816;
-    [alert show];
+- (void)createComplainView {
+    [UIAlertController alertTitle:@"举报"
+                          message:nil
+                       controller:self
+                      doneTextArr:@[@"广告垃圾",@"违规内容",@"恶意灌水",@"重复发帖"]
+                       cancelText:@"取消"
+                       doneHandle:^(NSInteger index) {
+                           switch (index) {
+                               case 0:
+                                   [self createPostjb:@"广告垃圾"];
+                                   break;
+                               case 1:
+                                   [self createPostjb:@"违规内容"];
+                                   break;
+                               case 2:
+                                   [self createPostjb:@"恶意灌水"];
+                                   break;
+                               case 3:
+                                   [self createPostjb:@"重复发帖"];
+                                   break;
+                               default:
+                                   break;
+                                   
+                           }
+                       } cancelHandle:^{
+                           self.jubaoPid = nil;
+                       }];
+}
 
+#pragma mark - 提交举报
+-(void)createPostjb:(NSString *)str {
+    NSString * strjubao;
+    if (![DataCheck isValidString:self.jubaoPid]) {
+        strjubao = self.threadModel.pid;
+    } else {
+        strjubao = self.jubaoPid;
+    }
+    
+    [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
+        
+        NSDictionary * dic = @{@"formhash":[Environment sharedEnvironment].formhash,
+                               @"reportsubmit":@"true",
+                               @"message":str,
+                               @"rtype":@"post",
+                               @"rid":strjubao,
+                               @"fid":self.threadModel.fid,
+                               @"inajax":@1,
+                               };
+        request.urlString = url_Report;
+        request.parameters = dic;
+        request.methodType = JTMethodTypePOST;
+    } success:^(id responseObject, JTLoadType type) {
+        if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]]) {
+            if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] containsString:@"succeed"]) {
+                [MBProgressHUD showInfo:@"提交成功！"];
+            } else {
+                [MBProgressHUD showInfo:@"提交失败，请稍后再试"];
+            }
+        }
+    } failed:^(NSError *error) {
+        [MBProgressHUD showInfo:@"提交失败，请稍后再试"];
+    }];
 }
 
 #pragma mark  - 查看参与投票人
--(void)createVisitVotesrs:(id)data{
+-(void)createVisitVotesrs:(id)data {
     ViewPollPotionNumberViewController * vppnvc = [[ViewPollPotionNumberViewController alloc]init];
     vppnvc.tid=self.tid;
     [self.navigationController pushViewController:vppnvc animated:YES];
@@ -484,7 +502,6 @@
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
         NSString * strUrl = [data stringByReplacingOccurrencesOfString:@"{" withString:@""];
         NSString * str1 = [strUrl stringByReplacingOccurrencesOfString:@"}" withString:@""];
-        DLog(@"str删除}之后=%@",str1);
         NSArray *pollanswers = [str1 componentsSeparatedByString:@"|"];
         
         NSDictionary * postdic=@{@"formhash":[Environment sharedEnvironment].formhash,
@@ -516,10 +533,7 @@
 
 
 #pragma  mark  -  获取引用回复的内容包括HTML标签
-- (void)ReferenceReply:(id)data textview:(YYTextView *)view;
-{
-    DLog(@"引用回复%@",data);
-    
+- (void)ReferenceReply:(id)data textview:(YYTextView *)view {
     if (![self isLogin]) {
         return;
     }
@@ -536,26 +550,23 @@
         request.parameters = dic;
     } success:^(id responseObject, JTLoadType type) {
         
-        DLog(@"responseObject=%@",responseObject);
-        if (  [[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]) {
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+        NSString *messagestr = [[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"];
+        if ([DataCheck isValidString:messagestr]) {
+            [MBProgressHUD showInfo:messagestr];
         }
-        _noticetrimstr=[[responseObject objectForKey:@"Variables"]objectForKey:@"noticetrimstr"];
+        _noticetrimstr = [[responseObject objectForKey:@"Variables"]objectForKey:@"noticetrimstr"];
         
-        _isReferenceReply=YES;
+        _isReferenceReply = YES;
         
     } failed:^(NSError *error) {
-        DLog(@"%@",error);
     }];
 }
 
 #pragma  mark  -  点赞
 -(void)createPraise:(id)data {
-    DLog(@"点赞");
     if (![self isLogin]) {
         return;
     }
-    
     if ([self.threadModel.recommend isEqualToString:@"1"]) {
         [MBProgressHUD showInfo:@"您已赞过该主题"];
     } else {
@@ -578,10 +589,9 @@
 }
 
 - (void)shareSome {
-    NSMutableArray * imageArray =[[NSMutableArray alloc]init];
-    
-    if ([DataCheck isValidString:self.threadModel.shareUrl]) {
-        [imageArray addObject:self.threadModel.shareUrl];
+    NSMutableArray * imageArray = [[NSMutableArray alloc] init];
+    if ([DataCheck isValidString:self.threadModel.shareImageUrl]) {
+        [imageArray addObject:self.threadModel.shareImageUrl];
     }else{
         NSString *iconName = [DZDevice getIconName];
         [imageArray addObject:[UIImage imageNamed:iconName]];
@@ -589,12 +599,13 @@
     NSString *threadtitle = self.threadModel.subject;
     NSString *dateline = self.threadModel.dateline;
     NSString *authorname = self.threadModel.author;
-    
     NSString *shareContent = [NSString stringWithFormat:@"作者：%@ 发表于：%@",authorname,dateline];
-    NSString *shareUrl = [NSString stringWithFormat:@"%@forum.php?mod=viewthread&tid=%@",BASEURL,self.tid];
-//    NSString *shareUrl = [NSString stringWithFormat:@"%@plugin.php?id=iwechat:index#!/viewthread/tid/%@",apiUrl,self.tid];
-    
-    [[ShareCenter shareInstance] createShare:shareContent andImages:imageArray andUrlstr:shareUrl andTitle:threadtitle andView:self.view andHUD:self.HUD];
+    [[ShareCenter shareInstance] createShare:shareContent
+                                   andImages:imageArray
+                                   andUrlstr:self.threadModel.shareUrl
+                                    andTitle:threadtitle
+                                     andView:self.view
+                                      andHUD:self.HUD];
 }
 
 #pragma mark - 帖子收藏
@@ -653,7 +664,6 @@
     self.verifyView.submitBlock = ^{
         [weakSelf postReplay];
     };
-    
 }
 
 
@@ -850,7 +860,6 @@
     }
    
     [self sendReply:dic];
-    
 }
 
 - (void)sendReply:(NSDictionary *)dic {
@@ -894,7 +903,7 @@
         } else {
             [MBProgressHUD showInfo:@"回帖失败"];
         }
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
 
     } failed:^(NSError *error) {
         [self showServerError:error];
@@ -902,80 +911,11 @@
     }];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-   
-    if(alertView.tag==100816){
-        switch (buttonIndex) {
-            case 0: // 取消
-                self.jubaoPid = nil;
-                break;
-            case 1:
-                [self createPostjb:@"广告垃圾"];
-                break;
-            case 2:
-                [self createPostjb:@"违规内容"];
-                break;
-            case 3:
-                [self createPostjb:@"恶意灌水"];
-                break;
-            case 4:
-                [self createPostjb:@"重复发帖"];
-                break;
-            default:
-                break;
-        }
-    }
-}
-
-#pragma mark - 提交举报
--(void)createPostjb:(NSString *)str{
-    
-    DLog(@"jubaoPid=%@",self.jubaoPid);
-    NSString * strjubao;
-    if (![DataCheck isValidString:self.jubaoPid]) {
-        strjubao = self.threadModel.pid;
-        DLog(@"%@",strjubao);
-    }else{
-        strjubao = self.jubaoPid;
-    }
-    self.mytidUrl = [NSString stringWithFormat:@"%@forum.php?mod=viewthread&tid=%@",BASEURL,self.tid];
-//    http://iwechat.pm.comsenz-service.com/forum.php?mod=viewthread&tid=143
-    
-    [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
-        
-        NSDictionary * dic = @{@"formhash":[Environment sharedEnvironment].formhash,
-                               @"reportsubmit":@"true",
-                               @"message":str,
-                               @"rtype":@"post",
-                               @"rid":strjubao,
-                               @"fid":self.threadModel.fid,
-                               @"inajax":@1,
-                               };
-        request.urlString = url_Report;
-        request.parameters = dic;
-        request.methodType = JTMethodTypePOST;
-    } success:^(id responseObject, JTLoadType type) {
-        if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]]) {
-            DLog(@"%@",[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"]);
-            if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] containsString:@"succeed"]) {
-                [MBProgressHUD showInfo:@"提交成功！"];
-            } else {
-                [MBProgressHUD showInfo:@"提交失败，请稍后再试"];
-            }
-        }
-        
-        
-    } failed:^(NSError *error) {
-        [MBProgressHUD showInfo:@"提交失败，请稍后再试"];
-    }];
-}
-
 #pragma mark 点击状态栏到顶部
 - (void)statusBarTappedAction:(NSNotification*)notification {
-    
     [self.detailView.webView.scrollView setContentOffset:CGPointMake(0, -self.navbarMaxY) animated:YES];
-    
 }
+
 #pragma mark - 滚动webView的时候收起键盘
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     
@@ -986,8 +926,6 @@
 -(void)sendAction{
     
     [self.detailView.emoKeyboard hideCustomerKeyBoard];
-    DLog(@"%@",self.detailView.emoKeyboard.textBarView.textView.text);
-    
     if (![self isLogin]) {
         return;
     }

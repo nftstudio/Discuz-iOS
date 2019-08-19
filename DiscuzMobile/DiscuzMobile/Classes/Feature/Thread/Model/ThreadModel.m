@@ -41,6 +41,7 @@
             self.pid = [[varDic objectForKey:@"postlist"][0] objectForKey:@"pid"];
         }
     }
+    self.shareUrl = [NSString stringWithFormat:@"%@forum.php?mod=viewthread&tid=%@",BASEURL,self.tid];
     
     NSDictionary *jsonDic = [self manageJsonWitnAttchment:threadDic];
     self.jsonData = [NSJSONSerialization dataWithJSONObject:jsonDic options:NSJSONWritingPrettyPrinted error:nil];
@@ -156,8 +157,8 @@
                 NSString *attachurl = [[NSString stringWithFormat:@"%@%@",dic[@"url"],dic[@"attachment"]] makeDomain];
                 [attItem setObject:attachurl forKey:@"attachurl"];
                 if (![ext isEqualToString:@"mp3"]) {
-                    if (![DataCheck isValidString:self.shareUrl]) {
-                        self.shareUrl = attachurl;
+                    if (![DataCheck isValidString:self.shareImageUrl]) {
+                        self.shareImageUrl = attachurl;
                     }
                     [attachmentArr addObject:attItem];
                     

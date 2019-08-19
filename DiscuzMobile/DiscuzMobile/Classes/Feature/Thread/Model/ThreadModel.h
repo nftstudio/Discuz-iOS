@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSString *favorited;
 @property (nonatomic, strong) NSString *recommend;
 @property (nonatomic, strong) NSString *shareUrl;
+@property (nonatomic, strong) NSString *shareImageUrl;
 @property (nonatomic, strong) NSString *isnoimage;
 @property (nonatomic, strong) NSString *fid;
 @property (nonatomic, strong) NSString *pid;
