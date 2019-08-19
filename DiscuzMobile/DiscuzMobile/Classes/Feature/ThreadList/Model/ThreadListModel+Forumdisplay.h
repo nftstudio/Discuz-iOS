@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ThreadListModel (Forumdisplay)
 + (void)setThreadData:(id)responseObject andFid:(NSString *)fid andPage:(NSInteger)page handle:(void (^)(NSArray *topArr, NSArray *commonArr, NSArray *allArr, NSInteger notFourmCount))handle;
+
+- (ThreadListModel *)dealSpecialThread;
 @end
 
 NS_ASSUME_NONNULL_END

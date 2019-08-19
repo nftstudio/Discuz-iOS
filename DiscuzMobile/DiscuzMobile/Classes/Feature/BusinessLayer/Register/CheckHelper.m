@@ -28,8 +28,9 @@
         [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
             request.urlString = self.regUrl;
         } success:^(id responseObject, JTLoadType type) {
-            if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Variables"]] &&  [[responseObject objectForKey:@"Variables"] objectForKey:@"reginput"]) {
-                self.regKeyDic = [NSDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"Variables"] objectForKey:@"reginput"]];
+            NSDictionary *reginput = [[responseObject objectForKey:@"Variables"] objectForKey:@"reginput"];
+            if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Variables"]] &&  [DataCheck isValidDictionary:reginput]) {
+                self.regKeyDic = [NSDictionary dictionaryWithDictionary:reginput];
             }
             success?success():nil;
         } failed:^(NSError *error) {
@@ -42,8 +43,9 @@
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
         request.urlString = url_Check;
     } success:^(id responseObject, JTLoadType type) {
-        if ([DataCheck isValidString:[responseObject objectForKey:@"regname"]]) {
-            NSString *regUrl = [NSString stringWithFormat:@"%@&mod=%@",url_Register,[responseObject objectForKey:@"regname"]];
+        NSString *regname = [responseObject objectForKey:@"regname"];
+        if ([DataCheck isValidString:regname]) {
+            NSString *regUrl = [NSString stringWithFormat:@"%@&mod=%@",url_Register,regname];
             if ([DataCheck isValidString:[responseObject objectForKey:@"formhash"]]) {
                 [Environment sharedEnvironment].formhash = [responseObject objectForKey:@"formhash"];
             }

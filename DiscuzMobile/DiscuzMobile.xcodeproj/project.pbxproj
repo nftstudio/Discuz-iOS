@@ -2132,6 +2132,8 @@
 				273415CE1EC1A5BE00534A82 /* PostTypeSelect */,
 				270561ED1E2DB5F90026F37F /* ForumInfoView.h */,
 				270561EE1E2DB5F90026F37F /* ForumInfoView.m */,
+				94F606492019E3B100B33AF5 /* BaseStyleCell.h */,
+				94F6064A2019E3B100B33AF5 /* BaseStyleCell.m */,
 				27D5C2311E2F1508004B46D7 /* ThreadListCell.h */,
 				27D5C2321E2F1508004B46D7 /* ThreadListCell.m */,
 				27505EE41EC05AAE007863F4 /* TopLabel.h */,
@@ -2397,8 +2399,6 @@
 				27B95D881E2C77E5005A931A /* HomeListCell.m */,
 				27B95D8D1E2CA4DA005A931A /* HomeIconTextView.h */,
 				27B95D8E1E2CA4DA005A931A /* HomeIconTextView.m */,
-				94F606492019E3B100B33AF5 /* BaseStyleCell.h */,
-				94F6064A2019E3B100B33AF5 /* BaseStyleCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

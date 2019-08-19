@@ -16,27 +16,29 @@ NSString * const CookieValue = @"COOKIEVALU";
 @implementation LoginModule
 
 + (void)loginAnylyeData:(id)responseObject andView:(UIView *)view andHandle:(void(^)(void))handle {
-    if (![DataCheck isValidDictionary:[responseObject objectForKey:@"Variables"]]) {
-        if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]]) {
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+    NSDictionary *Variables = [responseObject objectForKey:@"Variables"];
+    NSDictionary *Message = [responseObject objectForKey:@"Message"];
+    if (![DataCheck isValidDictionary:Variables]) {
+        if ([DataCheck isValidDictionary:Message]) {
+            [MBProgressHUD showInfo:[Message objectForKey:@"messagestr"]];
         } else {
             [MBProgressHUD showInfo:@"登录失败"];
         }
         return;
     }
-    NSString *messageval = [[responseObject objectForKey:@"Message"] objectForKey:@"messageval"];
+    NSString *messageval = [Message objectForKey:@"messageval"];
     if ([DataCheck isValidString:messageval] && [messageval containsString:@"succeed"]) { // 普通登录或者登录成功
         
-        if(![DataCheck isValidString:[[responseObject objectForKey:@"Variables"] objectForKey:@"auth"]]) {
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+        if(![DataCheck isValidString:[Variables objectForKey:@"auth"]]) {
+            [MBProgressHUD showInfo:[Message objectForKey:@"messagestr"]];
         } else {
             
-            if (![DataCheck isValidString:[[responseObject objectForKey:@"Variables"] objectForKey:@"member_uid"]]) {
+            if (![DataCheck isValidString:[Variables objectForKey:@"member_uid"]]) {
                 [MBProgressHUD showInfo:@"未能获取到您的用户id"];
                 return;
             }
-            [[Environment sharedEnvironment] setValuesForKeysWithDictionary:[responseObject objectForKey:@"Variables"]];
-            [LoginModule saveUserInfo:[responseObject objectForKey:@"Variables"]];
+            [[Environment sharedEnvironment] setValuesForKeysWithDictionary:Variables];
+            [LoginModule saveUserInfo:Variables];
             
             for (NSHTTPCookie * cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
                 
@@ -47,8 +49,8 @@ NSString * const CookieValue = @"COOKIEVALU";
             handle?handle():nil;
         }
     } else {
-        if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]]) {
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+        if ([DataCheck isValidDictionary:Message]) {
+            [MBProgressHUD showInfo:[Message objectForKey:@"messagestr"]];
         }
     }
 }

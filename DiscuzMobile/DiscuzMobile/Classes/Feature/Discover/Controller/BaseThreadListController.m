@@ -12,6 +12,8 @@
 #import "ThreadViewController.h"
 #import "BaseStyleCell.h"
 #import "DiscoverModel.h"
+#import "ThreadListCell.h"
+#import "ThreadListModel+Forumdisplay.h"
 
 @interface BaseThreadListController ()
 @property (nonatomic, assign) BOOL isRequest;
@@ -50,7 +52,7 @@
 
 - (void)initTableView {
     
-    [self.tableView registerClass:[BaseStyleCell class] forCellReuseIdentifier:[BaseStyleCell getReuseId]];
+    [self.tableView registerClass:[ThreadListCell class] forCellReuseIdentifier:[ThreadListCell getReuseId]];
     WEAKSELF;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf refreshData];
@@ -155,8 +157,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ThreadListModel *listModel = self.dataSourceArr[indexPath.row];
-    BaseStyleCell * cell = [self.tableView dequeueReusableCellWithIdentifier:[BaseStyleCell getReuseId]];
-    cell.info = listModel;
+    ThreadListCell * cell = [self.tableView dequeueReusableCellWithIdentifier:[ThreadListCell getReuseId]];
+    cell.info = [listModel dealSpecialThread];
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toOtherCenter:)];
     cell.headV.tag = [listModel.authorid integerValue];
     [cell.headV addGestureRecognizer:tapGes];
@@ -172,7 +174,7 @@
 }
 
 - (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
-    BaseStyleCell *cell = [tableView dequeueReusableCellWithIdentifier:[BaseStyleCell getReuseId]];
+    ThreadListCell *cell = [tableView dequeueReusableCellWithIdentifier:[ThreadListCell getReuseId]];
     ThreadListModel *listModel = self.dataSourceArr[indexPath.row];
     return [cell caculateCellHeight:listModel];
 }
