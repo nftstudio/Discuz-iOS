@@ -62,7 +62,6 @@
             WSImageModel *imgModel = imageArr[i];
             NSArray * imagear = [NSArray arrayWithObject:imgModel.image];;
             dispatch_group_enter(group);
-            
             [[UploadTool shareInstance] upLoadAttachmentArr:imagear attacheType:JTAttacheImage getDic:getdic postDic:postdic complete:^{
                 if (i == imageArr.count - 1) {
                     [self.pickerView.HUD hideAnimated:YES];

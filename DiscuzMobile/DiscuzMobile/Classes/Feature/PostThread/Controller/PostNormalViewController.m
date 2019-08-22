@@ -424,6 +424,7 @@
                                    }.mutableCopy;
     
     NormalThreadToolCell *cell = [self getToolCell];
+    [self.HUD showLoadingMessag:@"" toView:self.view];
     [cell.uploadView uploadImageArray:imageArr.copy getDic:getdic postDic:dic];
     
 }

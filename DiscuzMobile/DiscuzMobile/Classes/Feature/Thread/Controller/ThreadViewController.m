@@ -189,7 +189,7 @@
                         @"uid":[Environment sharedEnvironment].member_uid,
                         };
     NSDictionary * getdic=@{@"fid":self.threadModel.fid};
-    
+    [self.HUD showLoadingMessag:@"" toView:self.view];
     [self.detailView.emoKeyboard.uploadView uploadImageArray:imageArr.copy getDic:getdic postDic:dic];
 }
 
