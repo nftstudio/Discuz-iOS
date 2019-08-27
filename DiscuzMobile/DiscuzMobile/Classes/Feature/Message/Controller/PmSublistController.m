@@ -259,9 +259,9 @@
         request.methodType = JTMethodTypePOST;
         request.parameters = parameters;
     } success:^(id responseObject, JTLoadType type) {
-        NSString *message = [[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] componentsSeparatedByString:@"_"].lastObject;
+        NSString *messageval = [responseObject messageval];
         
-        if ([message isEqualToString:@"succeed"] || [message isEqualToString:@"success"]){
+        if ([messageval containsString:@"succeed"] || [messageval containsString:@"success"]){
             [self.dataSourceArr removeObjectAtIndex:indexPath.row];
             [self.tableView beginUpdates];
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];

@@ -176,12 +176,12 @@ NSString * const debugPassword = @"debugPassword";
         request.getParam = getData;
     } success:^(id responseObject, JTLoadType type) {
         [self.HUD hide];
-        if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]] && [[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] isEqualToString:@"login_question_empty"]) {
+        if ([[responseObject messageval] isEqualToString:@"login_question_empty"]) {
             [self.logView.securityView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(TEXTHEIGHT);
                 self.logView.securityView.hidden = NO;
             }];
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+            [MBProgressHUD showInfo:[responseObject messagestr]];
         } else {
             [self setUserInfo:responseObject];
 #if DEBUG
@@ -250,8 +250,7 @@ NSString * const debugPassword = @"debugPassword";
 #pragma mark - 请求成功操作
 - (void)setUserInfo:(id)responseObject {
 
-    NSString *messageval = [[responseObject objectForKey:@"Message"] objectForKey:@"messageval"];
-    if ([DataCheck isValidString:messageval] && [messageval containsString:@"no_bind"]) {
+    if ([[responseObject messageval] containsString:@"no_bind"]) {
         // 去第三方绑定页面
         [self boundThirdview];
     } else {

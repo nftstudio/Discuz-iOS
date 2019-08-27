@@ -120,12 +120,11 @@
         request.parameters = dic;
         request.getParam = getdic;
     } success:^(id responseObject, JTLoadType type) {
-        self.HUD.hidden=YES;
-        NSString *stauts = [[responseObject objectForKey:@"Message"] objectForKey:@"messageval"];
-        NSString *msg = [[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"];
+        [self.HUD hide];
+        NSString *stauts = [responseObject messageval];
+        NSString *msg = [responseObject messagestr];
         if ([stauts isEqualToString:@"do_success"]) {
             [MBProgressHUD showInfo:msg];
-            
             [self.navigationController popViewControllerAnimated:YES];
         }else if ([stauts isEqualToString:@"unable_to_send_air_news"]) {
             [MBProgressHUD showInfo:msg];
@@ -134,7 +133,6 @@
         } else {
             [MBProgressHUD showInfo:msg];
         }
-        DLog(@"%@",msg);
         self.messageTextView.text=nil;
         self.placeholderLabel.hidden = NO;
         self.titleTextField.text=nil;

@@ -17,42 +17,34 @@ NSString * const CookieValue = @"COOKIEVALU";
 
 + (void)loginAnylyeData:(id)responseObject andView:(UIView *)view andHandle:(void(^)(void))handle {
     NSDictionary *Variables = [responseObject objectForKey:@"Variables"];
-    NSDictionary *Message = [responseObject objectForKey:@"Message"];
-    if (![DataCheck isValidDictionary:Variables]) {
-        if ([DataCheck isValidDictionary:Message]) {
-            [MBProgressHUD showInfo:[Message objectForKey:@"messagestr"]];
-        } else {
-            [MBProgressHUD showInfo:@"登录失败"];
-        }
+    NSString *messageval = [responseObject messageval];
+    NSString *messagestr = [responseObject messagestr];
+    if (![messageval containsString:@"succeed"]) {
+        [MBProgressHUD showInfo:messagestr];
         return;
     }
-    NSString *messageval = [Message objectForKey:@"messageval"];
-    if ([DataCheck isValidString:messageval] && [messageval containsString:@"succeed"]) { // 普通登录或者登录成功
+    
+    if(![DataCheck isValidString:[Variables objectForKey:@"auth"]]) {
+        [MBProgressHUD showInfo:messagestr];
+        return;
+    }
+    
+    if (![DataCheck isValidString:[Variables objectForKey:@"member_uid"]]) {
+        [MBProgressHUD showInfo:@"未能获取到您的用户id"];
+        return;
+    }
+    
+    // 普通登录或者登录成功
+    [[Environment sharedEnvironment] setValuesForKeysWithDictionary:Variables];
+    [LoginModule saveUserInfo:Variables];
+    
+    for (NSHTTPCookie * cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
         
-        if(![DataCheck isValidString:[Variables objectForKey:@"auth"]]) {
-            [MBProgressHUD showInfo:[Message objectForKey:@"messagestr"]];
-        } else {
-            
-            if (![DataCheck isValidString:[Variables objectForKey:@"member_uid"]]) {
-                [MBProgressHUD showInfo:@"未能获取到您的用户id"];
-                return;
-            }
-            [[Environment sharedEnvironment] setValuesForKeysWithDictionary:Variables];
-            [LoginModule saveUserInfo:Variables];
-            
-            for (NSHTTPCookie * cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
-                
-                if ([[cookie name] isEqualToString:[NSString stringWithFormat:@"%@",[Environment sharedEnvironment].authKey]]) {
-                    [LoginModule saveCookie:cookie];
-                }
-            }
-            handle?handle():nil;
-        }
-    } else {
-        if ([DataCheck isValidDictionary:Message]) {
-            [MBProgressHUD showInfo:[Message objectForKey:@"messagestr"]];
+        if ([[cookie name] isEqualToString:[NSString stringWithFormat:@"%@",[Environment sharedEnvironment].authKey]]) {
+            [LoginModule saveCookie:cookie];
         }
     }
+    handle?handle():nil;
 }
 
 /*

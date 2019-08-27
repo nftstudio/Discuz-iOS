@@ -469,57 +469,45 @@
         request.urlString = url_Sendreply;
         request.parameters = dic;
     } success:^(id responseObject, JTLoadType type) {
-        [self.HUD hideAnimated:YES];
-        DLog(@"responseObject=%@",responseObject);
+        [self.HUD hide];
         
-        DLog(@"%@",[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]);
-        if ([DataCheck isValidString:[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"]]) {
+        NSString *messageval = [responseObject messageval];
+        if ([messageval containsString:@"succeed"] || [messageval containsString:@"success"]) {
+            self.emoKeyboard.textBarView.textView.text = nil;
+            [MBProgressHUD showInfo:@"发送成功"];
             
-            NSString *message = [[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] componentsSeparatedByString:@"_"].lastObject;
+            NSDictionary *getDic = @{@"formhash":[Environment sharedEnvironment].formhash};
+            NSMutableDictionary *postDic = @{@"message":[dic objectForKey:@"message"],
+                                             @"tid":self.listModel.tid,
+                                             @"authorid":[[Environment sharedEnvironment] member_uid],
+                                             @"author":[[Environment sharedEnvironment] member_username],
+                                             @"pid":[[responseObject objectForKey:@"Variables"] objectForKey:@"pid"]}.mutableCopy;
+            NSArray *aidArr = self.emoKeyboard.uploadView.uploadModel.aidArray;
+            if (self.emoKeyboard.uploadView.uploadModel.aidArray.count > 0) {
+                [postDic setValue:aidArr forKey:@"image"];
+            }
             
-            if ([message isEqualToString:@"succeed"] || [message isEqualToString:@"success"]) {
-                self.emoKeyboard.textBarView.textView.text = nil;
-                [MBProgressHUD showInfo:@"发送成功"];
+            [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
+                request.methodType = JTMethodTypePOST;
+                //                    request.urlString = url_LivePusher;
+                request.getParam = getDic;
+                request.parameters = postDic;
                 
-                NSDictionary *getDic = @{@"formhash":[Environment sharedEnvironment].formhash};
-                NSMutableDictionary *postDic = @{@"message":[dic objectForKey:@"message"],
-                                                 @"tid":self.listModel.tid,
-                                                 @"authorid":[[Environment sharedEnvironment] member_uid],
-                                                 @"author":[[Environment sharedEnvironment] member_username],
-                                                 @"pid":[[responseObject objectForKey:@"Variables"] objectForKey:@"pid"]}.mutableCopy;
-                NSArray *aidArr = self.emoKeyboard.uploadView.uploadModel.aidArray;
-                if (self.emoKeyboard.uploadView.uploadModel.aidArray.count > 0) {
-                    [postDic setValue:aidArr forKey:@"image"];
-                }
+            } success:^(id responseObject, JTLoadType type) {
                 
-                [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
-                    request.methodType = JTMethodTypePOST;
-//                    request.urlString = url_LivePusher;
-                    request.getParam = getDic;
-                    request.parameters = postDic;
-                    
-                } success:^(id responseObject, JTLoadType type) {
-                    
-                    DLog(@"%@",responseObject);
-                    
-                } failed:^(NSError *error) {
-                    
-                    DLog(@"%@",error);
-                    
-                }];
                 
-                [self rightNow:dic andResponse:responseObject];
+            } failed:^(NSError *error) {
                 
-                [self.emoKeyboard clearData];
-            }
-            else {
-                DLog(@"%@",[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]);
-                [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
-            }
-        } else {
-            [MBProgressHUD showInfo:@"发送失败"];
+                
+            }];
+            
+            [self rightNow:dic andResponse:responseObject];
+            
+            [self.emoKeyboard clearData];
         }
-        
+        else {
+            [MBProgressHUD showInfo:[responseObject messagestr]];
+        }
         
         
     } failed:^(NSError *error) {

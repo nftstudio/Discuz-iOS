@@ -25,14 +25,16 @@
         request.getParam = getDic;
         request.parameters = postDic;
     } success:^(id responseObject, JTLoadType type) {
-        if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] isEqualToString:@"favorite_do_success"]) {
+        NSString *messageval = [responseObject messageval];
+        NSString *messagestr = [responseObject messagestr];
+        if ([messageval isEqualToString:@"favorite_do_success"]) {
             success();
-        } else if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] isEqualToString:@"favorite_repeat"]) {
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+        } else if ([messageval isEqualToString:@"favorite_repeat"]) {
+            [MBProgressHUD showInfo:messagestr];
             success();
         }
         else {
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+            [MBProgressHUD showInfo:messagestr];
         }
     } failed:^(NSError *error) {
         [MBProgressHUD showInfo:@"收藏失败"];
@@ -51,14 +53,14 @@
         request.getParam = getDic;
         request.parameters = postDic;
     } success:^(id responseObject, JTLoadType type) {
-        NSLog(@"%@",responseObject);
-        
-        if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] isEqualToString:@"do_success"])
+        NSString *messageval = [responseObject messageval];
+        NSString *messagestr = [responseObject messagestr];
+        if ([messageval isEqualToString:@"do_success"])
         {
             success();
         } else
         {
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+            [MBProgressHUD showInfo:messagestr];
         }
     } failed:^(NSError *error) {
         [MBProgressHUD showInfo:@"取消收藏失败"];
@@ -75,10 +77,12 @@
         request.getParam = getDic;
         request.parameters = postDic;
     } success:^(id responseObject, JTLoadType type) {
-        if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] isEqualToString:@"favorite_do_success"]) {
+        NSString *messageval = [responseObject messageval];
+        NSString *messagestr = [responseObject messagestr];
+        if ([messageval isEqualToString:@"favorite_do_success"]) {
             success?success():nil;
         } else {
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+            [MBProgressHUD showInfo:messagestr];
         }
     } failed:^(NSError *error) {
         [MBProgressHUD showInfo:@"收藏失败"];
@@ -87,6 +91,5 @@
         }
     }];
 }
-
 
 @end

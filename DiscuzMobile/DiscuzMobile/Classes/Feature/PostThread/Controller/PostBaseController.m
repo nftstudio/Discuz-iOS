@@ -115,33 +115,26 @@
 
 - (void)requestPostSucceed:(id)responseObject {
     
-    [self.HUD setHidden:YES];
-    
-    if ([DataCheck isValidString:[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"]]) {
-        
-        NSString *message = [[responseObject objectForKey:@"Message"] objectForKey:@"messageval"];
-        if ([message containsString:@"succeed"] || [message containsString:@"success"]) {
-            if ([DataCheck isValidString:[[responseObject objectForKey:@"Variables"] objectForKey:@"tid"]]) {
-                [self.navigationController popViewControllerAnimated:NO];
-                if (self.pushDetailBlock) {
-                    self.pushDetailBlock([[responseObject objectForKey:@"Variables"] objectForKey:@"tid"]);
-                }
-                
-                return;
+    [self.HUD hide];
+    NSString *messageval = [responseObject messageval];
+    NSString *messagestr = [responseObject messagestr];
+    if ([messageval containsString:@"succeed"] || [messageval containsString:@"success"]) {
+        if ([DataCheck isValidString:[[responseObject objectForKey:@"Variables"] objectForKey:@"tid"]]) {
+            [self.navigationController popViewControllerAnimated:NO];
+            if (self.pushDetailBlock) {
+                self.pushDetailBlock([[responseObject objectForKey:@"Variables"] objectForKey:@"tid"]);
             }
-            
-        } else if ([message isEqualToString:@"group_nopermission"]) {
-            [UIAlertController alertTitle:@"提示" message:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"] controller:self doneText:@"确定" cancelText:nil doneHandle:^{
-                [self.navigationController popViewControllerAnimated:YES];
-            } cancelHandle:nil];
             return;
         }
-        
-        [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
-        
-    } else {
-        [MBProgressHUD showInfo:@"发帖失败"];
     }
+    if ([messageval isEqualToString:@"group_nopermission"]) {
+        [UIAlertController alertTitle:@"提示" message:messagestr controller:self doneText:@"确定" cancelText:nil doneHandle:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        } cancelHandle:nil];
+        return;
+    }
+    
+    [MBProgressHUD showInfo:messagestr];
     
 }
 

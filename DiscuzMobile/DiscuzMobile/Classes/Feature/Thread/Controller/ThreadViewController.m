@@ -366,15 +366,12 @@
         request.getParam = dic;
     } success:^(id responseObject, JTLoadType type) {
         [self.HUD hide];
-        NSString *messageval = [[responseObject objectForKey:@"Message"] objectForKey:@"messageval"];
-        NSString *messagestr = [[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"];
-        if ([DataCheck isValidString:messageval]) {
-            if ([messageval containsString:@"_success"]) {
-                [MBProgressHUD showInfo:messagestr];
-                self.currentPageId = 1;
-                [self newDownLoadData];
-                return;
-            }
+        NSString *messagestr = [responseObject messagestr];
+        if ([[responseObject messageval] containsString:@"_success"]) {
+            [MBProgressHUD showInfo:messagestr];
+            self.currentPageId = 1;
+            [self newDownLoadData];
+            return;
         }
         [MBProgressHUD showInfo:messagestr];
     } failed:^(NSError *error) {
@@ -450,12 +447,10 @@
         request.parameters = dic;
         request.methodType = JTMethodTypePOST;
     } success:^(id responseObject, JTLoadType type) {
-        if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Message"]]) {
-            if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] containsString:@"succeed"]) {
-                [MBProgressHUD showInfo:@"提交成功！"];
-            } else {
-                [MBProgressHUD showInfo:@"提交失败，请稍后再试"];
-            }
+        if ([[responseObject messageval] containsString:@"succeed"]) {
+            [MBProgressHUD showInfo:@"提交成功！"];
+        } else {
+            [MBProgressHUD showInfo:@"提交失败，请稍后再试"];
         }
     } failed:^(NSError *error) {
         [MBProgressHUD showInfo:@"提交失败，请稍后再试"];
@@ -510,16 +505,18 @@
         request.parameters = postdic;
         request.getParam = getDic;
     } success:^(id responseObject, JTLoadType type) {
-        
-        if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] containsString:@"succeed"]) {
-            
-            [UIAlertController alertTitle:@"投票成功" message:@"是否查看投票结果" controller:self doneText:@"确定" cancelText:@"取消" doneHandle:^{
-                [self newDownLoadData];
-            } cancelHandle:nil];
+        if ([[responseObject messageval] containsString:@"succeed"]) {
+            [UIAlertController alertTitle:@"投票成功"
+                                  message:@"是否查看投票结果"
+                               controller:self
+                                 doneText:@"确定"
+                               cancelText:@"取消"
+                               doneHandle:^{
+                                   [self newDownLoadData];
+                               } cancelHandle:nil];
         } else {
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+            [MBProgressHUD showInfo:[responseObject messagestr]];
         }
-        
     } failed:^(NSError *error) {
         [self showServerError:error];
     }];

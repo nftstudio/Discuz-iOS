@@ -297,39 +297,9 @@
         request.parameters = postdic;
         request.getParam = getdic;
     } success:^(id responseObject, JTLoadType type) {
-        [self.HUD setHidden:YES];
-        DLog(@"postnewthread%@",responseObject);
-        DLog(@"%@",[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]);
-        
-        if ([DataCheck isValidString:[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"]]) {
-            //             NSString *message = [[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] componentsSeparatedByString:@"_"].lastObject;
-            
-            NSString *message = [[responseObject objectForKey:@"Message"] objectForKey:@"messageval"];
-            if ([message containsString:@"succeed"] || [message containsString:@"success"]) {
-                if ([DataCheck isValidString:[[responseObject objectForKey:@"Variables"] objectForKey:@"tid"]]) {
-                    [self.navigationController popViewControllerAnimated:NO];
-                    if (self.pushDetailBlock) {
-                        self.pushDetailBlock([[responseObject objectForKey:@"Variables"] objectForKey:@"tid"]);
-                    }
-                    
-                    return;
-                }
-            } else if ([message isEqualToString:@"group_nopermission"]) {
-                [UIAlertController alertTitle:@"提示" message:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"] controller:self doneText:@"确定" cancelText:nil doneHandle:^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                } cancelHandle:nil];
-                
-                return;
-            }
-            
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
-            
-        } else {
-            [MBProgressHUD showInfo:@"发帖失败"];
-        }
-        
+        [self requestPostSucceed:responseObject];
     } failed:^(NSError *error) {
-        [self.HUD setHidden:YES];
+        [self.HUD hide];
         [self showServerError:error];
     }];
 }

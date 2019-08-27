@@ -21,20 +21,14 @@
             request.urlString = url_Praise;
             request.parameters = paramter;
         } success:^(id responseObject, JTLoadType type) {
-            DLog(@"%@",responseObject);
-            if ([DataCheck isValidString:[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"]]) {
-                
-                NSString *message = [[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] componentsSeparatedByString:@"_"].lastObject;
-                
-                if ([message isEqualToString:@"succeed"] || [message isEqualToString:@"success"]) {
-                    success?success():nil;
-                } else {
-                    failure?failure(nil):nil;
-                    [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
-                }
+            NSString *messageval = [responseObject messageval];
+            NSString *messagestr = [responseObject messagestr];
+            
+            if ([messageval containsString:@"succeed"] || [messageval containsString:@"success"]) {
+                success?success():nil;
             } else {
                 failure?failure(nil):nil;
-                [MBProgressHUD showInfo:@"点赞失败"];
+                [MBProgressHUD showInfo:messagestr];
             }
             
         } failed:^(NSError *error) {

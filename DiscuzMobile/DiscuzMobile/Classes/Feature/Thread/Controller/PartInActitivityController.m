@@ -223,21 +223,18 @@
         request.parameters = dic;
         request.getParam = getdic;
     } success:^(id responseObject, JTLoadType type) {
-        DLog(@"%@",responseObject);
-        [self.HUD hideAnimated:YES];
-        if ([DataCheck isValidString:[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"]]) {
-            if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] isEqualToString:@"activity_completion"]) {
-                [MBProgressHUD showInfo:@"报名成功"];
-                [[NSNotificationCenter defaultCenter] postNotificationName:REFRESHWEB object:nil];
-                
-                [self.navigationController popViewControllerAnimated:YES];
-            } else {
-                [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
-            }
+        [self.HUD hide];
+        if ([[responseObject messageval] isEqualToString:@"activity_completion"]) {
+            [MBProgressHUD showInfo:@"报名成功"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:REFRESHWEB object:nil];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [MBProgressHUD showInfo:[responseObject messagestr]];
         }
         
     } failed:^(NSError *error) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self showServerError:error];
     }];
 }

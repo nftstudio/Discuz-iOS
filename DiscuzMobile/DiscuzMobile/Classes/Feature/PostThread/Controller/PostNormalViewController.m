@@ -336,7 +336,7 @@
 
 - (void)requestPostSucceed:(id)responseObject {
     [super requestPostSucceed:responseObject];
-    NSString *message = [[responseObject objectForKey:@"Message"] objectForKey:@"messageval"];
+    NSString *message = [responseObject messageval];
     if ([message containsString:@"succeed"] || [message containsString:@"success"]) {
         [[AudioTool shareInstance] clearAudio];
     }
@@ -347,8 +347,8 @@
 {
     NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObject:[Environment sharedEnvironment].formhash forKey:@"formhash"];
     
-    [dic setObject:self.normalModel.subject forKey: @"subject"];
-    [dic setObject:self.normalModel.message forKey: @"message"];
+    [dic setObject:self.normalModel.subject forKey:@"subject"];
+    [dic setObject:self.normalModel.message forKey:@"message"];
     [dic setObject:@"1" forKey:@"allownoticeauthor"];  // 设置回帖的时候提醒作者
     
     // TODO: 正确处理应该要选择主题类型

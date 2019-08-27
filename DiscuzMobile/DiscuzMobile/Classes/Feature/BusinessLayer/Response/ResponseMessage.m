@@ -11,9 +11,9 @@
 @implementation ResponseMessage
 
 + (BOOL)autherityJudgeResponseObject:(NSDictionary *)responseObject refuseBlock:(void(^)(NSString *message))refuseBlock {
-    NSString *messageval = [[responseObject objectForKey:@"Message"] objectForKey:@"messageval"];
+    NSString *messageval = [responseObject messageval];
     if ([messageval containsString:@"nonexistence"] || [messageval containsString:@"nopermission"] || [messageval containsString:@"nomedal"]) {
-        refuseBlock?refuseBlock([[[responseObject objectForKey:@"Message"]  objectForKey:@"messagestr"] transformationStr]):nil;
+        refuseBlock?refuseBlock([responseObject messagestr]):nil;
         return NO;
     }
     return YES;

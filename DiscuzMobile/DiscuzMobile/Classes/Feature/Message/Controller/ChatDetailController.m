@@ -320,11 +320,10 @@
         request.parameters = dic;
         request.getParam = getdic;
     } success:^(id responseObject, JTLoadType type) {
-        DLog(@"responseObject ===> %@",responseObject);
-        [self.HUD hideAnimated:NO];
-        NSString *message = [[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] componentsSeparatedByString:@"_"].lastObject;
-        
-        if ([message isEqualToString:@"succeed"] || [message isEqualToString:@"success"])  {
+        [self.HUD hide];
+        NSString *messageval = [responseObject messageval];
+        NSString *messagestr = [responseObject messagestr];
+        if ([messageval containsString:@"succeed"] || [messageval containsString:@"success"])  {
             [MBProgressHUD showInfo:@"发送成功"];
             self.page = 0;
             _isRefresh = YES;
@@ -332,15 +331,14 @@
             self.emoKeyboard.textBarView.textView.text = @"";
             
         } else {
-            DLog(@"问题 ===> %@",[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]);
             NSString *tip = @"发消息的时间间隔小于15秒，请稍后再试";
-            if ([DataCheck isValidString:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]]) {
-                tip = [[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"];
+            if ([DataCheck isValidString:messagestr]) {
+                tip = messagestr;
             }
             [MBProgressHUD showInfo:tip];
         }
     } failed:^(NSError *error) {
-        [self.HUD hideAnimated:NO];
+        [self.HUD hide];
         [self showServerError:error];
     }];
     
@@ -427,9 +425,9 @@
         request.parameters = parameters;
     } success:^(id responseObject, JTLoadType type) {
         DLog(@"%@",responseObject);
-        NSString *message = [[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] componentsSeparatedByString:@"_"].lastObject;
+        NSString *messageval = [responseObject messageval];
         
-        if ([message isEqualToString:@"succeed"] || [message isEqualToString:@"success"]) {
+        if ([messageval containsString:@"succeed"] || [messageval containsString:@"success"]) {
             
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.pressIndexRow inSection:0];
             [self.messageModelArr removeObjectAtIndex:self.pressIndexRow];

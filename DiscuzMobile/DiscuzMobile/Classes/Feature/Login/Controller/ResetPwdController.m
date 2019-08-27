@@ -129,23 +129,18 @@
         request.urlString = url_resetPwd;
         request.parameters = postDic;
     } success:^(id responseObject, JTLoadType type) {
-        [self.HUD hideAnimated:YES];
-        if ([DataCheck isValidDictionary:responseObject]) {
-            if ([DataCheck isValidString:[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"]]) {
-                NSString *messageval = [[responseObject objectForKey:@"Message"] objectForKey:@"messageval"];
-                if ([messageval containsString:@"succeed"]) {
-                    [MBProgressHUD showInfo:@"修改密码成功，请重新登录"];
-                    [LoginModule signout];
-                    [self.navigationController popViewControllerAnimated:NO];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:SIGNOUTNOTIFY object:nil];
-                } else {
-                    [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
-                }
-            }
+        [self.HUD hide];
+        if ([[responseObject messageval] containsString:@"succeed"]) {
+            [MBProgressHUD showInfo:@"修改密码成功，请重新登录"];
+            [LoginModule signout];
+            [self.navigationController popViewControllerAnimated:NO];
+            [[NSNotificationCenter defaultCenter] postNotificationName:SIGNOUTNOTIFY object:nil];
+        } else {
+            [MBProgressHUD showInfo:[responseObject messagestr]];
         }
     } failed:^(NSError *error) {
         [self showServerError:error];
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
     }];
     
 }

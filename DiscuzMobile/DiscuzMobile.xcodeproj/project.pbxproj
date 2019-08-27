@@ -1174,6 +1174,9 @@
 		94A7560F20FDDCD50031FA05 /* FastPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A7560E20FDDCD50031FA05 /* FastPostController.m */; };
 		94A7561020FDDCD50031FA05 /* FastPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A7560E20FDDCD50031FA05 /* FastPostController.m */; };
 		94A7561120FDDCD50031FA05 /* FastPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A7560E20FDDCD50031FA05 /* FastPostController.m */; };
+		94ABCF9F23152F480060A49E /* NSDictionary+ResMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ABCF9E23152F480060A49E /* NSDictionary+ResMessage.m */; };
+		94ABCFA023152F480060A49E /* NSDictionary+ResMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ABCF9E23152F480060A49E /* NSDictionary+ResMessage.m */; };
+		94ABCFA123152F480060A49E /* NSDictionary+ResMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94ABCF9E23152F480060A49E /* NSDictionary+ResMessage.m */; };
 		94B1066E22F165D800D40827 /* VersionUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B1066C22F165D700D40827 /* VersionUpdate.m */; };
 		94B1067422F1678700D40827 /* SELUpdateAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B1067122F1678700D40827 /* SELUpdateAlert.m */; };
 		94B1067522F1678700D40827 /* SELUpdateAlertConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B1067222F1678700D40827 /* SELUpdateAlertConst.m */; };
@@ -1957,6 +1960,8 @@
 		94A7560920FD92A20031FA05 /* ResetPwdController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResetPwdController.m; sourceTree = "<group>"; };
 		94A7560D20FDDCD50031FA05 /* FastPostController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastPostController.h; sourceTree = "<group>"; };
 		94A7560E20FDDCD50031FA05 /* FastPostController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastPostController.m; sourceTree = "<group>"; };
+		94ABCF9D23152F480060A49E /* NSDictionary+ResMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ResMessage.h"; sourceTree = "<group>"; };
+		94ABCF9E23152F480060A49E /* NSDictionary+ResMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ResMessage.m"; sourceTree = "<group>"; };
 		94B1066C22F165D700D40827 /* VersionUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionUpdate.m; sourceTree = "<group>"; };
 		94B1066D22F165D700D40827 /* VersionUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionUpdate.h; sourceTree = "<group>"; };
 		94B1067022F1678700D40827 /* SELUpdateAlertConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELUpdateAlertConst.h; sourceTree = "<group>"; };
@@ -3944,6 +3949,8 @@
 			children = (
 				94C3F978205F8D7900A09DFD /* ResponseMessage.h */,
 				94C3F979205F8D7900A09DFD /* ResponseMessage.m */,
+				94ABCF9D23152F480060A49E /* NSDictionary+ResMessage.h */,
+				94ABCF9E23152F480060A49E /* NSDictionary+ResMessage.m */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -4667,6 +4674,7 @@
 				276FA2BD1F2AE13100F8924B /* ApplyStatusView.m in Sources */,
 				27BD286F1EFCC60E00B30446 /* ViewpointCell.m in Sources */,
 				2716AF7F1DDD99BF00F580AC /* SendMessageViewController.m in Sources */,
+				94ABCF9F23152F480060A49E /* NSDictionary+ResMessage.m in Sources */,
 				947ECB1A2064D403002D3536 /* WSImageBroswerVC.m in Sources */,
 				27B95D891E2C77E5005A931A /* HomeListCell.m in Sources */,
 				27714E911DDC48A9008CDC7A /* Reachability.m in Sources */,
@@ -5096,6 +5104,7 @@
 				94110E3E1FDFA09A0033E94C /* SettingViewController.m in Sources */,
 				94110E3F1FDFA09A0033E94C /* MsglistCell.m in Sources */,
 				94110E401FDFA09A0033E94C /* RNCachingURLProtocol.m in Sources */,
+				94ABCFA023152F480060A49E /* NSDictionary+ResMessage.m in Sources */,
 				94110E411FDFA09A0033E94C /* UIView+Extension.m in Sources */,
 				94110E421FDFA09A0033E94C /* LianCollectionController.m in Sources */,
 				94110E431FDFA09A0033E94C /* NormalThreadToolCell.m in Sources */,
@@ -5425,6 +5434,7 @@
 				94110FCA1FDFB3870033E94C /* UIView+Extension.m in Sources */,
 				94110FCB1FDFB3870033E94C /* LianCollectionController.m in Sources */,
 				94110FCC1FDFB3870033E94C /* NormalThreadToolCell.m in Sources */,
+				94ABCFA123152F480060A49E /* NSDictionary+ResMessage.m in Sources */,
 				94110FCD1FDFB3870033E94C /* publicpmCell.m in Sources */,
 				947ECAFB2064D403002D3536 /* JFImagePickerViewCell.m in Sources */,
 				94110FCE1FDFB3870033E94C /* BoundInfoModel.m in Sources */,

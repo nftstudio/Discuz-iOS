@@ -42,6 +42,7 @@
 #import "MBProgressHUD+Add.h"
 #import "DZMonitorKeyboard.h"
 #import "NSString+EmojiCheck.h"
+#import "NSDictionary+ResMessage.h"
 
 #import "DZApiRequest.h"
 #import "URLStrings.h"

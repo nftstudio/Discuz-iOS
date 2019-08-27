@@ -69,17 +69,16 @@
         request.getParam = getDic;
         request.methodType = JTMethodTypePOST;
     } success:^(id responseObject, JTLoadType type) {
-        [self.HUD hideAnimated:YES];
-        DLog(@"%@",responseObject);
-        if ([[[responseObject objectForKey:@"Message"] objectForKey:@"messageval"] containsString:@"_completion"]) {
-            [MBProgressHUD showInfo:[[responseObject objectForKey:@"Message"] objectForKey:@"messagestr"]];
+        [self.HUD hide];
+        if ([[responseObject messageval] containsString:@"_completion"]) {
+            [MBProgressHUD showInfo:[responseObject messagestr]];
             [self.examineView close];
             
             [self loadData];
         }
         
     } failed:^(NSError *error) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self showServerError:error];
     }];
 }
