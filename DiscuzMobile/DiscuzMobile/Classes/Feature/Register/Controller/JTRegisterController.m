@@ -147,12 +147,12 @@
     }
     
     NSMutableDictionary *postData = @{[regKeyDic objectForKey:@"username"]:username,
-                                    [regKeyDic objectForKey:@"password"]:password,
-                                    [regKeyDic objectForKey:@"password2"]:repass,
-                                    [regKeyDic objectForKey:@"email"]:email,
-                                    @"formhash":[Environment sharedEnvironment].formhash,
-                                    @"regsubmit":@"yes",
-                                    }.mutableCopy;
+                                      [regKeyDic objectForKey:@"password"]:password,
+                                      [regKeyDic objectForKey:@"password2"]:repass,
+                                      [regKeyDic objectForKey:@"email"]:email,
+                                      @"formhash":[Environment sharedEnvironment].formhash,
+                                      @"regsubmit":@"yes",
+                                      }.mutableCopy;
     NSMutableDictionary *getData = [NSMutableDictionary dictionary];
     if (self.verifyView.isyanzhengma) {
         if ([DataCheck isValidString:self.registerView.authcodeView.textField.text]) {

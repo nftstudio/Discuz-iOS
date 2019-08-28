@@ -22,6 +22,7 @@
     }
     return self;
 }
+
 + (instancetype)initWithText:(NSString *)text andIconName:(NSString *)iconName andDetail:(NSString *)detail {
     TextIconModel *model = [[TextIconModel alloc] initWithText:text andIconName:iconName andDetail:detail];
     return model;

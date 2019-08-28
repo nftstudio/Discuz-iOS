@@ -57,7 +57,6 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf refreshData];
         if ([weakSelf.view hu_intersectsWithAnotherView:nil]) {
-            NSLog(@"重合了");
         }
     }];
     

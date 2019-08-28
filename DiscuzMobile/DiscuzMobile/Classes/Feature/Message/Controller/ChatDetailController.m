@@ -57,7 +57,6 @@
     [self.view addSubview:self.chatTableView];
 }
 
-
 /**
  *  点击聊天界面收起键盘
  */
@@ -123,6 +122,7 @@
     }
     return _emoKeyboard;
 }
+
 - (void)createHPGrowingTextView{
     //增加监听，当键盘出现或改变时收出消息
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -140,22 +140,20 @@
     self.emoKeyboard.sendBlock = ^ {
         [weakSelf sendAction];
     };
+    
     self.emoKeyboard.textBarView.sendMessageBlock = ^ {
         [weakSelf sendAction];
     };
+    
     self.emoKeyboard.showBlock = ^(CGFloat height) {
-        
         [weakSelf keyboardShowChatViewScroll:height];
-        
     };
     
     self.emoKeyboard.changeBlock = ^(CGFloat eveheight, CGFloat height) {
-        
         NSTimeInterval animationDuration = BShowTime;
         [weakSelf chatViewScrollAnimation:animationDuration andOffsetY:CGRectGetMinY(weakSelf.chatTableView.frame) - eveheight];
     };
 }
-
 
 #pragma mark -  键盘sendAction
 -(void)sendAction{
@@ -188,14 +186,12 @@
 }
 
 - (void)chatViewScrollAnimation:(NSTimeInterval)duration andOffsetY:(CGFloat)offsetY {
-    
     CGRect frame = self.chatTableView.frame;
     CGRect rect = CGRectMake(0.0,offsetY,frame.size.width,frame.size.height);
     [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
     [UIView setAnimationDuration:duration];
     self.chatTableView.frame = rect;
     [UIView commitAnimations];
-    
 }
 
 /**
@@ -205,8 +201,7 @@
  */
 - (void)keyboardShowChatViewScroll:(CGFloat)customKeyboardHeight {
     NSTimeInterval animationDuration = BShowTime;
-    //
-    
+
     if (self.messageModelArr.count > 0) {
         
         NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:self.messageModelArr.count - 1 inSection:0];
@@ -214,8 +209,6 @@
         UITableViewCell *lastCell = [self.chatTableView cellForRowAtIndexPath:lastIndexPath];
         
         if ([self.chatTableView.visibleCells containsObject:lastCell]) {
-            
-            //        CGRect lastFrame = [lastCell convertRect:lastCell.frame toView:self.chatTableView];
             
             CGRect lastFrame = lastCell.frame;
             CGFloat offsetY = CGRectGetMaxY(lastFrame) - (HEIGHT - customKeyboardHeight);
@@ -235,7 +228,6 @@
 //当键退出时调用
 - (void)keyboardWillHide:(NSNotification *)aNotification {
     [self restoreChatView];
-    
 }
 
 /**
@@ -251,17 +243,16 @@
         request.methodType = JTMethodTypePOST;
         request.parameters = postdic;
     } success:^(id responseObject, JTLoadType type) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         self.sourceDic = [responseObject objectForKey:@"Variables"];
         NSArray * dataArray = [[responseObject objectForKey:@"Variables"] objectForKey:@"list"];
-        DLog(@"%@",responseObject);
         if (_isRefresh) {
             [self.messageModelArr removeAllObjects];
             self.page = [[self.sourceDic objectForKey:@"page"] integerValue] - 1;
             
         }
         // 每次刷新的内容插入到数组最前面，放在顶端，使之前的展示在用户可视范围内
-        int i=0;
+        int i = 0;
         for (NSMutableDictionary * dict in dataArray) {//msgfromid   authorid
             NSMutableDictionary  * newDic = [NSMutableDictionary dictionaryWithDictionary:dict];
             if ([[newDic objectForKey:@"msgfromid"] isEqualToString:[LoginModule getLoggedUid]]) {
@@ -284,8 +275,7 @@
         }
         
     } failed:^(NSError *error) {
-        DLog(@"%@",error);
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self showServerError:error];
     }];
 }
@@ -296,8 +286,6 @@
 }
 
 -(void)postBtnClick:(UIButton *)btn {
-    DLog(@"发送");
-    
     NSString *messagestr = self.emoKeyboard.textBarView.textView.text;
     if (![DataCheck isValidString:messagestr]) {
         return;
@@ -344,8 +332,6 @@
     
 }
 
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.messageModelArr.count;
 }
@@ -367,7 +353,6 @@
     return cell;
 }
 
-
 - (void)goOtherCenter:(UITapGestureRecognizer *)sender {
     
     UIView *view = sender.view;
@@ -382,7 +367,6 @@
 - (void)longAction:(UILongPressGestureRecognizer *)sender
 {
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"长按手势已经触发");
         
         NSIndexPath *pressedIndexPath = [self.chatTableView indexPathForRowAtPoint:[sender locationInView:self.chatTableView]];
         
@@ -424,11 +408,9 @@
         request.methodType = JTMethodTypePOST;
         request.parameters = parameters;
     } success:^(id responseObject, JTLoadType type) {
-        DLog(@"%@",responseObject);
         NSString *messageval = [responseObject messageval];
         
         if ([messageval containsString:@"succeed"] || [messageval containsString:@"success"]) {
-            
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.pressIndexRow inSection:0];
             [self.messageModelArr removeObjectAtIndex:self.pressIndexRow];
             [self.cellHeights removeAllObjects];
@@ -462,7 +444,6 @@
 }
 
 - (CGFloat)heightForRowAtIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView {
-    NSLog(@"%@",self.messageModelArr[indexPath.row].text);
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     CGFloat height =[(ChatContentCell *)cell cellHeight];
     return height;
@@ -477,7 +458,6 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
 
 - (NSMutableArray<MessageModel *> *)messageModelArr {
     if (!_messageModelArr) {

@@ -327,7 +327,6 @@
             [dic setObject:self.verifyView.secTextField.text forKey:@"secanswer"];;
         }
     }
-    DLog(@"文本内容:%@",dic);
     return dic;
 }
 
@@ -368,8 +367,7 @@
 }
 
 #pragma mark ZhpickVIewDelegate
-
--(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString androw:(NSInteger)row {
+- (void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultString:(NSString *)resultString androw:(NSInteger)row {
     
     self.debateModel.typeId = self.typeArray[row].typeId;
     PostSelectTypeCell *cell  = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
@@ -381,11 +379,6 @@
     if (scrollView == self.tableView) {
         [self viewEndEditing];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (PostDebateModel *)debateModel {

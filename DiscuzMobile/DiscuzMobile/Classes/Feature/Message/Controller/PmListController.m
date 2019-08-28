@@ -127,7 +127,6 @@
         psVc.typeModel = m;
         psVc.title = self.dataSourceArr[indexPath.row];
         [self showViewController:psVc sender:nil];
-        
     }
 }
 

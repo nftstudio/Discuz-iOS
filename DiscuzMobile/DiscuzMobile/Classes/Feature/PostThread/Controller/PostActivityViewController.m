@@ -103,18 +103,6 @@
         self.userFieldDic = [NSMutableDictionary dictionaryWithDictionary:[[self.dataForumTherad objectForKey:@"activity_setting"] objectForKey:@"activityfield"]];
     }
     
-    
-//    NSDictionary *dic = @{@"gender": @"性别",
-//                          @"gender1": @"性别不错",
-//                          @"gender2": @"性别",
-//                          @"gender3": @"性别是这",
-//                          @"gender4": @"性别",
-//                          @"gender5": @"性别哈奥",
-//                          @"gender7": @"性别",
-//                          @"gender8": @"性别",
-//                          };
-//    self.userFieldDic = dic.copy;
-    
     if (self.typeArray.count > 0) {
         self.pickView.delegate = self;
     }
@@ -142,7 +130,6 @@
         
     } else {
         self.activityModel.typeId = self.typeArray[row].typeId;
-        //    self.typeString = resultString;
         
         PostSelectTypeCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
         cell.selectField.text = resultString;
@@ -150,8 +137,7 @@
     
 }
 
--(void)dropdownclick
-{
+- (void)dropdownclick {
     [self.view endEditing:YES];
     [self sexPickViewRemove];
     if (!_dropSelect)
@@ -164,7 +150,6 @@
         _dropDownView.hidden = YES;
         _dropSelect = NO;
     }
-    
 }
 
 -(void)postBtnClick:(UIButton *)btn {
@@ -187,7 +172,6 @@
     
 }
 
-
 - (void)photoTapped{
     [self.view endEditing:YES];
     WEAKSELF;
@@ -195,9 +179,7 @@
         [weakSelf uploadImage:image];
     };
     [self.pickerView openSheet];
-    
 }
-
 
 - (void)uploadImage:(UIImage *)image {
     NSArray * imagear=[NSArray arrayWithObject:image];
@@ -211,7 +193,7 @@
     NSDictionary * getdic = @{@"fid":self.fid};
     [self.HUD showLoadingMessag:@"上传中" toView:self.view];
     [[UploadTool shareInstance] upLoadAttachmentArr:imagear attacheType:JTAttacheImage getDic:getdic postDic:dic complete:^{
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
     } success:^(id response) {
         NSString *aidStr = [NSString stringWithFormat:@"%@",response];
         if (self.activityModel.aidArray.count > 0) {
@@ -227,16 +209,12 @@
 }
 
 #pragma mark - 发起活动
-- (void) onACtion:(UIButton *) btn
-{
+- (void)onACtion:(UIButton *)btn {
     [self.view endEditing:YES];
     [self postdata];
 }
 
 - (void)postdata {
-    
-    DLog(@"发起活动");
-    
     if (![DataCheck isValidString:self.activityModel.subject]) {
         [MBProgressHUD showInfo:@"请填写标题"];
         return;
@@ -433,6 +411,7 @@
     return 1;
     
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
     return 10.0;
@@ -443,7 +422,6 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     
     NSString * CellId = [NSString stringWithFormat:@"CellId%ld%ld", (long)[indexPath section],(long)[indexPath row]];
     NSString *contentID = [NSString stringWithFormat:@"contentCellId%ld%ld", (long)[indexPath section],(long)[indexPath row]];
@@ -504,7 +482,6 @@
                 return detailCell;
             }
             
-            
         }
             break;
         case 1: {
@@ -552,8 +529,6 @@
                 contentCell.classTextField.tag = 804;
                 contentCell.cityTextField.tag = 901;
                 
-//                [contentCell.Dropdownbtn addTarget:self action:@selector(dropdownclick) forControlEvents:UIControlEventTouchUpInside];
-                
                 return contentCell;
             } else {
                 if (indexPath.row == 1) {
@@ -586,8 +561,6 @@
                     
                     return userFieldCell;
                 }
-                
-                
             }
             
         }
@@ -748,6 +721,5 @@
     }
     return _activityModel;
 }
-
 
 @end

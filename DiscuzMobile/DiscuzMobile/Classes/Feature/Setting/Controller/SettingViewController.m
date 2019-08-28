@@ -38,7 +38,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    DLog(@"--进入SettingViewController--");
     self.navigationItem.title = @"通用设置";
     
     [self.tableView removeFromSuperview];
@@ -52,9 +51,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
-    
-//    BOOL isInstallWechat = [ShareSDK isClientInstalled:SSDKPlatformTypeWechat];
-//    BOOL isInstallQQ = [ShareSDK isClientInstalled:SSDKPlatformTypeQQ];
     
     NSMutableArray *setArr = @[@"无图浏览模式",
                      // @"通知中心设置",
@@ -70,9 +66,6 @@
     NSArray *aboutArr = @[[NSString stringWithFormat:@"关于“%@”",APPNAME],
                           @"服务条款"];
     self.dataSourceArr = @[setArr,appArr,aboutArr].mutableCopy;
-//    if (!isInstallWechat && !isInstallQQ) {
-//        [self.dataSourceArr removeObjectAtIndex:self.dataSourceArr.count - 2];
-//    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -238,7 +231,7 @@
             [MBProgressHUD showInfo:@"开启推送失败"];
         }
     } else {
-        //注销
+        // 注销
         [self logoutDevice];
     }
 }
@@ -251,7 +244,7 @@
         
         [MBProgressHUD showInfo:@"注销设备"];
     }
-    else{
+    else {
         [MBProgressHUD showInfo:@"注销设备失败"];
     }
     
@@ -300,7 +293,7 @@
 
 -(void)clearCacheSuccess {
     
-    [self.HUD hideAnimated:YES];
+    [self.HUD hide];
     NSIndexPath *indexpath = [NSIndexPath indexPathForRow:1 inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationNone];
 }

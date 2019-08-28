@@ -10,11 +10,6 @@
 
 @implementation CollectionForumCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self commitInit];
@@ -45,12 +40,6 @@
     self.iconV.layer.cornerRadius = 6;
     self.textLab.frame = CGRectMake(CGRectGetMaxX(self.iconV.frame) + 10, CGRectGetMinY(self.iconV.frame), 150, CGRectGetHeight(self.iconV.frame));
     self.cancelBtn.frame = CGRectMake(WIDTH - 25 - 15, 17, 25, 25);
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

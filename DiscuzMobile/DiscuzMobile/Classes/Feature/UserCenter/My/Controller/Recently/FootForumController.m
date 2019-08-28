@@ -43,10 +43,7 @@ static NSString * headerSection = @"CellHeader";
     }];
     
     [self.HUD showLoadingMessag:@"正在刷新" toView:self.view];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:TABBARREFRESH object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadImage) name:IMAGEORNOT object:nil];
-    
-    // Do any additional setup after loading the view.
+
 }
 
 - (void)dealloc {
@@ -92,21 +89,18 @@ static NSString * headerSection = @"CellHeader";
         request.isCache = YES;
         request.urlString = url_Forumindex;
     } success:^(id responseObject, JTLoadType type) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self.collectionView.mj_header endRefreshing];
         
         self.hotSource = [NSMutableArray array];
-        DLog(@"%@",responseObject);
         [self setHotData:[[responseObject objectForKey:@"Variables"] objectForKey:@"visitedforums"]];
         [self emptyShow];
         [self.collectionView reloadData];
         
     } failed:^(NSError *error) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self showServerError:error];
         [self.collectionView.mj_header endRefreshing];
-        //        [self emptyShow];
-        DLog(@"%@",error);
     }];
 }
 
@@ -141,12 +135,6 @@ static NSString * headerSection = @"CellHeader";
     self.dataSourceArr = self.hotSource;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 #pragma mark - UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     
@@ -160,14 +148,11 @@ static NSString * headerSection = @"CellHeader";
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
-
 #pragma mark - UICollectionViewDataSource
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
     return 1;
 }
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
@@ -211,8 +196,6 @@ static NSString * headerSection = @"CellHeader";
     [self.navigationController pushViewController:foVC animated:YES];
 }
 
-
-
 - (NSMutableArray<TreeViewNode *> *)dataSource {
     if (!_dataSource) {
         _dataSource = [NSMutableArray array];
@@ -233,6 +216,5 @@ static NSString * headerSection = @"CellHeader";
     }
     return _dataSourceArr;
 }
-
 
 @end

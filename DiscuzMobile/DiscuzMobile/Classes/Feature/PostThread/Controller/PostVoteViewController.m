@@ -46,7 +46,6 @@
     return _pollImageDic;
 }
 
-
 - (void)viewDidLoad {
 
     [super viewDidLoad];
@@ -82,7 +81,6 @@
     cell.selectField.text = resultString;
     
 }
-
 
 //  投票项 和 上传图片按钮 放在一个View
 static int i = 0 ;
@@ -433,12 +431,6 @@ static int i = 0 ;
     [postDic setValue:[Environment sharedEnvironment].formhash forKey:@"formhash"];
     [postDic setValue:self.voteModel.subject forKey:@"subject"];
     [postDic setValue:self.voteModel.message forKey:@"message"];
-
-//    NSString *selectStr = @"1";
-//    if ([self.voteModel.radioValue isEqualToString:@"多选"]) {
-//        selectStr = [NSString stringWithFormat:@"%lu",(unsigned long)self.voteModel.polloptionArr.count];
-//    }
-//    [postDic setValue:selectStr forKey:@"maxchoices"];                 //最大可选项数
     [postDic setValue:self.voteModel.selectNum forKey:@"maxchoices"];                 //最大可选项数
     [postDic setValue:(self.voteModel.isVisibleResult?@"1":@"0") forKey:@"visibilitypoll"]; //是否投票可见
     [postDic setValue:(self.voteModel.isVisibleParticipants?@"1":@"0") forKey:@"overt"];   //是否公开投票参与人
@@ -454,10 +446,6 @@ static int i = 0 ;
     if ([DataCheck isValidString:self.voteModel.typeId]) {
         [postDic setValue:self.voteModel.typeId forKey:@"typeid"];
     }
-    
-    DLog(@"%@",postDic);
-    
-    DLog(@"%@",self.pollImageDic);
     
     if (self.pollImageDic.count > 0) {
         [postDic setValue:[self getPollImageArr] forKey:@"pollimage"];
@@ -476,8 +464,6 @@ static int i = 0 ;
         [self requestPostFailure:error];
     }];
 }
-
-
 
 - (NSArray *)getPollImageArr {
     NSInteger t = 0;
@@ -508,7 +494,6 @@ static int i = 0 ;
     return keyArr;
 }
 
-
 #pragma mark - 验证码
 - (void)downlodyan {
     
@@ -528,7 +513,7 @@ static int i = 0 ;
     };
 }
 
--(void)openMenu:(UIButton *)sender {
+- (void)openMenu:(UIButton *)sender {
     
     [self.view endEditing:YES];
     WEAKSELF;
@@ -660,14 +645,12 @@ static int i = 0 ;
 
 #pragma mark - QRadioButtonDelegate
 - (void)didSelectedRadioButton:(QRadioButton *)radio groupId:(NSString *)groupId {
-    DLog(@"did selected radio:%@ groupId:%@", radio.titleLabel.text, groupId);
     self.voteModel.radioValue = radio.titleLabel.text;
     
 }
 
 #pragma mark - QCheckBoxDelegate
 - (void)didSelectedCheckBox:(QCheckBox *)checkbox checked:(BOOL)checked {
-    DLog(@"did tap on CheckBox:%@ checked:%d", checkbox.titleLabel.text, checked);
     if (checked) {
         [self.voteModel.checkArr addObject:checkbox.titleLabel.text];
         self.voteModel.isVisibleResult=YES;
@@ -677,7 +660,6 @@ static int i = 0 ;
     }
 }
 
-
 - (PostVoteModel *)voteModel {
     if (_voteModel == nil) {
         _voteModel = [[PostVoteModel alloc] init];
@@ -685,10 +667,5 @@ static int i = 0 ;
     }
     return _voteModel;
 }
-
-- (void)dealloc {
-    DLog(@"PostVoteViewController销毁了");
-}
-
 
 @end

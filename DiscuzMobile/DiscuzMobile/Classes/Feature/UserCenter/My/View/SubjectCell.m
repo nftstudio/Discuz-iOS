@@ -10,29 +10,21 @@
 #import "FontSize.h"
 @implementation SubjectCell
 
-- (void)awakeFromNib {
-    // Initialization code
-    [super awakeFromNib];
-}
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
-        
         [self createUI];
     }
     return self;
 }
 
--(void)createUI{
+- (void)createUI {
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, WIDTH-25, 50)];
     self.titleLabel.font = [FontSize HomecellNameFontSize16];
     self.titleLabel.textColor = MAIN_TITLE_COLOR;
     self.titleLabel.numberOfLines = 0;
     [self addSubview:self.titleLabel];
-    
     
     self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.titleLabel.frame), self.titleLabel.frame.size.height, 100, 15)];
     self.nameLabel.font = [FontSize forumInfoFontSize12];//12
@@ -43,14 +35,10 @@
     self.timeLabel.font = [FontSize forumInfoFontSize12];//12
     self.timeLabel.textColor = mRGBColor(180, 180, 180);
     [self addSubview:self.timeLabel];
-    
 }
 
 -(void)setData:(NSDictionary*)dic{
     
-//    self.titleLabel.text = @"美国公司宣称成功抵御黑客攻击科学家尝试复制美国公司宣称成功抵御黑客攻";
-//    self.nameLabel.text =@"散文随笔";
-//    self.timeLabel.text =@"2015-2-16";
     NSString *subject = [dic objectForKey:@"subject"];
      self.titleLabel.text = subject;
     
@@ -75,13 +63,6 @@
     
     self.nameLabel.text = [dic objectForKey:@"author"];
     self.timeLabel.text = [[dic objectForKey:@"dateline"] transformationStr];
-
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

@@ -27,10 +27,6 @@
     self.cancelBtn.frame = CGRectMake(CGRectGetWidth(self.frame) - 60, 0, 60, CGRectGetHeight(self.frame));
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-}
-
 - (UIButton *)cancelBtn {
     if (_cancelBtn == nil) {
         _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];

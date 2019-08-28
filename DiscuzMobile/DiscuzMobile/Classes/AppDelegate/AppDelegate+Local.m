@@ -59,13 +59,13 @@ static const char *CLLocation_manager = "CLLocation_manager";
         [UIAlertController alertTitle:nil message:str.copy controller:self.window.rootViewController doneText:@"确定" cancelText:nil doneHandle:^{
             
         } cancelHandle:nil];
-        NSLog(@"%@",placemarks[0].name);  // 上地三街9号B-401号
-        NSLog(@"%@",placemarks[0].thoroughfare); // 上地三街
-        NSLog(@"%@",placemarks[0].subLocality); // 海淀区
-        NSLog(@"%@",placemarks[0].administrativeArea); // 北京市 (州，省份)
-        NSLog(@"%@",placemarks[0].subAdministrativeArea);
-        NSLog(@"%@",placemarks[0].ocean);
-        NSLog(@"%@",placemarks[0].locality);  // 北京市
+        DLog(@"%@",placemarks[0].name);  // 上地三街9号B-401号
+        DLog(@"%@",placemarks[0].thoroughfare); // 上地三街
+        DLog(@"%@",placemarks[0].subLocality); // 海淀区
+        DLog(@"%@",placemarks[0].administrativeArea); // 北京市 (州，省份)
+        DLog(@"%@",placemarks[0].subAdministrativeArea);
+        DLog(@"%@",placemarks[0].ocean);
+        DLog(@"%@",placemarks[0].locality);  // 北京市
     }];
 }
 

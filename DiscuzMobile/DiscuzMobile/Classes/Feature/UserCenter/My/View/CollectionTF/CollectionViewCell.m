@@ -10,10 +10,6 @@
 
 @implementation CollectionViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-}
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -22,7 +18,8 @@
     }
     return self;
 }
--(void)createUI{
+
+-(void)createUI {
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, WIDTH-25, 50)];
     self.titleLabel.font = [FontSize HomecellNameFontSize16];//14
     self.titleLabel.textColor = MAIN_TITLE_COLOR;
@@ -42,7 +39,7 @@
     
 }
 
--(void)setData:(NSDictionary*)dic{
+- (void)setData:(NSDictionary*)dic {
     
     self.titleLabel.text = [dic objectForKey:@"title"];
     
@@ -52,14 +49,6 @@
         self.nameLabel.text = [dic objectForKey:@"author"];
     }
     self.timeLabel.text = [NSDate timeStringFromTimestamp:[dic objectForKey:@"dateline"] format:@"yyyy-MM-dd"];
-    
-    
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

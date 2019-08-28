@@ -61,7 +61,6 @@
     
 } // 135
 
-
 - (void)setIdentityText:(NSString *)text {
     self.identityLab.text = text;
     CGSize maxSize = CGSizeMake(100, 20);
@@ -70,13 +69,5 @@
     self.identityLab.layer.masksToBounds = YES;
     self.self.identityLab.layer.cornerRadius = 2;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

@@ -99,10 +99,9 @@
         request.loadType = loadType;
         request.isCache = YES;
     } success:^(id responseObject, JTLoadType type) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         
         [self.tableView.mj_header endRefreshing];
-        DLog(@"%@",responseObject);
         if ([DataCheck isValidArray:self.dataSourceArr]) {
             [self.dataSourceArr removeAllObjects];
         }
@@ -111,10 +110,8 @@
         [self.leftTable reloadData];
         
     } failed:^(NSError *error) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self showServerError:error];
-        DLog(@"%@",error);
-        
     }];
 }
 

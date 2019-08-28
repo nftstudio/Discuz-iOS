@@ -369,23 +369,19 @@
         for (int i = 0; i < [AudioTool shareInstance].audioArray.count; i ++) {
             AudioModel *audio = [[AudioTool shareInstance].audioArray objectAtIndex:i];
             NSString *description = [NSString stringWithFormat:@"%ld",(long)audio.time];
-            NSLog(@"%@",description);
             [dic setObject:description forKey:[NSString stringWithFormat:@"attachnew[%@][description]",audio.audioUploadId]];
         }
     }
     
     NormalThreadToolCell *cell = [self getToolCell];
     if (cell.uploadView.uploadModel.aidArray.count > 0) {
-        for (int i=0; i < cell.uploadView.uploadModel.aidArray.count; i++){
-            DLog(@"ar 2");
+        for (int i=0; i < cell.uploadView.uploadModel.aidArray.count; i++) {
             NSString *description = @"";
             [dic setObject:description forKey:[NSString stringWithFormat:@"attachnew[%@][description]",[cell.uploadView.uploadModel.aidArray objectAtIndex:i]]];
-            //            [dic setObject:[NSString stringWithFormat:@"attachnew[%@][description]",[self.aidArray objectAtIndex:i]] forKey:[NSString stringWithFormat:@"attachnew[%@][description]",[self.aidArray objectAtIndex:i]]];
             
         }
         [dic setObject:@"1" forKey:@"allowphoto"];
     }
-    DLog(@"文本内容:%@",dic);
     return dic;
 }
 
@@ -429,8 +425,6 @@
     
 }
 
-
-
 - (NormalThreadToolCell *)getToolCell {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
     if ([AudioTool shareInstance].audioArray.count > 0) {
@@ -472,7 +466,7 @@
     NSArray *arr = @[[AudioTool shareInstance].mp3Url.absoluteString];
     [self.HUD showLoadingMessag:@"正在上传语音..." toView:self.view];
     [[UploadTool shareInstance] upLoadAttachmentArr:arr attacheType:JTAttacheAudio getDic:getdic postDic:dic complete:^{
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
     } success:^(id response) {
         
         AudioModel *audio = [AudioModel audioWithId:response  andMp3Url:[AudioTool shareInstance].mp3Url];
@@ -513,7 +507,6 @@
         if ([AudioTool shareInstance].audioArray.count > 0) {
             [self deleteAudio:indexPath];
         }
-        
     }
 }
 
@@ -544,7 +537,7 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
-    if (textField.tag==1003) {
+    if (textField.tag == 1003) {
         [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
     } else {
         [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];

@@ -53,21 +53,18 @@
 }
 
 #pragma mark - tableView delegate
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 75.0;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSourceArr.count;
 }
 
-
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellId = @"CellId";
     SubjectCell *cell = [tableView dequeueReusableCellWithIdentifier:CellId];
@@ -83,9 +80,7 @@
     
 }
 
-
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString * tid = [[self.dataSourceArr objectAtIndex:indexPath.row] objectForKey:@"tid"];
     ThreadViewController * tvc = [[ThreadViewController alloc] init];
@@ -93,8 +88,7 @@
     [self.navigationController pushViewController:tvc animated:YES];
 }
 
-
--(void)downLoadData{
+-(void)downLoadData {
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
         NSDictionary *dic = @{
                               @"page":[NSString stringWithFormat:@"%ld",self.page],
@@ -104,8 +98,7 @@
         request.methodType = JTMethodTypeGET;
         request.parameters = dic;
     } success:^(id responseObject, JTLoadType type) {
-        DLog(@"%@",responseObject);
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
         
@@ -130,15 +123,13 @@
         [self emptyShow];
         [self.tableView reloadData];
         
-
     } failed:^(NSError *error) {
         [self showServerError:error];
         [self emptyShow];
-        [self.HUD hideAnimated:YES];;
+        [self.HUD hide];;
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
     }];
 }
-
 
 @end

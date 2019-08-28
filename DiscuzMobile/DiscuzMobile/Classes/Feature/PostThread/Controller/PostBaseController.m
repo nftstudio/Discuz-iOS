@@ -70,9 +70,7 @@
     }
     
     [self checkPostAuth];
-    // Do any additional setup after loading the view.
 }
-
 
 // 检查权限 : 发帖 回帖 上传权限
 -(void)checkPostAuth {
@@ -85,8 +83,7 @@
             request.urlString = url_CheckPostAuth;
             request.parameters = dic;
         } success:^(id responseObject, JTLoadType type) {
-            DLog(@"%@",responseObject);
-            [self.HUD hideAnimated:YES];
+            [self.HUD hide];
             if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Variables"]]) { // 获取验证发帖权限数据
                 if ([DataCheck isValidString:self.uploadhash]) {
                     if ([DataCheck isValidDictionary:[[responseObject objectForKey:@"Variables"] objectForKey:@"allowperm"]]) {
@@ -95,7 +92,7 @@
                 }
             }
         } failed:^(NSError *error) {
-            [self.HUD hideAnimated:YES];
+            [self.HUD hide];
         }];
     }
 }
@@ -108,10 +105,9 @@
 }
 
 - (void)requestPostFailure:(NSError *)error {
-    [self.HUD setHidden:YES];
+    [self.HUD hide];
     [self showServerError:error];
 }
-
 
 - (void)requestPostSucceed:(id)responseObject {
     

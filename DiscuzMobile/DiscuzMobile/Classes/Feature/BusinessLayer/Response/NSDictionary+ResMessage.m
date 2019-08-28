@@ -19,7 +19,6 @@
 }
 
 - (NSString *)messagestr {
-    
     NSString *messagestr = @"";
     if ([DataCheck isValidDictionary:self] && [DataCheck isValidDictionary:[self objectForKey:@"Message"]]
         && [DataCheck isValidString:[[self objectForKey:@"Message"] objectForKey:@"messagestr"]]) {

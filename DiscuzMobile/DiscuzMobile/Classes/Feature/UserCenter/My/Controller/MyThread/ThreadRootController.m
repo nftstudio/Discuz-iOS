@@ -35,7 +35,6 @@
     
     JTContainerController *containVc = [[JTContainerController alloc] init];
     [containVc setSubControllers:ctArr parentController:self andSegmentRect:segmentRect];
-    
 }
 
 @end

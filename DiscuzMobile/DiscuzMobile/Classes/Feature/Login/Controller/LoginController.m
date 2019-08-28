@@ -155,7 +155,6 @@ NSString * const debugPassword = @"debugPassword";
         [dic setValue:self.logView.answerView.userNameTextField.text forKey:@"answer"];
     }
     [dic setValue:[Environment sharedEnvironment].formhash forKey:@"formhash"];
-    DLog(@"%@",dic);
     
     NSMutableDictionary *getData = [NSMutableDictionary dictionary];
     if ([ShareCenter shareInstance].bloginModel.openid != nil) { // 三方登录过来的注册
@@ -232,7 +231,6 @@ NSString * const debugPassword = @"debugPassword";
         request.parameters = dic;
         request.getParam = getData;
     } success:^(id responseObject, JTLoadType type) {
-        DLog(@"%@",responseObject);
         [self.HUD hide];
         [self setUserInfo:responseObject];
     } failed:^(NSError *error) {
@@ -322,7 +320,6 @@ NSString * const debugPassword = @"debugPassword";
 
 - (void)loadSeccodeWebView {
     NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self.verifyView.secureData objectForKey:@"seccode"]]];
-    DLog(@"%@",[self.verifyView.secureData objectForKey:@"seccode"]);
     [self.logView.authcodeView.webview loadRequest:request];
 }
 

@@ -71,7 +71,6 @@
     }];
 }
 
-
 - (void)rightBarBtnClick {
     SettingViewController * svc = [[SettingViewController alloc]init];
     [self.navigationController pushViewController:svc animated:YES];
@@ -83,10 +82,8 @@
 }
 
 - (void)initData {
-    
     self.centerModel = [[CenterManageModel alloc] initWithType:JTCenterTypeOther];
 }
-
 
 -(void)downLoadData{
     [self initData];
@@ -97,10 +94,7 @@
         request.urlString = url_UserInfo;
         request.parameters = dic;
     } success:^(id responseObject, JTLoadType type) {
-        
-        DLog(@"%@",responseObject);
-        
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self.tableView.mj_header endRefreshing];
         
         [self.centerModel dealOtherData:responseObject];
@@ -113,20 +107,13 @@
         [self.tableView reloadData];
         
     } failed:^(NSError *error) {
-        [self.HUD hideAnimated:YES];
-        DLog(@"%@",error);
+        [self.HUD hide];
         [self.tableView.mj_header endRefreshing];
-        //        dengji = @"网络不佳";
         [self showServerError:error];
-        [self.tableView reloadData];
-        
     }];
-    
 }
 
-
 #pragma mark - tableView delegate
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 4;
 }
@@ -136,7 +123,6 @@
         return 60;
     }
     return 50.0;
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -199,9 +185,6 @@
         }
         return cell;
     }
-    
-    
-    
 }
 
 - (void)isSure:(UIButton *)sender {
@@ -220,7 +203,7 @@
             request.urlString = url_AddFriend;
             request.parameters = dic;
         } success:^(id responseObject, JTLoadType type) {
-            [self.HUD hideAnimated:YES];
+            [self.HUD hide];
             if ([[[responseObject objectForKey:@"Variables"] objectForKey:@"code"] isEqualToString:@"1"]) {
                 [MBProgressHUD showInfo:@"操作成功，等待好友确认"];
             } else {
@@ -228,11 +211,8 @@
                 [MBProgressHUD showInfo:message];
             }
             
-            DLog(@"%@",responseObject);
-            
         } failed:^(NSError *error) {
-            [self.HUD hideAnimated:YES];
-            DLog(@"%@",error);
+            [self.HUD hide];
         }];
     }
 }
@@ -274,11 +254,6 @@
         default:
             break;
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

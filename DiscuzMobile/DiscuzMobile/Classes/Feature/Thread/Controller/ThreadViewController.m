@@ -563,12 +563,12 @@
     } else {
         
         [PraiseHelper praiseRequestTid:self.threadModel.tid successBlock:^{
-            [self.HUD hideAnimated:YES];
+            [self.HUD hide];
             [self.detailView.emoKeyboard.textBarView.praiseBtn setBackgroundImage:[UIImage imageNamed:@"bar_zans"] forState:UIControlStateNormal];
             self.threadModel.recommend = @"1";
             [self.detailView.webView stringByEvaluatingJavaScriptFromString:@"onPraiseSuccess()"];
         } failureBlock:^(NSError *error) {
-            [self.HUD hideAnimated:YES];
+            [self.HUD hide];
             [self showServerError:error];
         }];
     }
@@ -609,7 +609,7 @@
     NSDictionary * dic=@{@"formhash":[Environment sharedEnvironment].formhash};
     if (btn.tag == 100001) {
         [[CollectionTool shareInstance] collectionThread:getdic andPostdic:dic success:^{
-            [self.HUD hideAnimated:YES];
+            [self.HUD hide];
             [self setIsCollection:btn];
         } failure:nil];
         
@@ -632,11 +632,11 @@
     [btn setBackgroundImage:[UIImage imageNamed:@"bar_xing"] forState:UIControlStateNormal];
     btn.tag=100001;
 }
+
 - (void)setIsCollection:(UIButton *)btn {
     [btn setBackgroundImage:[UIImage imageNamed:@"bar_xings"] forState:UIControlStateNormal];
     btn.tag=100002;
 }
-
 
 #pragma mark - 验证码
 - (void)downlodyan {
@@ -783,7 +783,7 @@
                 self.threadModel.isRequest = NO;
             }
             webView.frame=CGRectMake(0, 0, WIDTH, HEIGHT - 50);
-            [self.HUD hideAnimated:YES];
+            [self.HUD hide];
         }
     }
 }
@@ -844,7 +844,6 @@
     NSArray *aidArr = self.detailView.emoKeyboard.uploadView.uploadModel.aidArray;
     if (aidArr.count > 0) {
         for (int i=0; i < aidArr.count; i++){
-            DLog(@"ar 2");
             NSString *description = @"";
             [dic setObject:description forKey:[NSString stringWithFormat:@"attachnew[%@][description]",[aidArr objectAtIndex:i]]];
         }

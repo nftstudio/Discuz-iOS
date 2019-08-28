@@ -86,21 +86,22 @@
 
 #pragma mark - tableView delegate
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell * cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return [(HomeListCell *)cell cellHeight];
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSourceArr.count;
     
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static  NSString  * CellIdentiferId = @"HomeCellCellID";
     HomeListCell  * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentiferId];
@@ -129,17 +130,12 @@
     [self.navigationController pushViewController:ovc animated:YES];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ThreadListModel *model = self.dataSourceArr[indexPath.row];
     ThreadViewController * tvc = [[ThreadViewController alloc] init];
     tvc.tid = model.tid;
     [self.navigationController pushViewController:tvc animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

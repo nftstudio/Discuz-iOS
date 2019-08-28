@@ -122,7 +122,7 @@ static NSString * headerSection = @"CellHeader";
         request.loadType = type;
         
     } success:^(id responseObject, JTLoadType type) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self.collectionView.mj_header endRefreshing];
         
         if (self.type == Forum_hot) {
@@ -136,7 +136,7 @@ static NSString * headerSection = @"CellHeader";
         [self emptyShow];
         
     } failed:^(NSError *error) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self showServerError:error];
         [self.collectionView.mj_header endRefreshing];
         [self emptyShow];

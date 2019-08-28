@@ -161,12 +161,10 @@
 
 #pragma mark - UISearchBarDelegate
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
-    DLog(@"1");
     return YES;
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    DLog(@"2");
 }
 
 #pragma mark - 搜索响应事件
@@ -209,7 +207,7 @@
         request.urlString = url_Search;
         request.parameters = dic;
     } success:^(id responseObject, JTLoadType type) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self.tableView.mj_footer endRefreshing];
         
         if ([DataCheck isValidDictionary:[responseObject objectForKey:@"Variables"]]) {
@@ -240,6 +238,7 @@
         
         [self.tableView reloadData];
     } failed:^(NSError *error) {
+        [self.HUD hide];
         [self searchBarBecomeActive];
     }];
 }

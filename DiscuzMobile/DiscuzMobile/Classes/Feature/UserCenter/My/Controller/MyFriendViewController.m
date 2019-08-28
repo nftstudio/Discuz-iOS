@@ -43,28 +43,23 @@
 
 - (void)refreshData {
     [self downLoadData];
-    
 }
 
 
 #pragma mark - tableView delegate
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60.0;
-    
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSourceArr.count;
 }
 
-
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellId = @"FriendId";
     FriendCell *cell = [tableView dequeueReusableCellWithIdentifier:CellId];
@@ -83,16 +78,11 @@
     return cell;
 }
 
--(void)sendMessageBtnClick:(UIButton *)btn{
+- (void)sendMessageBtnClick:(UIButton *)btn {
     NSDictionary *dic;
     if ([DataCheck isValidArray:self.dataSourceArr]) {
         dic = [self.dataSourceArr objectAtIndex:btn.tag];
     }
-//    DLog(@"sendMsg");
-//    MessageListtowViewController *mvc = [[MessageListtowViewController alloc] init];
-//    mvc.touid = [dic objectForKey:@"uid"];
-//    mvc.username = [dic objectForKey:@"username"];
-//    [self.navigationController pushViewController:mvc animated:YES];
     
     ChatDetailController *mvc = [[ChatDetailController alloc] init];
     mvc.touid = [dic objectForKey:@"uid"];
@@ -100,11 +90,10 @@
     mvc.username = [dic objectForKey:@"username"];
     
     [self.navigationController pushViewController:mvc animated:YES];
-
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dic;
     if ([DataCheck isValidArray:self.dataSourceArr]) {
@@ -116,13 +105,12 @@
     
 }
 
--(void)downLoadData{
+- (void)downLoadData {
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
         NSDictionary *getDic = @{@"page":[NSString stringWithFormat:@"%ld",(long)self.page]};
         request.urlString = url_FriendList;
         request.parameters = getDic;
     } success:^(id responseObject, JTLoadType type) {
-        DLog(@"%@",responseObject);
         [self.HUD hideAnimated:YES];
         
         [self mj_endRefreshing];
@@ -165,13 +153,6 @@
         [self.tableView.mj_footer endRefreshing];
     }
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 @end
 

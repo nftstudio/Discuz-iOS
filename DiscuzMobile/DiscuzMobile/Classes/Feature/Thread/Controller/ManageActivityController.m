@@ -97,7 +97,7 @@
         request.urlString = url_ManageActivity;
         request.parameters = getDic;
     } success:^(id responseObject, JTLoadType type) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         if ([DataCheck isValidArray:[[[responseObject objectForKey:@"Variables"] objectForKey:@"activityapplylist"] objectForKey:@"applylist"]]) {
             NSArray *arr = [[[responseObject objectForKey:@"Variables"] objectForKey:@"activityapplylist"] objectForKey:@"applylist"];
             for (NSDictionary *dic in arr) {
@@ -116,9 +116,8 @@
             [self.tableView reloadData];
         }
         
-        DLog(@"%@",responseObject);
     } failed:^(NSError *error) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self showServerError:error];
     }];
 }
@@ -153,7 +152,6 @@
         [self.examineView show];
         self.examineView.dataModel = apply;
     }
-    
 }
 
 @end

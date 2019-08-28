@@ -30,7 +30,7 @@
     _textView.textParser = [WBStatusComposeTextParser new];
     _textView.inputAccessoryView = [UIView new];
     
-    _textView.returnKeyType = UIReturnKeySend; //just as an example
+//    _textView.returnKeyType = UIReturnKeySend; //just as an example
     _textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     _textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     

@@ -29,7 +29,6 @@
     UIImage* searchBarBg = [UIImage createImageWithColor:FORUM_GRAY_COLOR andHeight:30.0f];
     //设置背景图片
     [self setBackgroundImage:searchBarBg];
-    //设置背景色
     //设置文本框背景
     [self setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
 }

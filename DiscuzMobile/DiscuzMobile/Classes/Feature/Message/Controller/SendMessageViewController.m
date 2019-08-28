@@ -64,11 +64,9 @@
     
     self.messageTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10,WIDTH-20, 140)];
     self.messageTextView.delegate = self;
-//    self.messageTextView.backgroundColor=[UIColor redColor];
     self.messageTextView.font =[FontSize HomecellTitleFontSize17];
     
     self.placeholderLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,10, WIDTH-40, 15)];
-//    self.placeholderLabel.backgroundColor=[UIColor greenColor];
     self.placeholderLabel.numberOfLines =0;
     self.placeholderLabel.textAlignment = NSTextAlignmentLeft;
     self.placeholderLabel.text =@"请输入短消息的内容";
@@ -83,10 +81,9 @@
     UIButton *postBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [postBtn setTitle:@"发送" forState:UIControlStateNormal];
     [postBtn setBackgroundColor:MAIN_COLLOR];
-//      postBtn.titleLabel.font = [UIFont systemFontOfSize:12.0];
     [postBtn addTarget:self action:@selector(postData) forControlEvents:UIControlEventTouchUpInside];
     postBtn.frame = CGRectMake(10, messageView.frame.origin.y +messageView.frame.size.height +20 ,WIDTH -20, 40);
-    postBtn.layer.cornerRadius  =4.0;
+    postBtn.layer.cornerRadius  = 4.0;
     postBtn.layer.borderWidth = 1.0;
     postBtn.layer.borderColor = MAIN_COLLOR.CGColor;
    
@@ -123,19 +120,13 @@
         [self.HUD hide];
         NSString *stauts = [responseObject messageval];
         NSString *msg = [responseObject messagestr];
+        [MBProgressHUD showInfo:msg];
         if ([stauts isEqualToString:@"do_success"]) {
-            [MBProgressHUD showInfo:msg];
             [self.navigationController popViewControllerAnimated:YES];
-        }else if ([stauts isEqualToString:@"unable_to_send_air_news"]) {
-            [MBProgressHUD showInfo:msg];
-        }else if ([stauts isEqualToString:@"message_bad_touser"]){
-            [MBProgressHUD showInfo:msg];
-        } else {
-            [MBProgressHUD showInfo:msg];
         }
-        self.messageTextView.text=nil;
+        self.messageTextView.text = nil;
         self.placeholderLabel.hidden = NO;
-        self.titleTextField.text=nil;
+        self.titleTextField.text = nil;
     } failed:^(NSError *error) {
         [self showServerError:error];
     }];

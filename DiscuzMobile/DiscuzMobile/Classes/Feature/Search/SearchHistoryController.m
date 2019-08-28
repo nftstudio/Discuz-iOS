@@ -275,9 +275,4 @@
     return _colorPol;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-
 @end

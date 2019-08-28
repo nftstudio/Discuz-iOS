@@ -161,7 +161,7 @@
         }
     } success:^(id responseObject, JTLoadType type) {
         
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self.tableView.mj_header endRefreshing];
         
         BOOL haveAuther = [ResponseMessage autherityJudgeResponseObject:responseObject refuseBlock:^(NSString *message) {
@@ -207,8 +207,6 @@
         } else {
             [self hidVerifyRemind];
         }
-        
-        
         //        _allowpostspecial1 = [self.forumInfoDic objectForKey:@"allowpostspecial"];
         
         if (self.page == 1) { // 刷新列表
@@ -231,13 +229,10 @@
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
         [self.tableView reloadData];
-//        if (loadType == JTRequestTypeCache && [self.title isEqualToString:@"全部"]) {
-//            dispatch_group_leave(asyGroup);
-//        }
         
     } failed:^(NSError *error) {
         
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         if (self.endRefreshBlock) {
             self.endRefreshBlock();
         }
@@ -245,10 +240,6 @@
         [self showServerError:error];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
-        DLog(@"%@",error);
-//        if (loadType == JTRequestTypeCache && [self.title isEqualToString:@"全部"]) {
-//            dispatch_group_leave(asyGroup);
-//        }
     }];
 }
 
@@ -452,7 +443,6 @@
     ThreadViewController * tvc = [[ThreadViewController alloc] init];
     tvc.dataForumTherad = self.Variables;
     tvc.tid = listModel.tid;
-    DLog(@"进去");
     [self.navigationController pushViewController:tvc animated:YES];
 }
 

@@ -72,7 +72,6 @@
 
 - (void)showServerError:(NSError *)error {
     if (error != nil) {
-        DLog(@"%@",error);
         NSString *message = [NSString stringWithFormat:@"错误:%@",[error localizedDescription]];
 #ifdef DEBUG        
 #else

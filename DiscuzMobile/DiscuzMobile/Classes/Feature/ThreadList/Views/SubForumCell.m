@@ -23,7 +23,6 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         [self p_setupView];
-        //        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return self;
 }

@@ -11,12 +11,9 @@
 
 @implementation ReplyCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
-        
         [self createUI];
     }
     return self;
@@ -36,7 +33,6 @@
     [self.contentView addSubview:self.floorLab];
     
     self.messageLab = [[UILabel alloc] init];
-//    self.messageLab.textColor = MAIN_TITLE_COLOR;
     self.messageLab.font = [FontSize HomecellTitleFontSize15];
     self.messageLab.numberOfLines = 0;
     [self.contentView addSubview:self.messageLab];
@@ -73,19 +69,7 @@
 }
 
 - (CGFloat)cellHeight {
-    NSLog(@"%lf",CGRectGetMaxY(self.subjectLab.frame));
     return CGRectGetMaxY(self.subjectLab.frame) + 10;
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

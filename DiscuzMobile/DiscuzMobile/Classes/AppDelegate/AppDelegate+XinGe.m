@@ -80,18 +80,18 @@
     //    [[XGSetting getInstance] setGameServer:@"巨神峰"];
     void (^successBlock)(void) = ^() {
         //成功之后的处理
-        NSLog(@"[XGPush]register successBlock");
+        DLog(@"[XGPush]register successBlock");
     };
     
     void (^errorBlock)(void) = ^() {
         //失败之后的处理
-        NSLog(@"[XGPush]register errorBlock");
+        DLog(@"[XGPush]register errorBlock");
     };
     NSString * deviceTokenStr = [XGPush registerDevice:deviceToken successCallback:successBlock errorCallback:errorBlock];
     [[NSUserDefaults standardUserDefaults] setObject:deviceToken forKey:XGTOKEN];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    NSLog(@"deviceTokenStr=%@",deviceTokenStr);
+    DLog(@"deviceTokenStr=%@",deviceTokenStr);
     //如果不需要回调
     //    NSString * deviceTokenStr = [XGPush registerDevice:deviceToken];
 }
@@ -99,7 +99,7 @@
 // 如果deviceToken获取不到会进入此事件
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSString *str = [NSString stringWithFormat: @"Error: %@",error];
-    NSLog(@"%@",str);
+    DLog(@"%@",str);
 }
 
 #pragma mark - iOS10 收到推送处理(APP运行时)

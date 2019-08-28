@@ -62,27 +62,21 @@
     self.page ++;
     [self downLoadData];
 }
-#pragma mark - tableView delegate
 
+#pragma mark - tableView delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 75.0;
-    
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSourceArr.count;
-//    return self.replyArr.count;
-    
 }
 
-
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellId = @"CellId";
     
@@ -95,106 +89,48 @@
         [cell setData:dic];
     }
     return cell;
-    
-//    ReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:CellId];
-//    if (cell == nil) {
-//        cell = [[ReplyCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellId];
-//    }
-//    ReplyModel *model = self.dataSourceArr[indexPath.row];
-//    [cell setInfo:model];
-//
-//    return cell;
-
-    
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    NSString * tid = [[self.dataSourceArr objectAtIndex:indexPath.row] objectForKey:@"tid"];
-//    NSString *fid = [[self.dataSourceArr objectAtIndex:indexPath.row] objectForKey:@"fid"];
-//    ThreadViewController * tvc = [[ThreadViewController alloc] init];
-//    tvc.tid = tid;
-//    tvc.strFourmID = fid;
-    //    tvc.title =@"精彩热帖";
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString * tid = [[self.dataSourceArr objectAtIndex:indexPath.row] objectForKey:@"tid"];
-    
-//    ReplyModel *model = self.replyArr[indexPath.row];
     ThreadViewController * tvc = [[ThreadViewController alloc] init];
     tvc.tid = tid;
     [self.navigationController pushViewController:tvc animated:YES];
-    
 }
 
--(void)downLoadData{
+- (void)downLoadData {
     [DZApiRequest requestWithConfig:^(JTURLRequest *request) {
         NSDictionary *dic = @{@"type":@"reply",
                               @"page":[NSString stringWithFormat:@"%ld",self.page]};
         request.urlString = url_Mythread;
         request.parameters = dic;
     } success:^(id responseObject, JTLoadType type) {
-        DLog(@"%@",responseObject);
-        
-        [self.HUD hideAnimated:YES];
-//        if ([DataCheck isValidString:[[responseObject objectForKey:@"Variables"] objectForKey:@"tpp"]]) {
-//            _tpp = [[[responseObject objectForKey:@"Variables"] objectForKey:@"tpp"] integerValue];
-//        }
-//        if ([DataCheck isValidString:[[responseObject objectForKey:@"Variables"] objectForKey:@"listcount"]]) {
-//            _listcount = [[[responseObject objectForKey:@"Variables"] objectForKey:@"listcount"] integerValue];
-//        }
-//
-//
-//
-//        if (self.page == 1) {
-//            [self clearData];
-//            [self.tableView.mj_header endRefreshing];
-//            if ([DataCheck isValidArray:[[responseObject objectForKey:@"Variables"] objectForKey:@"threadlist"]]) {
-//                self.dataSourceArr = [NSMutableArray arrayWithArray:[[responseObject objectForKey:@"Variables"] objectForKey:@"threadlist" ]];
-//                [self analysisData:[[responseObject objectForKey:@"Variables"] objectForKey:@"threadlist" ]];
-//            }
-//
-//            [self emptyShow];
-//        } else {
-//
-//            [self.tableView.mj_footer endRefreshing];
-//            if ([DataCheck isValidArray:[[responseObject objectForKey:@"Variables"] objectForKey:@"threadlist"]]) {
-//                NSArray *arr = [[responseObject objectForKey:@"Variables"] objectForKey:@"threadlist" ];
-//                [self.dataSourceArr addObjectsFromArray:arr];
-//                [self analysisData:arr];
-//            }
-//        }
-//
-//        if (_listcount < _tpp) {
-//            [self.tableView.mj_footer endRefreshingWithNoMoreData];
-//        }
-        if ([DataCheck isValidArray:[[responseObject objectForKey:@"Variables"] objectForKey:@"data"]]) {
-            
+        [self.tableView.mj_header endRefreshing];
+        [self.HUD hide];
+        NSArray *data = [[responseObject objectForKey:@"Variables"] objectForKey:@"data"];
+        NSInteger perpage = [[[responseObject objectForKey:@"Variables"] objectForKey:@"perpage"] integerValue];
+        if ([DataCheck isValidArray:data]) {
             if (self.page == 1) {
-                self.dataSourceArr = [NSMutableArray arrayWithArray:[[responseObject objectForKey:@"Variables"] objectForKey:@"data" ]];
-                if (self.dataSourceArr.count < [[[responseObject objectForKey:@"Variables"] objectForKey:@"perpage" ] integerValue]) {
-                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                }
-                
+                self.dataSourceArr = data.mutableCopy;
             } else {
-                NSArray *arr = [[responseObject objectForKey:@"Variables"] objectForKey:@"data" ];
-                [self.dataSourceArr addObjectsFromArray:arr];
-                
-                if (arr.count < [[[responseObject objectForKey:@"Variables"] objectForKey:@"perpage" ] integerValue]) {
-                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                }
+                [self.dataSourceArr addObjectsFromArray:data];
             }
-            
+            if (data.count < perpage) {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
         }
+        
         [self emptyShow];
         [self.tableView reloadData];
         
     } failed:^(NSError *error) {
-        DLog(@"%@",error);
         [self emptyShow];
         [self showServerError:error];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
     }];
     
 }

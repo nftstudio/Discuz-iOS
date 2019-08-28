@@ -375,14 +375,7 @@
     return [self cellHeight];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-}
-
 // MARK: - 懒加载
-
 - (UIImageView *)headV {
     if (_headV == nil) {
         _headV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"noavatar_small"]];

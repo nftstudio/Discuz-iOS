@@ -42,7 +42,6 @@
     return self.dataSourceArr.count;
 }
 
-
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     static NSString * CellID= @"viewReplyCellID";
@@ -57,7 +56,6 @@
     [cell setdata:dic];
     rect.size.height = [cell cellheigh];
     cell.frame = rect;
-    DLog(@"%f",rect.size.height);
     return cell;
 }
 
@@ -83,12 +81,11 @@
         request.parameters = postDic;
         [self.HUD showLoadingMessag:@"正在加载" toView:self.view];
     } success:^(id responseObject, JTLoadType type) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         BOOL haveAuther = [ResponseMessage autherityJudgeResponseObject:responseObject refuseBlock:^(NSString *message) {
             [UIAlertController alertTitle:nil message:message controller:self doneText:@"知道了" cancelText:nil doneHandle:^{
                 [self.navigationController popViewControllerAnimated:YES];
             } cancelHandle:nil];
-            [self.HUD hideAnimated:YES];
         }];
         if (!haveAuther) {
             return;
@@ -100,7 +97,7 @@
         [self.tableView reloadData];
         [self emptyShow];
     } failed:^(NSError *error) {
-        [self.HUD hideAnimated:YES];
+        [self.HUD hide];
         [self showServerError:error];
         [self emptyShow];
     }];

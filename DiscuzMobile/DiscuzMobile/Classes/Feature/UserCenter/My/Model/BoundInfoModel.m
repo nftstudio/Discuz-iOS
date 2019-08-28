@@ -11,7 +11,6 @@
 @implementation BoundInfoModel
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key {

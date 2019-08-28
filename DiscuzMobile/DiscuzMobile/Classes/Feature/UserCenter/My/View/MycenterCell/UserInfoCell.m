@@ -57,7 +57,6 @@
     CGRect fla = self.groupLabel.frame;
     if ([DataCheck isValidString:self.groupLabel.text]) {
         int i = [self.groupLabel.text convertToInt:self.groupLabel.text];
-        DLog(@"%d",i);
         self.groupLabel.frame = CGRectMake(fla.origin.x, fla.origin.y, 15*i, fla.size.height);
     }
     
@@ -72,17 +71,6 @@
 
 - (void)editBtnClick {
     
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end
